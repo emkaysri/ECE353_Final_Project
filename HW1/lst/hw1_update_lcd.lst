@@ -1,0 +1,168 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; Filename:     hw1_ai_update_lcd.s 
+    2 00000000         ; Author:       Srinidhi Emkay
+    3 00000000         ; ID:   9071272901
+    4 00000000         ; NetID:  emkay
+    5 00000000         ; Description:  Takes input of {0x01,0x02,0x04,0x08} 
+    6 00000000         ;    = {UP, DOWN, LEFT, RIGHT} and calls 
+    7 00000000         ;    the respective draw function
+    8 00000000                 export           hw1_update_lcd
+    9 00000000                 import           hw1_draw_up_arrow
+   10 00000000                 import           hw1_draw_down_arrow
+   11 00000000                 import           hw1_draw_left_arrow
+   12 00000000                 import           hw1_draw_right_arrow
+   13 00000000         ;**********************************************
+   14 00000000         ; SRAM
+   15 00000000         ;**********************************************
+   16 00000000                 AREA             SRAM, READWRITE
+   17 00000000                 align
+   18 00000000         
+   19 00000000         ;**********************************************
+   20 00000000         ; Constant Variables (FLASH) Segment
+   21 00000000         ;**********************************************
+   22 00000000                 AREA             FLASH, CODE, READONLY
+   23 00000000                 align
+   24 00000000         
+   25 00000000         ;**********************************************
+   26 00000000         ; Code (FLASH) Segment
+   27 00000000         ; main assembly program
+   28 00000000         ; Input
+   29 00000000         ; R0 Move to display
+   30 00000000         ; {0x01,0x02,0x04,0x08} = {UP, DOWN, LEFT, RIGHT}
+   31 00000000         ;**********************************************
+   32 00000000         ; void hw1_update_lcd(uint8_t buttons)
+   33 00000000                 PRESERVE8
+   34 00000000         hw1_update_lcd
+                               PROC
+   35 00000000 B500            PUSH             {LR}
+   36 00000002 F010 0F01       TST              R0, #0x01
+   37 00000006 B401            PUSH             {R0}
+   38 00000008 BF18 F7FF 
+              FFFE             BLNE             hw1_draw_up_arrow
+   39 0000000E BC01            POP              {R0}
+   40 00000010         
+   41 00000010 F010 0F02       TST              R0, #0x02
+   42 00000014 B401            PUSH             {R0}
+   43 00000016 BF18 F7FF 
+              FFFE             BLNE             hw1_draw_down_arrow
+   44 0000001C BC01            POP              {R0}
+   45 0000001E         
+   46 0000001E F010 0F04       TST              R0, #0x04
+   47 00000022 B401            PUSH             {R0}
+   48 00000024 BF18 F7FF 
+              FFFE             BLNE             hw1_draw_left_arrow
+   49 0000002A BC01            POP              {R0}
+   50 0000002C         
+   51 0000002C F010 0F08       TST              R0, #0x08
+   52 00000030 BF18 F7FF 
+              FFFE             BLNE             hw1_draw_right_arrow
+   53 00000036         END_CASE
+   54 00000036 F85D EB04       POP              {LR}
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   55 0000003A 4770            BX               LR
+   56 0000003C                 ENDP
+   57 0000003C                 align
+   58 0000003C         
+   59 0000003C                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\obj\hw1_update_lcd.d -o.\obj\hw1_update_lcd.o -I.\RTE\_ECE353
+-Test-Code -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM
+\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123 --predefine="__MICROLIB SETA 1
+" --predefine="__UVISION_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefi
+ne="TM4C123GH6PM SETA 1" --list=.\lst\hw1_update_lcd.lst hw1_update_lcd.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+SRAM 00000000
+
+Symbol: SRAM
+   Definitions
+      At line 16 in file hw1_update_lcd.s
+   Uses
+      None
+Comment: SRAM unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+END_CASE 00000036
+
+Symbol: END_CASE
+   Definitions
+      At line 53 in file hw1_update_lcd.s
+   Uses
+      None
+Comment: END_CASE unused
+FLASH 00000000
+
+Symbol: FLASH
+   Definitions
+      At line 22 in file hw1_update_lcd.s
+   Uses
+      None
+Comment: FLASH unused
+hw1_update_lcd 00000000
+
+Symbol: hw1_update_lcd
+   Definitions
+      At line 34 in file hw1_update_lcd.s
+   Uses
+      At line 8 in file hw1_update_lcd.s
+Comment: hw1_update_lcd used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+hw1_draw_down_arrow 00000000
+
+Symbol: hw1_draw_down_arrow
+   Definitions
+      At line 10 in file hw1_update_lcd.s
+   Uses
+      At line 43 in file hw1_update_lcd.s
+Comment: hw1_draw_down_arrow used once
+hw1_draw_left_arrow 00000000
+
+Symbol: hw1_draw_left_arrow
+   Definitions
+      At line 11 in file hw1_update_lcd.s
+   Uses
+      At line 48 in file hw1_update_lcd.s
+Comment: hw1_draw_left_arrow used once
+hw1_draw_right_arrow 00000000
+
+Symbol: hw1_draw_right_arrow
+   Definitions
+      At line 12 in file hw1_update_lcd.s
+   Uses
+      At line 52 in file hw1_update_lcd.s
+Comment: hw1_draw_right_arrow used once
+hw1_draw_up_arrow 00000000
+
+Symbol: hw1_draw_up_arrow
+   Definitions
+      At line 9 in file hw1_update_lcd.s
+   Uses
+      At line 38 in file hw1_update_lcd.s
+Comment: hw1_draw_up_arrow used once
+4 symbols
+343 symbols in table

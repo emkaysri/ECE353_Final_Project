@@ -1,0 +1,20 @@
+Dependencies for Project 'ece353-f17-hw1', Target 'ECE353-Test-Code': (DO NOT MODIFY !)
+F (.\main.c)(0x59DA4F50)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include-I.\RTE\_ECE353-Test-Code-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
+I (main.h)(0x59DA4F50)
+I (C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\include\stdint.h)(0x59B694C7)
+I (hw1_lib.h)(0x59DA4F50)
+F (.\main.h)(0x59DA4F50)()
+F (.\hw1_ai_print_pattern.s)(0x59DAD0DC)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_ECE353-Test-Code-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1"--list .\lst\hw1_ai_print_pattern.lst --xref -o .\obj\hw1_ai_print_pattern.o --depend .\obj\hw1_ai_print_pattern.d)
+F (.\hw1_update_lcd.s)(0x59DAD02E)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_ECE353-Test-Code-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1"--list .\lst\hw1_update_lcd.lst --xref -o .\obj\hw1_update_lcd.o --depend .\obj\hw1_update_lcd.d)
+F (.\hw1.s)(0x59DAD02D)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_ECE353-Test-Code-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1"--list .\lst\hw1.lst --xref -o .\obj\hw1.o --depend .\obj\hw1.d)
+F (.\hw1_lib.h)(0x59DA4F50)()
+F (.\ece353_hw1.lib)(0x59DA4F50)()
+F (RTE\Device\TM4C123GH6PM\startup_TM4C123.s)(0x59DA4F50)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_ECE353-Test-Code-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1"--list .\lst\startup_tm4c123.lst --xref -o .\obj\startup_tm4c123.o --depend .\obj\startup_tm4c123.d)
+F (RTE\Device\TM4C123GH6PM\system_TM4C123.c)(0x59DA4F50)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include-I.\RTE\_ECE353-Test-Code-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\obj\system_tm4c123.o --omf_browse .\obj\system_tm4c123.crf --depend .\obj\system_tm4c123.d)
+I (C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\include\stdint.h)(0x59B694C7)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123.h)(0x59B69785)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123GH6PM.h)(0x59B69787)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h)(0x59B694E6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h)(0x59B694E5)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h)(0x59B694E5)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h)(0x59B69785)

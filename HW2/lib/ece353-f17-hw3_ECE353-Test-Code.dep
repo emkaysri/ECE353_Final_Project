@@ -1,0 +1,20 @@
+Dependencies for Project 'ece353-f17-hw3', Target 'ECE353-Test-Code': (DO NOT MODIFY !)
+F (.\hw2_lib.c)(0x59D6550D)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include-IC:\Users\joe.krachey\Documents\ece353-src\staff_f17\HW2-Lib\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="521" -D_RTE_ -DTM4C123GH6PM-o ..\hw2\lib\hw2_lib.o --omf_browse ..\hw2\lib\hw2_lib.crf --depend ..\hw2\lib\hw2_lib.d)
+I (hw2_lib.h)(0x59D65539)
+I (board_defines.h)(0x57A4BA89)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x574EF4F6)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574EF4F6)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574EF4F6)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574EF4F6)
+I (C:\Keil_v5\ARM\ARMCC\include\errno.h)(0x574EF4F6)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x574EF4F6)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123GH6PM.h)(0x5510449C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h)(0x56266DDC)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h)(0x56265A20)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h)(0x56265A20)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h)(0x56265A20)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h)(0x56265A20)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B74676)
+I (..\drivers\include\driver_defines.h)(0x57518EA2)
+F (RTE\Device\TM4C123GH6PM\startup_TM4C123.s)(0x57AA4EBB)()
+F (RTE\Device\TM4C123GH6PM\system_TM4C123.c)(0x550AC84A)()

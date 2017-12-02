@@ -1,0 +1,167 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; Filename:     hw1_ai_print_pattern.s 
+    2 00000000         ; Author:       Srinidhi Emkay
+    3 00000000         ; ID:   9071272901
+    4 00000000         ; NetID:  emkay
+    5 00000000         ; Description:  Takes input pattern (array) and
+    6 00000000         ;    current moves (number) and calls
+    7 00000000         ;    update_lcd by sending the direction
+    8 00000000         ;    in R0. Waits 700ms, removes the arrow,
+    9 00000000         ;    waits 700ms, and increments to next number
+   10 00000000         ;    in array
+   11 00000000         
+   12 00000000                 export           hw1_ai_print_pattern
+   13 00000000                 import           AI_Array
+   14 00000000                 import           hw1_update_lcd
+   15 00000000                 import           hw1_clear_arrow
+   16 00000000                 import           hw1_wait_ms
+   17 00000000         
+   18 00000000         ;**********************************************
+   19 00000000         ; SRAM
+   20 00000000         ;**********************************************
+   21 00000000                 AREA             SRAM, READWRITE
+   22 00000000                 align
+   23 00000000         
+   24 00000000         ;**********************************************
+   25 00000000         ; Constant Variables (FLASH) Segment
+   26 00000000         ;**********************************************
+   27 00000000                 AREA             FLASH, CODE, READONLY
+   28 00000000                 align
+   29 00000000         
+   30 00000000         ;**********************************************
+   31 00000000         ; Code (FLASH) Segment
+   32 00000000         ; main assembly program
+   33 00000000         ; R0 AI_Array (Input)
+   34 00000000         ; R1 Moves (Input)
+   35 00000000         ; R2 Loop Counter (Local)
+   36 00000000         ;**********************************************
+   37 00000000         ; void hw1_ai_print_pattern(uint8_t *pattern, uint16_t m
+                       oves)
+   38 00000000                 PRESERVE8
+   39 00000000         hw1_ai_print_pattern
+                               PROC
+   40 00000000 F04F 0200       MOV              R2, #0
+   41 00000004         LOOP_START
+   42 00000004 B507            PUSH             {R0-R2, LR}
+   43 00000006 5880            LDR              R0, [R0, R2]
+   44 00000008 F7FF FFFE       BL               hw1_update_lcd
+   45 0000000C F44F 702F       MOV              R0, #700
+   46 00000010 F7FF FFFE       BL               hw1_wait_ms
+   47 00000014 F7FF FFFE       BL               hw1_clear_arrow
+   48 00000018 F7FF FFFE       BL               hw1_wait_ms
+   49 0000001C E8BD 4007       POP              {R0-R2, LR}
+   50 00000020         
+   51 00000020 F102 0201       ADD              R2, R2, #1
+   52 00000024 4291            CMP              R1, R2
+   53 00000026 DCED            BGT              LOOP_START
+   54 00000028 4770            BX               LR
+   55 0000002A                 ENDP
+   56 0000002A 00 00           align
+   57 0000002C         
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   58 0000002C         
+   59 0000002C                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\obj\hw1_ai_print_pattern.d -o.\obj\hw1_ai_print_pattern.o -I.
+\RTE\_ECE353-Test-Code -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:
+\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123 --predefine="__MIC
+ROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524" --predefine="_RTE_ SETA 
+1" --predefine="TM4C123GH6PM SETA 1" --list=.\lst\hw1_ai_print_pattern.lst hw1_
+ai_print_pattern.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+SRAM 00000000
+
+Symbol: SRAM
+   Definitions
+      At line 21 in file hw1_ai_print_pattern.s
+   Uses
+      None
+Comment: SRAM unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+FLASH 00000000
+
+Symbol: FLASH
+   Definitions
+      At line 27 in file hw1_ai_print_pattern.s
+   Uses
+      None
+Comment: FLASH unused
+LOOP_START 00000004
+
+Symbol: LOOP_START
+   Definitions
+      At line 41 in file hw1_ai_print_pattern.s
+   Uses
+      At line 53 in file hw1_ai_print_pattern.s
+Comment: LOOP_START used once
+hw1_ai_print_pattern 00000000
+
+Symbol: hw1_ai_print_pattern
+   Definitions
+      At line 39 in file hw1_ai_print_pattern.s
+   Uses
+      At line 12 in file hw1_ai_print_pattern.s
+Comment: hw1_ai_print_pattern used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+AI_Array 00000000
+
+Symbol: AI_Array
+   Definitions
+      At line 13 in file hw1_ai_print_pattern.s
+   Uses
+      None
+Comment: AI_Array unused
+hw1_clear_arrow 00000000
+
+Symbol: hw1_clear_arrow
+   Definitions
+      At line 15 in file hw1_ai_print_pattern.s
+   Uses
+      At line 47 in file hw1_ai_print_pattern.s
+Comment: hw1_clear_arrow used once
+hw1_update_lcd 00000000
+
+Symbol: hw1_update_lcd
+   Definitions
+      At line 14 in file hw1_ai_print_pattern.s
+   Uses
+      At line 44 in file hw1_ai_print_pattern.s
+Comment: hw1_update_lcd used once
+hw1_wait_ms 00000000
+
+Symbol: hw1_wait_ms
+   Definitions
+      At line 16 in file hw1_ai_print_pattern.s
+   Uses
+      At line 46 in file hw1_ai_print_pattern.s
+      At line 48 in file hw1_ai_print_pattern.s
+
+4 symbols
+343 symbols in table

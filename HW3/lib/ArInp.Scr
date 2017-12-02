@@ -1,0 +1,14 @@
+--create ..\HW3\lib\ece353_hw3_validate.lib
+..\hw3\lib\board_setup.o
+..\hw3\lib\validate_adc.o
+..\hw3\lib\validate_gpio.o
+..\hw3\lib\validate_led.o
+..\hw3\lib\validate_sysctl.o
+..\hw3\lib\validate_uart.o
+..\hw3\lib\validate_gp_timer.o
+..\hw3\lib\hw3_sw2.o
+..\hw3\lib\hw3_lcd_gpio.o
+..\hw3\lib\hw3_gpt.o
+..\hw3\lib\hw3_adc.o
+..\hw3\lib\validate_irq.o
+..\hw3\lib\hw3_irq.o
