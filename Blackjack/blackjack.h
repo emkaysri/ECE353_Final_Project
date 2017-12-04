@@ -34,6 +34,7 @@ extern const uint8_t Bitmaps_X[];
 
 uint8_t masterID[];
 uint8_t playerID[][];
+uint8_t cards[][];
 
 /*
 * cardnum % 13 = CARD_VALUE
@@ -99,6 +100,6 @@ void play_game(void);
 * Summary: creates a deck and suffles it
 *
 *******************************************************************************/
-void shuffle_cards(int *array, size_t n);
+void shuffle_cards(uint8_t *array);
 
 #endif

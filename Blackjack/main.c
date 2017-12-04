@@ -17,6 +17,10 @@ main(void)
 {
   while(1){
     // display_main_menu return true if master user
-    start_game(display_main_menu()));
+    if(display_main_menu()){
+      master_game();
+    }else{
+      play_game();
+    }
   }
 }

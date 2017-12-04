@@ -44,6 +44,14 @@ void master_game(void){
   if(quit){
     return;
   }
+  int cardselect = 0;
+  while(1){
+    if(51 - cardselect < numplayers * 3 + 2){
+      shuffle_cards();
+      cardselect = 0;
+      cards[0]
+    }
+  }
 }
 
 
@@ -52,4 +60,14 @@ void play_game(void){
   if(quit){
     return;
   }
+}
+
+void shuffle_cards(){
+  uint8_t i;
+	for (i = 0; i < 51; i++) {
+	  uint8_t j = i + rand() / (RAND_MAX / (52 - i) + 1);
+	  int t = array[j];
+	  array[j] = array[i];
+	  array[i] = t;
+	}
 }
