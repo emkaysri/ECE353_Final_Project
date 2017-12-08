@@ -1,0 +1,81 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.21.1.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Joe Krachey, UW-Madison, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.21a
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 3 (build 300)
+Assembler:       Armasm.exe V5.06 update 3 (build 300)
+Linker/Locator:  ArmLink.exe V5.06 update 3 (build 300)
+Library Manager: ArmAr.exe V5.06 update 3 (build 300)
+Hex Converter:   FromElf.exe V5.06 update 3 (build 300)
+CPU DLL:         SARMCM3.DLL V5.21a
+Dialog DLL:      DCM.DLL V1.13.8.0
+Target DLL:      lmidk-agdi.dll V???
+Dialog DLL:      TCM.DLL V1.14.14.0
+ 
+<h2>Project:</h2>
+C:\Users\joe.krachey\Documents\ece353-src\staff_f17\HW3_validation\validation_lib.uvprojx
+Project File Date:  08/24/2017
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Target 1'
+compiling board_setup.c...
+board_setup.c(32): warning:  #47-D: incompatible redefinition of macro "STAFF" (declared at line 25 of "ps2.h")
+  #define STAFF 0
+board_setup.c(697): warning:  #177-D: variable "sw2_status" was declared but never referenced
+    bool sw2_status = false;
+board_setup.c(698): warning:  #177-D: variable "lcd_status" was declared but never referenced
+    bool lcd_status = false;
+board_setup.c(699): warning:  #177-D: variable "gpt_status" was declared but never referenced
+    bool gpt_status = false;
+board_setup.c(700): warning:  #177-D: variable "adc_status" was declared but never referenced
+    bool adc_status = false;
+board_setup.c(701): warning:  #177-D: variable "irq_status" was declared but never referenced
+    bool irq_status = false;
+board_setup.c(36): warning:  #177-D: function "DisableInterrupts" was declared but never referenced
+  static void DisableInterrupts(void)
+board_setup.c(46): warning:  #177-D: function "EnableInterrupts" was declared but never referenced
+  static void EnableInterrupts(void)
+board_setup.c: 8 warnings, 0 errors
+creating Library...
+"..\HW3\lib\ece353_hw3_validate.lib" - 0 Error(s), 8 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
+                ARM::CMSIS:CORE:4.3.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 4.3.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.TM4C_DFP.1.1.0.pack
+                Keil::Device:Startup:1.0.1
+                Texas Instruments Tiva C Series Device Support and Examples
+   * Component: Startup Version: 1.0.1
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\joe.krachey\Documents\ece353-src\staff_f17\HW3_validation\RTE
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+  C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:4.3.0
+
+   * Component: Keil::Device:Startup:1.0.1
+      Include file:  Device\Include\TM4C123\TM4C123.h
+      Source file:   Device\Source\ARM\startup_TM4C123.s
+      Source file:   Device\Source\system_TM4C123.c
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
