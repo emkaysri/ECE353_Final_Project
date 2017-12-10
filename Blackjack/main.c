@@ -23,6 +23,127 @@
 #include "main.h"
 
 //*****************************************************************************
+// Global Variables
+//*****************************************************************************
+// strings to display to uart and store to eeprom
+char student_1[] = "Student1: Jason Sylvestre";
+char student_2[] = "Student2: Srinidhi Emkay";
+char student_3[] = "Student1: John Compas";
+char group[] =     "Team Number: 36";
+
+// timer variables
+extern volatile bool ALERT_1MS;
+extern volatile bool ALERT_5000MS;
+
+
+//*****************************************************************************
+// 
+//*****************************************************************************
+void DisableInterrupts(void)
+{
+  __asm {
+         CPSID  I
+  }
+}
+
+//*****************************************************************************
+// 
+//*****************************************************************************
+void EnableInterrupts(void)
+{
+  __asm {
+    CPSIE  I
+  }
+}
+
+
+//*****************************************************************************
+// Initialize board hardware
+//*****************************************************************************
+void initializeBoard(void)
+{
+  DisableInterrupts();
+	
+	// GPIO 
+	lp_io_init();
+
+	// PS2 TODO INTERRUPTS CODE
+	ps2_initialize();
+	
+	// EEPROM
+	eeprom_init();
+
+	// TIMERS
+	timers_init(); 
+	// GPIO EXPANDER
+	
+	// LCD
+	lcd_config_screen();
+	lcd_clear_screen(LCD_COLOR_WHITE);
+	
+	// CAPACITIVE TOUCH
+	ft6x06_init();
+
+	// SERIAL DEBUG
+  init_serial_debug(true, true);
+	
+	// WIRELESS
+	spi_select_init();
+  spi_select(NORDIC);
+  wireless_initialize();
+  SysTick_Config(10000000);
+	
+  EnableInterrupts();
+}
+
+//*****************************************************************************
+// EEPROM - Read Board Data
+//*****************************************************************************
+void eeprom_read_board_data()
+{
+	eeprom_read((uint8_t *)s, EEPROM_STUDENT1, 80);
+	printf("%s\n", s);
+	
+	eeprom_read((uint8_t *)s, EEPROM_STUDENT2, 80);
+	printf("%s\n", s);
+	
+	eeprom_read((uint8_t *)s, EEPROM_STUDENT3, 80);
+	printf("%s\n", s);
+	
+	eeprom_read((uint8_t *)s, EEPROM_GROUP, 80);
+	printf("%s\n", s);
+	
+}
+
+//*****************************************************************************
+// Wireless - Configure Wireless point-point connection
+//*****************************************************************************
+void wireless_connect(){
+	
+	// Input correct IDs for boards
+	uint8_t myID[]  				= { 3,5,3,2,3};
+	uint8_t remoteID[]      = { 4,5,3,2,2};
+	
+	wireless_configure_device(myID, remoteID); 
+}
+
+
+//*****************************************************************************
+// Switch 2 Debounce 
+//*****************************************************************************
+bool sw2_debounce(void) 
+{
+	if (lp_io_read_pin(SW2_BIT)){
+	// button pressed
+	  return false;
+	}
+	// button not pressed
+	return true;
+}
+
+
+//*****************************************************************************
+// Main Function
 //*****************************************************************************
 int 
 main(void)
@@ -102,5 +223,13 @@ main(void)
 	
 }
 	
+// If SW2 is pressed, write names and group number to EEPROM
+		if (sw2_debounce()) 
+		{
+			eeprom_write((uint8_t *)s, EEPROM_STUDENT1, 80);
+	  	eeprom_write((uint8_t *)s, EEPROM_STUDENT2, 80);
+			eeprom_write((uint8_t *)s, EEPROM_STUDENT3, 80);
+			eeprom_write((uint8_t *)s, EEPROM_GROUP, 80);
+		}
 
 }
