@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>HW3</TargetName>
+      <TargetName>Blackjack</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
@@ -390,6 +390,16 @@
               <FileType>5</FileType>
               <FilePath>.\main.h</FilePath>
             </File>
+            <File>
+              <FileName>blackjack.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\blackjack.c</FilePath>
+            </File>
+            <File>
+              <FileName>blackjack.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\blackjack.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -453,13 +463,13 @@
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="3.20.0" condition="CMSIS Core">
         <package name="CMSIS" schemaVersion="1.0" url="http://www.keil.com/pack/" vendor="ARM" version="3.20.4"/>
         <targetInfos>
-          <targetInfo name="HW3"/>
+          <targetInfo name="Blackjack"/>
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="TM4C CMSIS Device">
         <package name="TM4C_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.0"/>
         <targetInfos>
-          <targetInfo name="HW3"/>
+          <targetInfo name="Blackjack"/>
         </targetInfos>
       </component>
     </components>
@@ -469,7 +479,7 @@
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.1" condition="TM4C123x CMSIS"/>
         <package name="TM4C_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
         <targetInfos>
-          <targetInfo name="HW3"/>
+          <targetInfo name="Blackjack"/>
         </targetInfos>
       </file>
       <file attr="config" category="source" name="Device\Source\system_TM4C123.c" version="1.0.1">
@@ -477,7 +487,7 @@
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.1" condition="TM4C123x CMSIS"/>
         <package name="TM4C_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.0"/>
         <targetInfos>
-          <targetInfo name="HW3"/>
+          <targetInfo name="Blackjack"/>
         </targetInfos>
       </file>
     </files>

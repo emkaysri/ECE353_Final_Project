@@ -22,6 +22,8 @@
 
 #include "blackjack.h"
 
+static struct player playerList[2];
+
 /*******************************************************************************
 * Function Name: display_main_menu
 ********************************************************************************
@@ -36,38 +38,100 @@ bool display_main_menu(void){
 ********************************************************************************
 *******************************************************************************/
 
-void master_game(void){
-  uint8_t i;
-  for(i = 0; i < 52; i++){
-    cleanDeck[i] = i;
-  }
-  if(quit){
-    return;
-  }
-  int cardselect = 0;
+void master_game(uint8_t *playerID){
+	player this_player;
+  currCard = 0;
+	*dealerHand = malloc(sizeof(uint8_t));
+  this_player.playerID = playerID;
+  this_player.money = 25000;
+  playerList[0] = this_player;
+  playerList[1] = getplayer();
+  shuffle_cards();
   while(1){
-    if(51 - cardselect < numplayers * 3 + 2){
-      shuffle_cards();
-      cardselect = 0;
-      cards[0]
+    //get bet
+    setbet(playerList[0],Bet(playerList[0]));
+    requestbet(playerList[1]);
+
+    int i;
+    for(i = 0; i < 2; i++){
+      *(dealerHand + i) = Deck[currCard++];
+      playerList[0].hand[0][i] = Deck[currCard++];
+      playerList[1].hand[0][i] = Deck[currCard++];
+    }
+
+  uint8_t dealerSum;
+  if(dealerHand[0] % 13 == 1){
+    dealerSum = 11;
+  } else if(dealerHand[0] % 13 > 10 || dealerHand[0] % 13 == 0){
+    dealerSum = 10;
+  }
+
+  if(dealerHand[1] % 13 == 1){
+    dealerSum += 11;
+  } else if(dealerHand[1] % 13 > 10 || dealerHand[1] % 13 == 0){
+    dealerSum += 10;
+  }
+
+  if(dealerSum == 21){
+    //score user
+  }
+
+}
+}
+bool requestbet(player *p){
+	 p->bet = 1; 
+	//userBet;
+}
+
+int Bet(void){
+  int userBet;
+  bool betset = false;
+
+  while(!betset){
+    if(press_positive){
+      userBet = userBet < money : userBet + 500 ? money
+    } else if(press_negitive){
+      userBet = userBet > 0 : userBet - 500 ? 0;
     }
   }
+
+  return userBet;
 }
 
 
 void play_game(void){
-  //find master
-  if(quit){
-    return;
-  }
+  //find master and get id
+  getplayer();
+  //if return
+	while (1){
+		sendbet();
+	}
+}
+void sendbet(){
+	Bet();
+	//transfer this to master
 }
 
-void shuffle_cards(){
-  uint8_t i;
-	for (i = 0; i < 51; i++) {
-	  uint8_t j = i + rand() / (RAND_MAX / (52 - i) + 1);
-	  int t = array[j];
-	  array[j] = array[i];
-	  array[i] = t;
+void shuffle_cards(void){
+  currCard = 0;
+  int index, i;
+	int high, low, random;
+
+  for(i = 0; i < 52; i++){
+    Deck[i] = i;
+  }
+
+	for(i=0; i<52; i++) {
+		high = 51;
+		low = i;
+		index = rand() % (high - low + 1) + low;
+		swap(Deck+i, Deck+index);
 	}
+}
+
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }

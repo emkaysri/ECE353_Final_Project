@@ -22,7 +22,11 @@
 #ifndef __BLACKJACK_H__
 #define __BLACKJACK_H__
 
+#include <stdio.h>
 #include <stdint.h>
+#include <string.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 #define DEALER_CARD_WIDTH     XX
 #define DEALER_CARD_HEIGHT    XX
@@ -33,15 +37,20 @@ extern const uint8_t Bitmaps_X[];
 extern const uint8_t Bitmaps_X[];
 
 uint8_t masterID[];
-uint8_t playerID[][];
-uint8_t cards[][];
+typedef struct{
+  int **hand;
+  int money;
+  int bet;
+  int *playerID;
+} player;
 
 /*
 * cardnum % 13 = CARD_VALUE
 * cardnum / 13 = CARD_SUIT
 */
-uint8_t cleanDeck[];
-uint8_t suffledDeck[];
+int *dealerHand;
+int currCard;
+int Deck[52];
 
 typedef enum{
   ACE,
@@ -84,7 +93,7 @@ bool display_main_menu(void);
 * Summary: Creates game
 *
 *******************************************************************************/
-void master_game(void);
+void master_game(uint8_t *player);
 
 /*******************************************************************************
 * Function Name: play_game
@@ -100,6 +109,12 @@ void play_game(void);
 * Summary: creates a deck and suffles it
 *
 *******************************************************************************/
-void shuffle_cards(uint8_t *array);
+void shuffle_cards(void);
+int Bet(void);
+bool requestbet(player *p);
+void play_game(void);
+void shuffle_cards(void);
+void swap(int *a, int *b);
+void sendbet(void);
 
 #endif
