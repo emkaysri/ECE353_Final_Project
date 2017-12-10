@@ -31,4 +31,18 @@
 #include "lcd.h"
 #include "graphics.h"
 
+#include "interrupts.h"
+#include "spi_select.h"
+#include "wireless.h"
+#include "eeprom.h"
+#include "timers.h"
+#include "serial_debug.h"
+#include "launchpad_io.h"
+//#include "watchdog.h"
+//#include "mcp23017.h"
+#include "ps2.h"
+#include "ft6x06.h"
+
+
+
 #endif
