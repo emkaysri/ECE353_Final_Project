@@ -38,9 +38,7 @@ extern const uint8_t Bitmaps_X[];
 
 uint8_t masterID[];
 typedef struct{
-  int hand[2][5];
-  bool stand[2];
-  int numCards[2];
+  int **hand;
   int money;
   int bet;
   int *playerID;
@@ -113,13 +111,10 @@ void play_game(void);
 *******************************************************************************/
 void shuffle_cards(void);
 int Bet(void);
-bool requestbet(struct player *p);
+bool requestbet(player *p);
 void play_game(void);
 void shuffle_cards(void);
 void swap(int *a, int *b);
 void sendbet(void);
-void finalScore(void);
-void DisplayWinorLoss(struct player *p, int winLoss);
-void playerturn(struct player *p);
-int score(int val, bool high);
+
 #endif
