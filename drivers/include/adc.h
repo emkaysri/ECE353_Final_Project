@@ -43,6 +43,17 @@ bool initialize_adc(  uint32_t adc_base );
 
 
 /******************************************************************************
+ * Initializes ADC to use SS2, triggered by timer
+ * Parameters:
+ *  adc_base - The user must pass ADC0_BASE or ADC1_BASE.
+ *
+ * Returns:
+ *  true  - if an valid base address was passed in
+ *  false - if an invalid base address was passed in
+ *****************************************************************************/
+bool initialize_adc_ss2(uint32_t adc_base);
+
+/******************************************************************************
  * Returns the analog reading for a given AIN channel.
  *
  * Parameters:
@@ -53,5 +64,17 @@ bool initialize_adc(  uint32_t adc_base );
  *   analog reading
  *****************************************************************************/
 uint32_t get_adc_value( uint32_t adc_base, uint8_t channel);
+
+//*****************************************************************************
+// Returns the most current reading of the X direction.  Only the lower 12-bits
+// contain data.
+//*****************************************************************************
+uint16_t ps2_get_x(void);
+
+//*****************************************************************************
+// Returns the most current reading of the Y direction.  Only the lower 12-bits
+// contain data.
+//*****************************************************************************
+uint16_t ps2_get_y(void);
 
 #endif
