@@ -34,7 +34,7 @@ bool gp_timer_config_32(uint32_t base_addr, uint32_t mode, bool count_up, bool e
 //*****************************************************************************
 bool gp_timer_wait(uint32_t base_addr, uint32_t ticks);
 
-
+extern volatile int WATCHDOG_TESTING;
 
 //*****************************************************************************
 // initialize timers for blackjack game

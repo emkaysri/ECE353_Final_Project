@@ -3,6 +3,7 @@
 
 volatile bool ALERT_1MS = false;
 volatile bool ALERT_5000MS = false;
+volatile int WATCHDOG_TESTING = 0;
 
 //*****************************************************************************
 // Verifies that the base address is a valid GPIO base address
@@ -242,6 +243,9 @@ bool timers_init(
 	
 	TIMER0_Type *gp1_timer;
 	TIMER0_Type *gp5_timer;
+	TIMER0_Type *watchdog_timer;
+	
+	uint32_t watchdog_address = TIMER2_BASE ;
 
 	  // Verify the base address.
   if (!verify_base_addr(base1_address) || !verify_base_addr(base5_address))
@@ -252,29 +256,39 @@ bool timers_init(
 	// Turn on clock for timers
 	SYSCTL->RCGCTIMER |= SYSCTL_RCGCTIMER_R1;
 	SYSCTL->RCGCTIMER |= SYSCTL_RCGCTIMER_R5;
+	
+	// Turn on clock for watchdog
+	SYSCTL->RCGCTIMER |= SYSCTL_RCGCTIMER_R2;
 
   // Wait for the timers to turn on
-  while((SYSCTL->PRTIMER & (SYSCTL_PRTIMER_R0 | SYSCTL_PRTIMER_R1 | SYSCTL_PRTIMER_R2 | SYSCTL_PRTIMER_R3)) == 0) {};
+  while((SYSCTL->PRTIMER & SYSCTL_PRTIMER_R1) ==0) {};
+		
+	while((SYSCTL->PRTIMER & SYSCTL_PRTIMER_R2) ==0) {};
+
+	while((SYSCTL->PRTIMER & SYSCTL_PRTIMER_R5) ==0) {};		
 
   // Type cast the base address to a TIMER0_Type
   gp1_timer = (TIMER0_Type *)base1_address;
 	gp5_timer = (TIMER0_Type *)base5_address;
-
+	watchdog_timer = (TIMER0_Type *)watchdog_address;
     
   // Stop the timers
-	gp1_timer->CTL &= ~( TIMER_CTL_TAEN | TIMER_CTL_TBEN);
+	gp1_timer->CTL &= ~( TIMER_CTL_TAEN | TIMER_CTL_TBEN); //HARD FAULT HERE
 	gp5_timer->CTL &= ~( TIMER_CTL_TAEN | TIMER_CTL_TBEN);
+	watchdog_timer->CTL &= ~( TIMER_CTL_TAEN | TIMER_CTL_TBEN);
   
   // Set the timer to be a correct bit number
 	gp1_timer->CFG = TIMER_CFG_32_BIT_TIMER;
   gp5_timer->CFG = TIMER_CFG_16_BIT;
+	watchdog_timer->CFG = TIMER_CFG_32_BIT_TIMER;
     
- blackjack_timerA(base5_address,timer5A_ticks, timer5A_prescalar, timer5A_irq_num, timer5A_priority);
- blackjack_timerA(base1_address,timer1A_ticks, timer1A_prescalar, timer1A_irq_num, timer1A_priority);
-		
+	blackjack_timerA(base5_address,timer5A_ticks, timer5A_prescalar, timer5A_irq_num, timer5A_priority);
+	blackjack_timerA(base1_address,timer1A_ticks, timer1A_prescalar, timer1A_irq_num, timer1A_priority);
+	blackjack_timerA(watchdog_address, 50000000, 1, TIMER2A_IRQn ,0);
   // Start the timers
 	gp1_timer->CTL |= TIMER_CTL_TAEN;
 	gp5_timer->CTL |= TIMER_CTL_TAEN;
+	watchdog_timer->CTL |= TIMER_CTL_TAEN;
   
   // Turn on the SysTick Timer
   // SysTick_Config(QUARTER_SEC);
@@ -309,7 +323,13 @@ void TIMER5A_Handler(void)
   TIMER5->ICR |= TIMER_ICR_TATOCINT;
 	
 	// Start the ADC Conversion
-	ADC0->PSSI |= ADC_PSSI_SS2;
+//	ADC0->PSSI |= ADC_PSSI_SS2;
   
   ALERT_1MS = true;
+}
+
+void TIMER2A_Handler(void)
+{
+  TIMER2->ICR |= TIMER_ICR_TATOCINT;
+	WATCHDOG_TESTING++;
 }
