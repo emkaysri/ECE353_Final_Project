@@ -1,5 +1,8 @@
+#include "launchpad_io.h"
 #include "timers.h"
 
+volatile bool ALERT_1MS = false;
+volatile bool ALERT_5000MS = false;
 
 //*****************************************************************************
 // Verifies that the base address is a valid GPIO base address
@@ -161,6 +164,7 @@ bool gp_timer_config_32(uint32_t base_addr, uint32_t mode, bool count_up, bool e
 		
 		//32 bit mode
   gp_timer->CFG = TIMER_CFG_32_BIT_TIMER;
+		
 		//one shot count down mode
 	gp_timer->TAMR &= ~(TIMER_TAMR_TAMR_M);   
 	gp_timer->TAMR |=  mode;
@@ -178,4 +182,134 @@ bool gp_timer_config_32(uint32_t base_addr, uint32_t mode, bool count_up, bool e
 	} 
 		
   return true;  
+}
+
+
+//*****************************************************************************
+// Configure Timer A with specs outlined in project
+//*****************************************************************************
+static void blackjack_timerA(uint32_t base_address, uint32_t ticks, uint16_t prescalar, IRQn_Type irq_num, uint32_t priority)
+	{
+	
+  TIMER0_Type *gp_timer;
+  
+  // type cast base address to a TIMER0_Type struct
+  gp_timer = (TIMER0_Type *)base_address;
+      
+  // clear timer mode 
+  gp_timer->TAMR &= ~TIMER_TAMR_TAMR_M;
+  
+  // set mode
+  gp_timer->TAMR |= TIMER_TAMR_TAMR_PERIOD;
+    
+  // set timer direction.  count_up: 0 for down, 1 for up.
+  gp_timer->TAMR &= ~TIMER_TAMR_TACDIR;
+
+  // set period
+  gp_timer->TAILR = ticks-1;
+  
+  // set prescalar
+  gp_timer->TAPR = prescalar;
+  
+  // set interrupt mask
+  gp_timer->IMR |= TIMER_IMR_TATOIM;
+  
+  // clear any previous interrupts
+  gp_timer->ICR = 0xFFFFFFFF;
+  
+  // enable interrupt
+  NVIC_EnableIRQ(irq_num);
+  
+  // set priority
+  NVIC_SetPriority(irq_num, priority);	
+}
+	
+//*****************************************************************************
+// initialize timers for blackjack game
+//*****************************************************************************
+bool timers_init(
+  uint32_t  base1_address, 
+  uint16_t  timer1A_ticks, 
+  uint8_t   timer1A_prescalar,
+  IRQn_Type timer1A_irq_num,
+  uint32_t  timer1A_priority,
+  uint32_t  base5_address,
+  uint32_t  timer5A_ticks,
+  uint16_t  timer5A_prescalar,
+  IRQn_Type timer5A_irq_num,
+  uint32_t  timer5A_priority
+) {
+	
+	TIMER0_Type *gp1_timer;
+	TIMER0_Type *gp5_timer;
+
+	  // Verify the base address.
+  if (!verify_base_addr(base1_address) || !verify_base_addr(base5_address))
+  {
+    return false;
+  }
+  
+	// Turn on clock for timers
+	SYSCTL->RCGCTIMER |= SYSCTL_RCGCTIMER_R1;
+	SYSCTL->RCGCTIMER |= SYSCTL_RCGCTIMER_R5;
+
+  // Wait for the timers to turn on
+  while((SYSCTL->PRTIMER & (SYSCTL_PRTIMER_R0 | SYSCTL_PRTIMER_R1 | SYSCTL_PRTIMER_R2 | SYSCTL_PRTIMER_R3)) == 0) {};
+
+  // Type cast the base address to a TIMER0_Type
+  gp1_timer = (TIMER0_Type *)base1_address;
+	gp5_timer = (TIMER0_Type *)base5_address;
+
+    
+  // Stop the timers
+	gp1_timer->CTL &= ~( TIMER_CTL_TAEN | TIMER_CTL_TBEN);
+	gp5_timer->CTL &= ~( TIMER_CTL_TAEN | TIMER_CTL_TBEN);
+  
+  // Set the timer to be a correct bit number
+	gp1_timer->CFG = TIMER_CFG_32_BIT_TIMER;
+  gp5_timer->CFG = TIMER_CFG_16_BIT;
+    
+ blackjack_timerA(base5_address,timer5A_ticks, timer5A_prescalar, timer5A_irq_num, timer5A_priority);
+ blackjack_timerA(base1_address,timer1A_ticks, timer1A_prescalar, timer1A_irq_num, timer1A_priority);
+		
+  // Start the timers
+	gp1_timer->CTL |= TIMER_CTL_TAEN;
+	gp5_timer->CTL |= TIMER_CTL_TAEN;
+  
+  // Turn on the SysTick Timer
+  // SysTick_Config(QUARTER_SEC);
+  
+  return true;
+}
+
+
+
+//*****************************************************************************
+//*****************************************************************************
+// Interrupt Service Routines
+//*****************************************************************************
+//*****************************************************************************
+
+
+//*****************************************************************************
+// Timer 1A Handler - Configured to 5000 ms
+//*****************************************************************************
+void TIMER1A_Handler(void)
+{
+  TIMER1->ICR |= TIMER_ICR_TATOCINT;
+  ALERT_5000MS = true;
+}
+
+
+//*****************************************************************************
+//	Timer 5A Handler - 1 ms - used for ADC
+//*****************************************************************************
+void TIMER5A_Handler(void)
+{
+  TIMER5->ICR |= TIMER_ICR_TATOCINT;
+	
+	// Start the ADC Conversion
+	ADC0->PSSI |= ADC_PSSI_SS2;
+  
+  ALERT_1MS = true;
 }
