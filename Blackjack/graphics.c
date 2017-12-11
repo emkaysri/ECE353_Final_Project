@@ -1,4 +1,5 @@
 #include "graphics.h"
+#include "math.h"
 
 #define SUIT_WIDTH 2*8
 #define SUIT_HEIGHT 15
@@ -10,10 +11,36 @@ uint16_t defaultColor = LCD_COLOR_BLACK;
 
 uint16_t defaultBackgroundColor = LCD_COLOR_WHITE; 
 
+struct POINT {
+	uint16_t x;
+	uint16_t y;
+};
+
+
 
 
 void clear(){
 	lcd_clear_screen(defaultBackgroundColor) ; 
+}
+
+// Draw rectangle given the corners
+void drawRect(uint16_t x1, uint16_t x2, uint16_t y1, uint16_t y2, uint16_t color) {
+	int xAbs;
+	int yAbs;
+	
+	if (x2 > x1) {
+		xAbs = x2 - x1;
+	} else {
+		xAbs = x1 - x2;
+	}
+	
+	if (y2 > y1) {
+		yAbs = y2 - y1;
+	} else {
+		yAbs = y1 - y2;
+	}
+	
+	lcd_draw_rectangle_centered ((x1 + x2)/2, xAbs, (y1 + y2)/2, yAbs, color);
 }
 
 const int x_offset = 8 ;
@@ -29,7 +56,7 @@ const int y_offset = 15;
 	Only draws upper case letters
 	Sets erronous characters to X
 */
-void drawString(char * inputString, int x, int y, uint16_t color) {
+void drawString(char * inputString, int x, int y, uint16_t color, uint16_t colorBackground) {
 	
 	while (*inputString != 0) {
 			int charNumber = -1;
@@ -39,13 +66,19 @@ void drawString(char * inputString, int x, int y, uint16_t color) {
 			
 			// Lower case letters
 			if (currentChar >= 97 && currentChar <= 122) {
-				charNumber = currentChar - 97;
+				charNumber = currentChar - 86;
 			} else if (currentChar >= 65 && currentChar <= 90) {
 			// Upper case letters
-				charNumber = currentChar - 65;
+				charNumber = currentChar - 54;
+			} else if (currentChar >= 48 && currentChar <= 57){
+				// Numbers
+				charNumber = currentChar - 47;
 			} else if (currentChar == 32){
 				// Space
 				charNumber = -1;
+			} else if (currentChar == 36){
+				// $ to zero
+				charNumber = 0;
 			} else {
 				// Erronous characters to an X
 				charNumber = 23;
@@ -66,7 +99,7 @@ void drawString(char * inputString, int x, int y, uint16_t color) {
 				// Center yCalc with text hieght of charHeight
 				yCalc = y + charHeight/2;
 				
-				lcd_draw_image(xCalc, charWidth, yCalc, charHeight, microsoftSansSerif_8ptBitmaps+bitmapOffset, color, LCD_COLOR_WHITE);
+				lcd_draw_image(xCalc, charWidth, yCalc, charHeight, microsoftSansSerif_8ptBitmaps+bitmapOffset, color, colorBackground);
 	
 				// Increment x
 				x+=charWidth+1; 
@@ -74,6 +107,50 @@ void drawString(char * inputString, int x, int y, uint16_t color) {
 		
 			inputString++; 
 	}
+}
+
+void drawStringCentered(char * inputString, int x, int y, uint16_t color, uint16_t colorBackground) {
+	char * originalInput = inputString;
+	int xLength = 0;
+	int charHeight = 10;
+	
+	while (*inputString != 0) {
+		int charNumber = -1;
+		char currentChar = *inputString;
+		
+		// Lower case letters
+			if (currentChar >= 97 && currentChar <= 122) {
+				charNumber = currentChar - 86;
+			} else if (currentChar >= 65 && currentChar <= 90) {
+			// Upper case letters
+				charNumber = currentChar - 54;
+			} else if (currentChar >= 48 && currentChar <= 57){
+				// Numbers
+				charNumber = currentChar - 47;
+			} else if (currentChar == 32){
+				// Space
+				charNumber = -1;
+			} else if (currentChar == 36){
+				// $ to zero
+				charNumber = 0;
+			} else {
+				// Erronous characters to an X
+				charNumber = 23;
+			}
+			
+			if (charNumber == -1) {
+				xLength += 3;
+			} else {
+				xLength += microsoftSansSerif_8ptDescriptors[charNumber].width;
+			}
+			
+			
+			
+			inputString++; 
+		
+	}
+	
+	drawString(originalInput,  x - xLength/2,  y - charHeight/2,  color,  colorBackground);
 }
 
 
@@ -104,14 +181,32 @@ int drawTen(uint16_t foregroundColor, uint8_t * suitPointer, int x, int y)  {
 	return 0 ; 
 }
 
-
-int drawCard(int x, int y, CARD_VALUE val, CARD_SUIT suit) {
+// state bit numbers
+//			TRUE			FALSE
+// bit 0 == normal / flipped
+// bit 1 == selected / not selected
+//
+int drawCard(int x, int y, CARD_VALUE val, CARD_SUIT suit, int state) {
 	int valIndex = 0 ; 
 	uint16_t foregroundColor; 
+	uint16_t defaultColor;
 	
 	uint8_t * suitPointer ;
 	int valOffset ;
 	
+		
+	if ((state & 0x2) == 1 ) {
+		// selected
+		defaultColor = LCD_COLOR_GREEN;
+	} else {
+		defaultColor = LCD_COLOR_BLACK;
+	}
+	
+	if ((state & 0x1) == 0 ) {
+		lcd_draw_image(x, cardBackWidthPages*8, y, cardBackHeightPixels, cardBackBitmap, defaultColor, LCD_COLOR_WHITE);
+		return 0; 
+	}
+
 	switch(suit) {
 		case SPADES:
 			suitPointer = (uint8_t *)spadeBitmap ; 
@@ -171,4 +266,122 @@ int drawCard(int x, int y, CARD_VALUE val, CARD_SUIT suit) {
 	
 	return 0;
 }
+
+void drawBlackjackControlOptions(int x, int y, int controlOptionsWidth, int controlOptionsHieght) {
+	
+	int xPos = controlOptionsWidth/2-10;
+
+	drawRect(x + 5, x + controlOptionsWidth, y + 5, y + controlOptionsHieght, LCD_COLOR_BLACK);
+	
+	lcd_draw_rectangle_centered (x + xPos-5, 3, y + 14, 3, LCD_COLOR_WHITE);
+	
+	drawString("HIT", x + xPos, y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	
+	y+=controlOptionsHieght/3;
+	
+	drawString("STAND", x + xPos, y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	
+	y+=controlOptionsHieght/3;
+	
+	drawString("SPLIT", x + xPos, y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+}
+
+void drawBettingOptions(int x, int y, int width, int height) {
+	
+	drawString("CURRENT $", x , y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	
+	drawString("BET $500", x , y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	
+}
+
+void drawDealer(int x, int y, int width, int height) {
+	
+	drawString("DEALER", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	
+}
+
+void drawPlayer(int x, int y, int width, int height) {
+	int increment = 20;
+	struct POINT playerCardOne; 
+	struct POINT playerCardTwo; 
+	struct POINT playerCardThree; 
+	
+	height-=30;
+	
+	playerCardOne.x = x+increment;
+	playerCardOne.y = y + height - increment;
+	
+	playerCardTwo.x = x+increment*2;
+	playerCardTwo.y = y + height - increment*2;
+	
+	playerCardThree.x = x+increment*3;
+	playerCardThree.y = y + height - increment*3;
+	
+	drawString("YOUR HAND", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	
+	drawCard(playerCardOne.x, playerCardOne.y, 1, 1, 0);
+	drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
+	drawCard(playerCardThree.x, playerCardThree.y, 1, 1, 3);
+	
+}
+
+
+
+int drawGameScreenOutLineAndData() {
+	
+	int lineWidth = 4;
+	
+	int controlAreaWidth = 50;
+	int controlAreaHeight = 70;
+
+	
+	int controlColumn;
+	
+	// Player Area
+	drawRect(0, COLS, (uint16_t)(0.4*ROWS), (uint16_t)(0.4*ROWS) + lineWidth, LCD_COLOR_BLACK);
+	drawPlayer(5, (uint16_t)(0.4*ROWS), COLS, (uint16_t)(0.6*ROWS));
+	
+	// Dealer Area
+	drawRect((uint16_t)(0.4*COLS), (uint16_t)(0.4*COLS) + lineWidth, 0, (uint16_t)(0.4*ROWS), LCD_COLOR_BLACK);
+	drawDealer((uint16_t)(0.4*COLS), 0, (uint16_t)(0.6*COLS), (uint16_t)(0.4*ROWS));
+	// Controls Areas
+	
+	drawBlackjackControlOptions((uint16_t)(0.75*COLS), (uint16_t)(0.4*ROWS),(uint16_t)(0.25*COLS),70 ) ; 
+	
+	drawBettingOptions(0, 0, (uint16_t)(0.4*COLS), (uint16_t)(0.4*ROWS)); 
+	
+
+	return 0;
+}
+
+int drawHomeScreen() {
+	int y = ROWS/2;
+	int r = 70;
+	float theta = 3.1419/2.0 ; 
+	drawStringCentered("BLACKJACK", COLS/2 , ROWS/2, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	
+	drawStringCentered("ECE 353", COLS/2 , ROWS/2+20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	
+	drawStringCentered("JOHN COMPAS", COLS/2 , ROWS/2+r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	theta+=(3.1419*(2.0/6.0));
+	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 1, 2, 3);
+	theta+=(3.1419*(2.0/6.0));
+	drawStringCentered("JASON SYLVESTRE", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	theta+=(3.1419*(2.0/6.0));
+	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 3, 3, 3);
+	theta+=(3.1419*(2.0/6.0));
+	drawStringCentered("SRINIDHI EMKAY", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	theta+=(3.1419*(2.0/6.0));
+	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 4, 1, 3);
+
+	//drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
+	
+	//drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
+	
+	return 0;
+	
+}
+
+
+
 

@@ -417,7 +417,139 @@ const uint8_t cardBorderHeightPixels = 48;
 // Character bitmaps for Microsoft Sans Serif 8pt
 const uint8_t microsoftSansSerif_8ptBitmaps[] = 
 {
-	// @0 'A' (7 pixels wide)
+	// @0 '$' (5 pixels wide)
+	0x20, //   #  
+	0x70, //  ### 
+	0xA8, // # # #
+	0xA0, // # #  
+	0x60, //  ##  
+	0x30, //   ## 
+	0x28, //   # #
+	0xA8, // # # #
+	0x70, //  ### 
+	0x20, //   #  
+
+	// @10 '0' (5 pixels wide)
+	0x70, //  ### 
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x70, //  ### 
+	0x00, //      
+
+	// @20 '1' (3 pixels wide)
+	0x20, //   #
+	0xE0, // ###
+	0x20, //   #
+	0x20, //   #
+	0x20, //   #
+	0x20, //   #
+	0x20, //   #
+	0x20, //   #
+	0x20, //   #
+	0x00, //    
+
+	// @30 '2' (5 pixels wide)
+	0x70, //  ### 
+	0x88, // #   #
+	0x08, //     #
+	0x08, //     #
+	0x10, //    # 
+	0x20, //   #  
+	0x40, //  #   
+	0x80, // #    
+	0xF8, // #####
+	0x00, //      
+
+	// @40 '3' (5 pixels wide)
+	0x70, //  ### 
+	0x88, // #   #
+	0x08, //     #
+	0x08, //     #
+	0x30, //   ## 
+	0x08, //     #
+	0x08, //     #
+	0x88, // #   #
+	0x70, //  ### 
+	0x00, //      
+
+	// @50 '4' (5 pixels wide)
+	0x10, //    # 
+	0x30, //   ## 
+	0x30, //   ## 
+	0x50, //  # # 
+	0x50, //  # # 
+	0x90, // #  # 
+	0xF8, // #####
+	0x10, //    # 
+	0x10, //    # 
+	0x00, //      
+
+	// @60 '5' (5 pixels wide)
+	0xF8, // #####
+	0x80, // #    
+	0x80, // #    
+	0xF0, // #### 
+	0x88, // #   #
+	0x08, //     #
+	0x08, //     #
+	0x88, // #   #
+	0x70, //  ### 
+	0x00, //      
+
+	// @70 '6' (5 pixels wide)
+	0x70, //  ### 
+	0x88, // #   #
+	0x80, // #    
+	0x80, // #    
+	0xF0, // #### 
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x70, //  ### 
+	0x00, //      
+
+	// @80 '7' (5 pixels wide)
+	0xF8, // #####
+	0x08, //     #
+	0x10, //    # 
+	0x10, //    # 
+	0x20, //   #  
+	0x20, //   #  
+	0x40, //  #   
+	0x40, //  #   
+	0x40, //  #   
+	0x00, //      
+
+	// @90 '8' (5 pixels wide)
+	0x70, //  ### 
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x70, //  ### 
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x70, //  ### 
+	0x00, //      
+
+	// @100 '9' (5 pixels wide)
+	0x70, //  ### 
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0x78, //  ####
+	0x08, //     #
+	0x08, //     #
+	0x88, // #   #
+	0x70, //  ### 
+	0x00, //      
+
+	// @110 'A' (7 pixels wide)
 	0x10, //    #   
 	0x10, //    #   
 	0x28, //   # #  
@@ -429,7 +561,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x82, // #     #
 	0x00, //        
 
-	// @10 'B' (5 pixels wide)
+	// @120 'B' (5 pixels wide)
 	0xF0, // #### 
 	0x88, // #   #
 	0x88, // #   #
@@ -441,7 +573,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0xF0, // #### 
 	0x00, //      
 
-	// @20 'C' (6 pixels wide)
+	// @130 'C' (6 pixels wide)
 	0x78, //  #### 
 	0x84, // #    #
 	0x80, // #     
@@ -453,7 +585,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x78, //  #### 
 	0x00, //       
 
-	// @30 'D' (6 pixels wide)
+	// @140 'D' (6 pixels wide)
 	0xF0, // ####  
 	0x88, // #   # 
 	0x84, // #    #
@@ -465,7 +597,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0xF0, // ####  
 	0x00, //       
 
-	// @40 'E' (5 pixels wide)
+	// @150 'E' (5 pixels wide)
 	0xF8, // #####
 	0x80, // #    
 	0x80, // #    
@@ -477,7 +609,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0xF8, // #####
 	0x00, //      
 
-	// @50 'F' (5 pixels wide)
+	// @160 'F' (5 pixels wide)
 	0xF8, // #####
 	0x80, // #    
 	0x80, // #    
@@ -489,7 +621,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x80, // #    
 	0x00, //      
 
-	// @60 'G' (6 pixels wide)
+	// @170 'G' (6 pixels wide)
 	0x78, //  #### 
 	0x84, // #    #
 	0x80, // #     
@@ -501,7 +633,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x74, //  ### #
 	0x00, //       
 
-	// @70 'H' (6 pixels wide)
+	// @180 'H' (6 pixels wide)
 	0x84, // #    #
 	0x84, // #    #
 	0x84, // #    #
@@ -513,7 +645,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x84, // #    #
 	0x00, //       
 
-	// @80 'I' (1 pixels wide)
+	// @190 'I' (1 pixels wide)
 	0x80, // #
 	0x80, // #
 	0x80, // #
@@ -525,7 +657,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x80, // #
 	0x00, //  
 
-	// @90 'J' (4 pixels wide)
+	// @200 'J' (4 pixels wide)
 	0x10, //    #
 	0x10, //    #
 	0x10, //    #
@@ -537,7 +669,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x60, //  ## 
 	0x00, //     
 
-	// @100 'K' (6 pixels wide)
+	// @210 'K' (6 pixels wide)
 	0x88, // #   # 
 	0x90, // #  #  
 	0xA0, // # #   
@@ -549,7 +681,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x84, // #    #
 	0x00, //       
 
-	// @110 'L' (5 pixels wide)
+	// @220 'L' (5 pixels wide)
 	0x80, // #    
 	0x80, // #    
 	0x80, // #    
@@ -561,7 +693,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0xF8, // #####
 	0x00, //      
 
-	// @120 'M' (7 pixels wide)
+	// @230 'M' (7 pixels wide)
 	0x82, // #     #
 	0x82, // #     #
 	0xC6, // ##   ##
@@ -573,7 +705,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x82, // #     #
 	0x00, //        
 
-	// @130 'N' (6 pixels wide)
+	// @240 'N' (6 pixels wide)
 	0x84, // #    #
 	0xC4, // ##   #
 	0xC4, // ##   #
@@ -585,7 +717,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x84, // #    #
 	0x00, //       
 
-	// @140 'O' (6 pixels wide)
+	// @250 'O' (6 pixels wide)
 	0x78, //  #### 
 	0x84, // #    #
 	0x84, // #    #
@@ -597,7 +729,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x78, //  #### 
 	0x00, //       
 
-	// @150 'P' (6 pixels wide)
+	// @260 'P' (6 pixels wide)
 	0xF8, // ##### 
 	0x84, // #    #
 	0x84, // #    #
@@ -609,7 +741,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x80, // #     
 	0x00, //       
 
-	// @160 'Q' (6 pixels wide)
+	// @270 'Q' (6 pixels wide)
 	0x78, //  #### 
 	0x84, // #    #
 	0x84, // #    #
@@ -621,7 +753,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x78, //  #### 
 	0x04, //      #
 
-	// @170 'R' (6 pixels wide)
+	// @280 'R' (6 pixels wide)
 	0xF8, // ##### 
 	0x84, // #    #
 	0x84, // #    #
@@ -633,7 +765,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x84, // #    #
 	0x00, //       
 
-	// @180 'S' (5 pixels wide)
+	// @290 'S' (5 pixels wide)
 	0x70, //  ### 
 	0x88, // #   #
 	0x80, // #    
@@ -645,7 +777,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x70, //  ### 
 	0x00, //      
 
-	// @190 'T' (5 pixels wide)
+	// @300 'T' (5 pixels wide)
 	0xF8, // #####
 	0x20, //   #  
 	0x20, //   #  
@@ -657,7 +789,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x20, //   #  
 	0x00, //      
 
-	// @200 'U' (6 pixels wide)
+	// @310 'U' (6 pixels wide)
 	0x84, // #    #
 	0x84, // #    #
 	0x84, // #    #
@@ -669,7 +801,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x78, //  #### 
 	0x00, //       
 
-	// @210 'V' (7 pixels wide)
+	// @320 'V' (7 pixels wide)
 	0x82, // #     #
 	0x82, // #     #
 	0x44, //  #   # 
@@ -681,7 +813,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x10, //    #   
 	0x00, //        
 
-	// @220 'W' (11 pixels wide)
+	// @330 'W' (11 pixels wide)
 	0x80, 0x20, // #         #
 	0x80, 0x20, // #         #
 	0x44, 0x40, //  #   #   # 
@@ -693,7 +825,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x11, 0x00, //    #   #   
 	0x00, 0x00, //            
 
-	// @240 'X' (7 pixels wide)
+	// @350 'X' (7 pixels wide)
 	0x82, // #     #
 	0x82, // #     #
 	0x44, //  #   # 
@@ -705,7 +837,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x82, // #     #
 	0x00, //        
 
-	// @250 'Y' (7 pixels wide)
+	// @360 'Y' (7 pixels wide)
 	0x82, // #     #
 	0x82, // #     #
 	0x44, //  #   # 
@@ -717,7 +849,7 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 	0x10, //    #   
 	0x00, //        
 
-	// @260 'Z' (7 pixels wide)
+	// @370 'Z' (7 pixels wide)
 	0xFE, // #######
 	0x02, //       #
 	0x04, //      # 
@@ -734,33 +866,46 @@ const uint8_t microsoftSansSerif_8ptBitmaps[] =
 // { [Char width in bits], [Offset into microsoftSansSerif_8ptCharBitmaps in bytes] }
 const struct FONT_CHAR_INFO microsoftSansSerif_8ptDescriptors[] = 
 {
-	{7, 0}, 		// A 
-	{5, 10}, 		// B 
-	{6, 20}, 		// C 
-	{6, 30}, 		// D 
-	{5, 40}, 		// E 
-	{5, 50}, 		// F 
-	{6, 60}, 		// G 
-	{6, 70}, 		// H 
-	{1, 80}, 		// I 
-	{4, 90}, 		// J 
-	{6, 100}, 		// K 
-	{5, 110}, 		// L 
-	{7, 120}, 		// M 
-	{6, 130}, 		// N 
-	{6, 140}, 		// O 
-	{6, 150}, 		// P 
-	{6, 160}, 		// Q 
-	{6, 170}, 		// R 
-	{5, 180}, 		// S 
-	{5, 190}, 		// T 
-	{6, 200}, 		// U 
-	{7, 210}, 		// V 
-	{11, 220}, 		// W 
-	{7, 240}, 		// X 
-	{7, 250}, 		// Y 
-	{7, 260} 		// Z 
+	{5, 0}, 		// $ 
+	{5, 10}, 		// 0 
+	{3, 20}, 		// 1 
+	{5, 30}, 		// 2 
+	{5, 40}, 		// 3 
+	{5, 50}, 		// 4 
+	{5, 60}, 		// 5 
+	{5, 70}, 		// 6 
+	{5, 80}, 		// 7 
+	{5, 90}, 		// 8 
+	{5, 100}, 		// 9 
+	{7, 110}, 		// A 
+	{5, 120}, 		// B 
+	{6, 130}, 		// C 
+	{6, 140}, 		// D 
+	{5, 150}, 		// E 
+	{5, 160}, 		// F 
+	{6, 170}, 		// G 
+	{6, 180}, 		// H 
+	{1, 190}, 		// I 
+	{4, 200}, 		// J 
+	{6, 210}, 		// K 
+	{5, 220}, 		// L 
+	{7, 230}, 		// M 
+	{6, 240}, 		// N 
+	{6, 250}, 		// O 
+	{6, 260}, 		// P 
+	{6, 270}, 		// Q 
+	{6, 280}, 		// R 
+	{5, 290}, 		// S 
+	{5, 300}, 		// T 
+	{6, 310}, 		// U 
+	{7, 320}, 		// V 
+	{11, 330}, 		// W 
+	{7, 350}, 		// X 
+	{7, 360}, 		// Y 
+	{7, 370}, 		// Z 
 };
+
+
 
 
 /*
