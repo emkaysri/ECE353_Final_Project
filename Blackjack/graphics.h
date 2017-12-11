@@ -31,7 +31,7 @@ int drawCard(int x, int y, CARD_VALUE val, CARD_SUIT suit, int state) ;
 void drawString(char * inputString, int x, int y, uint16_t color, uint16_t colorBackground);
 
 int drawGameScreenOutLineAndData();
-int drawHomeScreen();
+int drawHomeScreen(float theta);
 void clear();
 
 

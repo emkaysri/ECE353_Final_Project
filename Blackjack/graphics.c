@@ -109,11 +109,8 @@ void drawString(char * inputString, int x, int y, uint16_t color, uint16_t color
 	}
 }
 
-void drawStringCentered(char * inputString, int x, int y, uint16_t color, uint16_t colorBackground) {
-	char * originalInput = inputString;
-	int xLength = 0;
-	int charHeight = 10;
-	
+int calcStringWidth(char * inputString) {
+	int xLength = 0;	
 	while (*inputString != 0) {
 		int charNumber = -1;
 		char currentChar = *inputString;
@@ -150,7 +147,29 @@ void drawStringCentered(char * inputString, int x, int y, uint16_t color, uint16
 		
 	}
 	
+	return xLength; 
+}
+
+void drawStringCentered(char * inputString, int x, int y, uint16_t color, uint16_t colorBackground) {
+	char * originalInput = inputString;
+	
+	int charHeight = 10;
+	
+	int xLength = calcStringWidth(inputString);
+	
 	drawString(originalInput,  x - xLength/2,  y - charHeight/2,  color,  colorBackground);
+	
+}
+
+void drawStringSelectedAndCentered(char * inputString, int x, int y, uint16_t color, uint16_t colorBackground) {
+	
+	int stringWidth = calcStringWidth(inputString) ; 
+	
+	lcd_draw_rectangle_centered (x, stringWidth+18, y, 14, LCD_COLOR_RED);
+	
+	lcd_draw_rectangle_centered (x, stringWidth+16, y, 12, colorBackground);
+		
+	drawStringCentered(inputString,  x,  y,  color, colorBackground) ; 
 }
 
 
@@ -275,7 +294,7 @@ void drawBlackjackControlOptions(int x, int y, int controlOptionsWidth, int cont
 	
 	lcd_draw_rectangle_centered (x + xPos-5, 3, y + 14, 3, LCD_COLOR_WHITE);
 	
-	drawString("HIT", x + xPos, y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	drawStringSelectedAndCentered("HIT", x + xPos, y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
 	
 	y+=controlOptionsHieght/3;
 	
@@ -354,29 +373,35 @@ int drawGameScreenOutLineAndData() {
 	return 0;
 }
 
-int drawHomeScreen() {
+
+int drawHomeScreen(float theta) {
 	int y = ROWS/2;
-	int r = 70;
-	float theta = 3.1419/2.0 ; 
+	int r = 80;
+	theta += 3.1419/100.0 ; 
 	drawStringCentered("BLACKJACK", COLS/2 , ROWS/2, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 	
 	drawStringCentered("ECE 353", COLS/2 , ROWS/2+20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 	
-	drawStringCentered("JOHN COMPAS", COLS/2 , ROWS/2+r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-	theta+=(3.1419*(2.0/6.0));
-	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 1, 2, 3);
-	theta+=(3.1419*(2.0/6.0));
-	drawStringCentered("JASON SYLVESTRE", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-	theta+=(3.1419*(2.0/6.0));
-	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 3, 3, 3);
-	theta+=(3.1419*(2.0/6.0));
-	drawStringCentered("SRINIDHI EMKAY", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-	theta+=(3.1419*(2.0/6.0));
-	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 4, 1, 3);
+//	drawStringCentered("JOHN COMPAS", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	theta+=(3.1419*(2.0/4.0));
+	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 0, 0, 3);
+		theta+=(3.1419*(2.0/4.0));
+//	drawStringCentered("JASON SYLVESTRE", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 0, 3, 3);
+		theta+=(3.1419*(2.0/4.0));
+//	drawStringCentered("SRINIDHI EMKAY", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 0, 1, 3);
+		theta+=(3.1419*(2.0/4.0));
+	
+	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 0, 2, 3);
 
 	//drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
 	
 	//drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
+	
+	
+	drawStringSelectedAndCentered("2 PLAYER", COLS/2 , ROWS-40, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawStringCentered("1 PLAYER", COLS/2 , ROWS-20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 	
 	return 0;
 	
