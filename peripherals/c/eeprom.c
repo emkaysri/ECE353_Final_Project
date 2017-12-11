@@ -235,3 +235,37 @@ bool eeprom_init(void)
   
 }
 
+//*****************************************************************************
+// Read series of bytes to EEPROM 
+//*****************************************************************************
+uint16_t eeprom_bytes_read(uint8_t *data, uint16_t start, uint16_t length)
+{
+	int i = 0 ; 
+	uint8_t read_val;
+	
+	
+	while(i<length)
+	{
+		eeprom_byte_read(I2C1_BASE, start, &read_val);
+		data[i] = read_val;
+		i++;
+		start++;
+	}
+
+}
+
+//*****************************************************************************
+// Write series of bytes to EEPROM 
+//*****************************************************************************
+uint16_t eeprom_bytes_write(uint8_t *data, uint16_t start, uint16_t length)
+{
+	int i = 0 ;
+	
+	while(i<length)
+	{
+		eeprom_byte_write(I2C1_BASE, start, data[i]);
+		i++;
+		start++;
+	}
+}
+
