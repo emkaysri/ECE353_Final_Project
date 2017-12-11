@@ -169,60 +169,6 @@ main(void)
 	while(true) {
 	
 	clear() ;
-		
-	drawString("AB CDE", 30, 220, LCD_COLOR_BLACK) ; 
-	drawString("FG HIJKL MN", 30, 231, LCD_COLOR_RED) ; 
-		
-	drawString("OP QR%$#$%^STU", 30, 242, LCD_COLOR_GREEN) ; 
-		
-	drawString("VWXYZ", 30, 253, LCD_COLOR_BLUE) ; 
-		
-	drawString("BLACK JACK FUCK YEAH LETS GO", 30, 263, LCD_COLOR_BLACK) ; 
-		
-		   
-		
-	x = 30;
-	drawCard(x, 30,ACE, i) ;
-	x+=45;
-	drawCard(x, 30,TWO, i) ;
-	x+=45;
-	drawCard(x, 30,THREE, i) ;
-	x+=45;
-	drawCard(x, 30,FOUR, i) ;
-	x+=45;
-	drawCard(x, 30,FIVE, i) ;
-	x=30;
-	
-	drawCard(x, 90,SIX, i) ;
-	x+=45;
-	drawCard(x, 90,SEVEN, i) ;
-	x+=45;
-	drawCard(x, 90,EIGHT, i) ;
-	x+=45;
-	drawCard(x, 90,NINE, i) ;
-	x+=45;
-	drawCard(x, 90,TEN, i) ;
-	x=30;
-	
-	
-	drawCard(x, 150,JACK, i) ;
-	x+=45;
-	drawCard(x, 150,QUEEN, i) ;
-	x+=45;
-	drawCard(x, 150,KING, i) ;
-	
-	i++;
-	
-	if (i > DIAMONDS) {
-		i = SPADES ; 
-	}
-	
-	
-	for (t = 0 ; t < 5000000; t++) {
-		//wait
-	}
-	
-	
 	
 }
 	// If SW2 is pressed, write names and group number to EEPROM
