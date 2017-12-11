@@ -162,11 +162,6 @@ const uint8_t calibri_10ptBitmap[] =
 	0x03, //       ##
 };
 
-
-struct FONT_CHAR_INFO{
-	int width;
-	int startIndex; 
-} ; 
 // Character descriptors for Calibri 10pt
 // { [Char width in bits], [Offset into calibri_10ptCharBitmaps in bytes] }
 const struct FONT_CHAR_INFO calibri_10ptDescriptors[] = 
@@ -414,5 +409,371 @@ const uint8_t cardBorderBitmap[] =
 // Bitmap sizes for cardBorder
 const uint8_t cardBorderWidthPages = 5;
 const uint8_t cardBorderHeightPixels = 48;
+
+
+
+// General Font
+
+// Character bitmaps for Microsoft Sans Serif 8pt
+const uint8_t microsoftSansSerif_8ptBitmaps[] = 
+{
+	// @0 'A' (7 pixels wide)
+	0x10, //    #   
+	0x10, //    #   
+	0x28, //   # #  
+	0x28, //   # #  
+	0x44, //  #   # 
+	0x44, //  #   # 
+	0x7C, //  ##### 
+	0x82, // #     #
+	0x82, // #     #
+	0x00, //        
+
+	// @10 'B' (5 pixels wide)
+	0xF0, // #### 
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0xF0, // #### 
+	0x88, // #   #
+	0x88, // #   #
+	0x88, // #   #
+	0xF0, // #### 
+	0x00, //      
+
+	// @20 'C' (6 pixels wide)
+	0x78, //  #### 
+	0x84, // #    #
+	0x80, // #     
+	0x80, // #     
+	0x80, // #     
+	0x80, // #     
+	0x80, // #     
+	0x84, // #    #
+	0x78, //  #### 
+	0x00, //       
+
+	// @30 'D' (6 pixels wide)
+	0xF0, // ####  
+	0x88, // #   # 
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x88, // #   # 
+	0xF0, // ####  
+	0x00, //       
+
+	// @40 'E' (5 pixels wide)
+	0xF8, // #####
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0xF0, // #### 
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0xF8, // #####
+	0x00, //      
+
+	// @50 'F' (5 pixels wide)
+	0xF8, // #####
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0xF0, // #### 
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0x00, //      
+
+	// @60 'G' (6 pixels wide)
+	0x78, //  #### 
+	0x84, // #    #
+	0x80, // #     
+	0x80, // #     
+	0x9C, // #  ###
+	0x84, // #    #
+	0x84, // #    #
+	0x8C, // #   ##
+	0x74, //  ### #
+	0x00, //       
+
+	// @70 'H' (6 pixels wide)
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0xFC, // ######
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x00, //       
+
+	// @80 'I' (1 pixels wide)
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x00, //  
+
+	// @90 'J' (4 pixels wide)
+	0x10, //    #
+	0x10, //    #
+	0x10, //    #
+	0x10, //    #
+	0x10, //    #
+	0x10, //    #
+	0x90, // #  #
+	0x90, // #  #
+	0x60, //  ## 
+	0x00, //     
+
+	// @100 'K' (6 pixels wide)
+	0x88, // #   # 
+	0x90, // #  #  
+	0xA0, // # #   
+	0xC0, // ##    
+	0xC0, // ##    
+	0xA0, // # #   
+	0x90, // #  #  
+	0x88, // #   # 
+	0x84, // #    #
+	0x00, //       
+
+	// @110 'L' (5 pixels wide)
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0x80, // #    
+	0xF8, // #####
+	0x00, //      
+
+	// @120 'M' (7 pixels wide)
+	0x82, // #     #
+	0x82, // #     #
+	0xC6, // ##   ##
+	0xC6, // ##   ##
+	0xAA, // # # # #
+	0xAA, // # # # #
+	0x92, // #  #  #
+	0x92, // #  #  #
+	0x82, // #     #
+	0x00, //        
+
+	// @130 'N' (6 pixels wide)
+	0x84, // #    #
+	0xC4, // ##   #
+	0xC4, // ##   #
+	0xA4, // # #  #
+	0xA4, // # #  #
+	0x94, // #  # #
+	0x8C, // #   ##
+	0x8C, // #   ##
+	0x84, // #    #
+	0x00, //       
+
+	// @140 'O' (6 pixels wide)
+	0x78, //  #### 
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x78, //  #### 
+	0x00, //       
+
+	// @150 'P' (6 pixels wide)
+	0xF8, // ##### 
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0xF8, // ##### 
+	0x80, // #     
+	0x80, // #     
+	0x80, // #     
+	0x80, // #     
+	0x00, //       
+
+	// @160 'Q' (6 pixels wide)
+	0x78, //  #### 
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x94, // #  # #
+	0x8C, // #   ##
+	0x78, //  #### 
+	0x04, //      #
+
+	// @170 'R' (6 pixels wide)
+	0xF8, // ##### 
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0xF8, // ##### 
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x00, //       
+
+	// @180 'S' (5 pixels wide)
+	0x70, //  ### 
+	0x88, // #   #
+	0x80, // #    
+	0x80, // #    
+	0x70, //  ### 
+	0x08, //     #
+	0x08, //     #
+	0x88, // #   #
+	0x70, //  ### 
+	0x00, //      
+
+	// @190 'T' (5 pixels wide)
+	0xF8, // #####
+	0x20, //   #  
+	0x20, //   #  
+	0x20, //   #  
+	0x20, //   #  
+	0x20, //   #  
+	0x20, //   #  
+	0x20, //   #  
+	0x20, //   #  
+	0x00, //      
+
+	// @200 'U' (6 pixels wide)
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x84, // #    #
+	0x78, //  #### 
+	0x00, //       
+
+	// @210 'V' (7 pixels wide)
+	0x82, // #     #
+	0x82, // #     #
+	0x44, //  #   # 
+	0x44, //  #   # 
+	0x44, //  #   # 
+	0x28, //   # #  
+	0x28, //   # #  
+	0x10, //    #   
+	0x10, //    #   
+	0x00, //        
+
+	// @220 'W' (11 pixels wide)
+	0x80, 0x20, // #         #
+	0x80, 0x20, // #         #
+	0x44, 0x40, //  #   #   # 
+	0x44, 0x40, //  #   #   # 
+	0x44, 0x40, //  #   #   # 
+	0x2A, 0x80, //   # # # #  
+	0x2A, 0x80, //   # # # #  
+	0x11, 0x00, //    #   #   
+	0x11, 0x00, //    #   #   
+	0x00, 0x00, //            
+
+	// @240 'X' (7 pixels wide)
+	0x82, // #     #
+	0x82, // #     #
+	0x44, //  #   # 
+	0x28, //   # #  
+	0x10, //    #   
+	0x28, //   # #  
+	0x44, //  #   # 
+	0x82, // #     #
+	0x82, // #     #
+	0x00, //        
+
+	// @250 'Y' (7 pixels wide)
+	0x82, // #     #
+	0x82, // #     #
+	0x44, //  #   # 
+	0x28, //   # #  
+	0x10, //    #   
+	0x10, //    #   
+	0x10, //    #   
+	0x10, //    #   
+	0x10, //    #   
+	0x00, //        
+
+	// @260 'Z' (7 pixels wide)
+	0xFE, // #######
+	0x02, //       #
+	0x04, //      # 
+	0x08, //     #  
+	0x10, //    #   
+	0x20, //   #    
+	0x40, //  #     
+	0x80, // #      
+	0xFE, // #######
+	0x00, //        
+};
+
+// Character descriptors for Microsoft Sans Serif 8pt
+// { [Char width in bits], [Offset into microsoftSansSerif_8ptCharBitmaps in bytes] }
+const struct FONT_CHAR_INFO microsoftSansSerif_8ptDescriptors[] = 
+{
+	{7, 0}, 		// A 
+	{5, 10}, 		// B 
+	{6, 20}, 		// C 
+	{6, 30}, 		// D 
+	{5, 40}, 		// E 
+	{5, 50}, 		// F 
+	{6, 60}, 		// G 
+	{6, 70}, 		// H 
+	{1, 80}, 		// I 
+	{4, 90}, 		// J 
+	{6, 100}, 		// K 
+	{5, 110}, 		// L 
+	{7, 120}, 		// M 
+	{6, 130}, 		// N 
+	{6, 140}, 		// O 
+	{6, 150}, 		// P 
+	{6, 160}, 		// Q 
+	{6, 170}, 		// R 
+	{5, 180}, 		// S 
+	{5, 190}, 		// T 
+	{6, 200}, 		// U 
+	{7, 210}, 		// V 
+	{11, 220}, 		// W 
+	{7, 240}, 		// X 
+	{7, 250}, 		// Y 
+	{7, 260} 		// Z 
+};
+
+
+/*
+// Font information for Microsoft Sans Serif 8pt
+const FONT_INFO microsoftSansSerif_8ptFontInfo =
+{
+	2, //  Character height
+	'A', //  Start character
+	'Z', //  End character
+	2, //  Width, in pixels, of space character
+	microsoftSansSerif_8ptDescriptors, //  Character descriptor array
+	microsoftSansSerif_8ptBitmaps, //  Character bitmap array
+};
+*/
 
 

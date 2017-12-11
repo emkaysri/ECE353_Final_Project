@@ -3,6 +3,11 @@
 
 #include <stdint.h>
 
+struct FONT_CHAR_INFO {
+	uint16_t width;
+	uint16_t position; 
+};
+
 extern const uint8_t spadeBitmap[];
 extern const uint8_t spadeWidthPages;
 extern const uint8_t spadeHeightPixels;
@@ -28,7 +33,11 @@ extern const uint8_t cardBorderWidthPages;
 extern const uint8_t cardBorderHeightPixels;
 
 extern const uint8_t calibri_10ptBitmap[];
-//extern const FONT_CHAR_INFO calibri_10ptDescriptors[]  ;
+
+extern const uint8_t microsoftSansSerif_8ptBitmaps[];
+
+extern const struct FONT_CHAR_INFO microsoftSansSerif_8ptDescriptors[];
+
 
 
 #endif

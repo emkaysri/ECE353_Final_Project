@@ -28,6 +28,8 @@ typedef enum{
 } CARD_SUIT;
 
 int drawCard(int x, int y, CARD_VALUE val, CARD_SUIT suit) ;
+void drawString(char * inputString, int x, int y, uint16_t color);
+
 void clear();
 
 

@@ -20,6 +20,63 @@ const int x_offset = 8 ;
 const int y_offset = 15;
 
 
+/* Display arbitrary null terminated string starting at x,y specified
+	x  -	Starting x position of string
+	y	 -	Bottom of position of string
+
+	Will draw off screen if string is too large
+
+	Only draws upper case letters
+	Sets erronous characters to X
+*/
+void drawString(char * inputString, int x, int y, uint16_t color) {
+	
+	while (*inputString != 0) {
+			int charNumber = -1;
+			int charWidth;
+			int charHeight = 10;
+			char currentChar = *inputString;
+			
+			// Lower case letters
+			if (currentChar >= 97 && currentChar <= 122) {
+				charNumber = currentChar - 97;
+			} else if (currentChar >= 65 && currentChar <= 90) {
+			// Upper case letters
+				charNumber = currentChar - 65;
+			} else if (currentChar == 32){
+				// Space
+				charNumber = -1;
+			} else {
+				// Erronous characters to an X
+				charNumber = 23;
+			}
+		
+			if (charNumber == -1) {
+				// Create a space with 2 pixel offset
+				x+=3;
+			} else {
+				int xCalc;
+				int yCalc; 
+				int bitmapOffset = microsoftSansSerif_8ptDescriptors[charNumber].position;
+				
+				charWidth = microsoftSansSerif_8ptDescriptors[charNumber].width;
+				// Center xClac
+				xCalc = x + charWidth/2;
+				
+				// Center yCalc with text hieght of charHeight
+				yCalc = y + charHeight/2;
+				
+				lcd_draw_image(xCalc, charWidth, yCalc, charHeight, microsoftSansSerif_8ptBitmaps+bitmapOffset, color, LCD_COLOR_WHITE);
+	
+				// Increment x
+				x+=charWidth+1; 
+			}
+		
+			inputString++; 
+	}
+}
+
+
 
 int drawTen(uint16_t foregroundColor, uint8_t * suitPointer, int x, int y)  {
 	
