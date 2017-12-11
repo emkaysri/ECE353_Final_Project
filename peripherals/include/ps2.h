@@ -66,23 +66,31 @@
 *******************************************************************************/
 void ps2_initialize(void);
 
-/*******************************************************************************
-* Function Name: ps2_get_x
-********************************************************************************
-*Returns the most current reading of the X direction  Only the lower 12-bits
-* contain data.
-********************************************************************************/
-uint16_t ps2_get_x(void);
 
 /*******************************************************************************
-* Function Name: ps2_get_y
+* Function Name: ps2_initialize_ss2
 ********************************************************************************
-* Returns the most current reading of the Y direction.  Only the lower 12-bits
-*  contain data.
-********************************************************************************/
-uint16_t ps2_get_y(void);
-void ps2_initialize_adc(void);
-static void ps2_configure_adc(void);
+* Initializes GPIO pins connected to the PS2 Joystick.  It also configures
+* ADC0 to use SS2 and triggers on timer interrupt
+*******************************************************************************/
+void ps2_initialize_ss2(void);
+
+
+///*******************************************************************************
+//* Function Name: ps2_get_x
+//********************************************************************************
+//*Returns the most current reading of the X direction  Only the lower 12-bits
+//* contain data.
+//********************************************************************************/
+//uint16_t ps2_get_x(void);
+
+///*******************************************************************************
+//* Function Name: ps2_get_y
+//********************************************************************************
+//* Returns the most current reading of the Y direction.  Only the lower 12-bits
+//*  contain data.
+//********************************************************************************/
+//uint16_t ps2_get_y(void);
 
 #endif
 
