@@ -50,9 +50,40 @@ typedef struct{
 * cardnum % 13 = CARD_VALUE
 * cardnum / 13 = CARD_SUIT
 */
-int *dealerHand;
+
 int currCard;
-int Deck[52];
+
+
+enum BLACKJACK_GAME_OPTION {
+	HIT,
+	STAND,
+	SPLIT
+};
+
+
+enum BLACKJACK_BET_OPTIONS {
+	INCREASE,
+	DECREASE
+};
+
+enum GAME_OPTIONS {
+	ONE_PLAYER,
+	TWO_PLAYER
+} ;
+
+
+
+typedef struct{
+	player masterPlayer;
+	player slavePlayer;
+	int *dealerHand;
+	int Deck[52];
+	
+	
+} CURRENT_GAME_STATE;
+
+
+CURRENT_GAME_STATE gameState;
 
 typedef enum{
   ACE,

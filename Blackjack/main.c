@@ -34,6 +34,22 @@ char group[] =     "Team Number: 36";
 extern volatile bool ALERT_1MS;
 extern volatile bool ALERT_5000MS;
 
+// Event variables
+
+// Capacitive Touch
+
+extern int LAST_CAPTOUCH_X ; 
+extern int LAST_CAPTOUCH_Y ;
+
+// Joystick
+
+extern int LAST_PS2_X ; 
+extern int LAST_PS2_Y ;
+
+// Directional push buttons
+
+extern int LAST_PUSHBUTTON_X ; 
+extern int LAST_PUSHBUTTON_Y ;
 
 //*****************************************************************************
 // 

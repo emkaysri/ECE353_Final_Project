@@ -45,7 +45,7 @@ void master_game(uint8_t* playerID)
     player this_player;
     bool nextRound;
     currCard = 0;
-    *dealerHand = malloc(sizeof(uint8_t));
+    *gameState.dealerHand = malloc(sizeof(uint8_t));
     this_player.playerID = playerID;
     this_player.money = 25000;
     playerList[0] = this_player;
@@ -68,15 +68,15 @@ void master_game(uint8_t* playerID)
         }
 
         for (i = 0; i < 2; i++) {
-            *(dealerHand + i) = Deck[currCard++];
+            *(gameState.dealerHand + i) = gameState.Deck[currCard++];
             dealerNumCards++;
-            playerList[0].hand[0][i] = Deck[currCard++];
+            playerList[0].hand[0][i] = gameState.Deck[currCard++];
             playerList[0].numCards[0]++;
-            playerList[1].hand[0][i] = Deck[currCard++];
+            playerList[1].hand[0][i] = gameState.Deck[currCard++];
             playerList[1].numCards[0]++;
         }
 
-        if (score(dealerHand, 2, true) == 21) {
+        if (score(gameState.dealerHand, 2, true) == 21) {
             dealerSum = 21;
             finalScore();
         }
