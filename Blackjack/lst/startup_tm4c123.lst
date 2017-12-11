@@ -1230,18 +1230,18 @@ ARM Macro Assembler    Page 19
               00000000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
-erwork --depend=.\obj\startup_tm4c123.d -o.\obj\startup_tm4c123.o -I.\RTE\_HW3 
--IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\
-TM4C_DFP\1.1.0\Device\Include\TM4C123 --predefine="__MICROLIB SETA 1" --predefi
+erwork --depend=.\obj\startup_tm4c123.d -o.\obj\startup_tm4c123.o -I.\RTE\_Blac
+kjack -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK
+\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123 --predefine="__MICROLIB SETA 1" --p
 
 
 
 ARM Macro Assembler    Page 20 
 
 
-ne="__UVISION_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefine="TM4C123
-GH6PM SETA 1" --list=.\lst\startup_tm4c123.lst RTE\Device\TM4C123GH6PM\startup_
-TM4C123.s
+redefine="__UVISION_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefine="T
+M4C123GH6PM SETA 1" --list=.\lst\startup_tm4c123.lst RTE\Device\TM4C123GH6PM\st
+artup_TM4C123.s
 
 
 

@@ -13,6 +13,13 @@
 // Fill out the #defines below to configure which pins are connected to
 // the I2C Bus
 //*****************************************************************************
+
+#define   EEPROM_STUDENT1       	256
+#define   EEPROM_STUDENT2       	(EEPROM_STUDENT1 + 80)
+#define   EEPROM_STUDENT3       	(EEPROM_STUDENT2 + 80)
+#define   EEPROM_GROUP           	(EEPROM_STUDENT3 + 80)
+
+
 #define   EEPROM_GPIO_BASE         	GPIOA_BASE
 #define   EEPROM_I2C_BASE          	I2C1_BASE
 #define   EEPROM_I2C_SCL_PIN       	PA6
@@ -69,5 +76,15 @@ i2c_status_t eeprom_byte_read
 //*****************************************************************************
 bool eeprom_init(void);
 
+
+//*****************************************************************************
+// Read series of bytes to EEPROM 
+//*****************************************************************************
+uint16_t eeprom_bytes_read(uint8_t *data, uint16_t start, uint16_t length);
+
+//*****************************************************************************
+// Write series of bytes to EEPROM 
+//*****************************************************************************
+uint16_t eeprom_bytes_write(uint8_t *data, uint16_t start, uint16_t length);
 
 #endif

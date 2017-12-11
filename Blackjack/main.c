@@ -97,25 +97,6 @@ void initializeBoard(void)
 }
 
 //*****************************************************************************
-// EEPROM - Read Board Data
-//*****************************************************************************
-void eeprom_read_board_data()
-{
-	//eeprom_read((uint8_t *)s, EEPROM_STUDENT1, 80);
-	//printf("%s\n", s);
-	
-	//eeprom_read((uint8_t *)s, EEPROM_STUDENT2, 80);
-	//printf("%s\n", s);
-	
-	//eeprom_read((uint8_t *)s, EEPROM_STUDENT3, 80);
-	//printf("%s\n", s);
-	
-	//eeprom_read((uint8_t *)s, EEPROM_GROUP, 80);
-	//printf("%s\n", s);
-	
-}
-
-//*****************************************************************************
 // Wireless - Configure Wireless point-point connection
 //*****************************************************************************
 void wireless_connect(){
@@ -148,6 +129,24 @@ bool sw2_debounce(void)
 int 
 main(void)
 {
+	char info[80];
+	
+	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
+	printf("%s\n", info);
+	
+	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT2, 80);
+	printf("%s\n", info);
+	
+	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT3, 80);
+	printf("%s\n", info);
+	
+	eeprom_bytes_read((uint8_t *)info, EEPROM_GROUP, 80);
+	printf("%s\n", info);
+	
+	
+	// connect to wireless network 
+	wireless_connect();
+	 
 	//while(1){
 	// display_main_menu return true if master user
     //if(display_main_menu()){
@@ -169,69 +168,15 @@ main(void)
 	while(true) {
 	
 	clear() ;
-		
-	drawString("AB CDE", 30, 220, LCD_COLOR_BLACK) ; 
-	drawString("FG HIJKL MN", 30, 231, LCD_COLOR_RED) ; 
-		
-	drawString("OP QR%$#$%^STU", 30, 242, LCD_COLOR_GREEN) ; 
-		
-	drawString("VWXYZ", 30, 253, LCD_COLOR_BLUE) ; 
-		
-	drawString("BLACK JACK FUCK YEAH LETS GO", 30, 263, LCD_COLOR_BLACK) ; 
-		
-		   
-		
-	x = 30;
-	drawCard(x, 30,ACE, i) ;
-	x+=45;
-	drawCard(x, 30,TWO, i) ;
-	x+=45;
-	drawCard(x, 30,THREE, i) ;
-	x+=45;
-	drawCard(x, 30,FOUR, i) ;
-	x+=45;
-	drawCard(x, 30,FIVE, i) ;
-	x=30;
-	
-	drawCard(x, 90,SIX, i) ;
-	x+=45;
-	drawCard(x, 90,SEVEN, i) ;
-	x+=45;
-	drawCard(x, 90,EIGHT, i) ;
-	x+=45;
-	drawCard(x, 90,NINE, i) ;
-	x+=45;
-	drawCard(x, 90,TEN, i) ;
-	x=30;
-	
-	
-	drawCard(x, 150,JACK, i) ;
-	x+=45;
-	drawCard(x, 150,QUEEN, i) ;
-	x+=45;
-	drawCard(x, 150,KING, i) ;
-	
-	i++;
-	
-	if (i > DIAMONDS) {
-		i = SPADES ; 
-	}
-	
-	
-	for (t = 0 ; t < 5000000; t++) {
-		//wait
-	}
-	
-	
 	
 }
 	// If SW2 is pressed, write names and group number to EEPROM
 	if (sw2_debounce()) 
 	{
-		//eeprom_write((uint8_t *)s, EEPROM_STUDENT1, 80);
-	  	//eeprom_write((uint8_t *)s, EEPROM_STUDENT2, 80);
-		//eeprom_write((uint8_t *)s, EEPROM_STUDENT3, 80);
-		//eeprom_write((uint8_t *)s, EEPROM_GROUP, 80);
+		eeprom_bytes_write((uint8_t *) student_1, EEPROM_STUDENT1, 80);
+	  eeprom_bytes_write((uint8_t *) student_2, EEPROM_STUDENT2, 80);
+		eeprom_bytes_write((uint8_t *) student_3, EEPROM_STUDENT3, 80);
+		eeprom_bytes_write((uint8_t *) group, EEPROM_GROUP, 80);
 	}
 
 
