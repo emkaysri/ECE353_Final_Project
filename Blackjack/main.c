@@ -149,11 +149,16 @@ bool sw2_debounce(void)
 }
 
 void write_debug_data() {
+	int capTouch = ft6x06_read_td_status();
 	
 	printf("**************************************\n\r");
   printf("* BLACK JACK DEBUG DATA\n\r");
-	printf("* CAP TOUCH X: %d Y: %d\n\r",ft6x06_read_x(),ft6x06_read_y());
-	printf("* PS2 X: %d Y: %d\n\r",ps2_get_x(),ps2_get_y());
+	printf("* CAP TOUCH EVENT #: %d\n\r",capTouch);
+	
+	if (capTouch > 0) {
+		printf("* CAP TOUCH X: %d Y: %d\n\r",ft6x06_read_x(),ft6x06_read_y());
+	}
+	//printf("* PS2 X: %d Y: %d\n\r",ps2_get_x(),ps2_get_y());
 	printf("* LAST PUSHBUTTON X: %d Y: %d \n\r",0,0);
   printf("**************************************\n\r");
 	
@@ -209,7 +214,17 @@ main(void)
 		while (startScreen) {
 			drawHomeScreen(theta);
 			theta +=0.04;
+			
+			// essentially wait 0.01 second
+			for (i =0 ; i< 10; i++) {
+				while (!ALERT_1MS) {
+				
+				}
+			
+				ALERT_1MS = false; 
+			}
 			write_debug_data() ; 
+			//clear() ;
 		}
 		
 	

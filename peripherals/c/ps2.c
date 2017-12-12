@@ -75,7 +75,7 @@ void ps2_initialize(void)
 void ps2_initialize_ss2_timer(void)
 {
 	initialize_adc_gpio_pins();
-	initialize_adc_ss2(PS2_ADC_BASE);
+//	initialize_adc_ss2(PS2_ADC_BASE);
 }
 
 

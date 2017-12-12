@@ -118,7 +118,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>ÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÈ`£ÆC8¸ÔôY</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -150,34 +149,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>339</LineNumber>
+          <LineNumber>171</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>4084</Address>
+          <Address>7166</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\drivers\c\timers.c</Filename>
+          <Filename>..\peripherals\c\ft6x06.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\ece353_base_project\../drivers/c/timers.c\339</Expression>
+          <Expression>\\ece353_base_project\../peripherals/c/ft6x06.c\171</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>323</LineNumber>
+          <LineNumber>143</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>4064</Address>
+          <Address>7100</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\drivers\c\timers.c</Filename>
+          <Filename>..\peripherals\c\ft6x06.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\ece353_base_project\../drivers/c/timers.c\323</Expression>
+          <Expression>\\ece353_base_project\../peripherals/c/ft6x06.c\143</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
