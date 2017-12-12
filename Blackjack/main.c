@@ -87,12 +87,12 @@ void initializeBoard(void)
 	// EEPROM
 	eeprom_init();
 
-	// TIMERS
-	timers_init(TIMER1_BASE, 5000, 10, TIMER1A_IRQn, 1, TIMER5_BASE, 150000000, 0, TIMER5A_IRQn, 1); 
+	
 
 	//
 
 	// LCD
+	lcd_config_gpio();
 	lcd_config_screen();
 	lcd_clear_screen(LCD_COLOR_WHITE);
 	
@@ -100,15 +100,19 @@ void initializeBoard(void)
 	ft6x06_init();
 
 	// SERIAL DEBUG
-  init_serial_debug(true, true);
+  init_serial_debug(true, true); 
 	
 	// WIRELESS
 	spi_select_init();
   spi_select(NORDIC);
   wireless_initialize();
-  SysTick_Config(10000000);
+  //SysTick_Config(10000000);
 	
-  EnableInterrupts();
+	
+	// TIMERS
+	//timers_init(TIMER1_BASE, 5000, 10, TIMER1A_IRQn, 1, TIMER5_BASE, 150000000, 0, TIMER5A_IRQn, 1); 
+	
+  EnableInterrupts(); // HARD FAULT ??
 }
 
 //*****************************************************************************
@@ -169,8 +173,8 @@ main(void)
 	wireless_connect();
 	 
 	*/
-	lcd_config_gpio();
-	lcd_config_screen();	
+	//timers_init(TIMER1_BASE, 5000, 10, TIMER1A_IRQn, 1, TIMER5_BASE, 150000000, 0, TIMER5A_IRQn, 1); 
+	
 	
 	clear() ;
 		

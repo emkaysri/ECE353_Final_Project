@@ -285,12 +285,15 @@ bool uart_init(uint32_t uart_base, bool enable_rx_irq, bool enable_tx_irq)
 
     // ADD CODE
 		SYSCTL->RCGCUART|= rcgc_mask;
-		uart->LCRH = UART_LCRH_WLEN_8;
+		
 
     // Wait for the PRUART to indicate the port is ready
-		while( (SYSCTL->PRUART  & pr_mask) == 0) {}
+		while( !(SYSCTL->PRUART  & pr_mask) ) {}
 
 		uart->CTL &= ~UART_CTL_UARTEN;
+			
+			
+		uart->LCRH = UART_LCRH_WLEN_8; // TODO | UART_LCRH_FEN could be wrong
 		//set the baud rate to be 115200.
 		uart->IBRD = 27;
 		uart->FBRD = 8;

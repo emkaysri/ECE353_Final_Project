@@ -48,17 +48,17 @@ graphics.h(35): warning:  #1295-D: Deprecated declaration clear - give arg types
   void clear();
 graphics.h(39): warning:  #1-D: last line of file ends without a newline
   #endif
-main.c(189): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+main.c(190): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			theta +=0.04;
-main.c(147): warning:  #177-D: variable "info"  was declared but never referenced
+main.c(151): warning:  #177-D: variable "info"  was declared but never referenced
   	char info[80];
-main.c(148): warning:  #177-D: variable "x"  was declared but never referenced
+main.c(152): warning:  #177-D: variable "x"  was declared but never referenced
   	int x = 30 ; 
-main.c(149): warning:  #177-D: variable "i"  was declared but never referenced
+main.c(153): warning:  #177-D: variable "i"  was declared but never referenced
   	int i = SPADES ;
-main.c(150): warning:  #177-D: variable "t"  was declared but never referenced
+main.c(154): warning:  #177-D: variable "t"  was declared but never referenced
   	int t = 0 ;
-main.c(151): warning:  #177-D: variable "theta"  was declared but never referenced
+main.c(155): warning:  #177-D: variable "theta"  was declared but never referenced
   	float theta = 3.1419/2; 
 main.c: 9 warnings, 0 errors
 compiling adc.c...
@@ -68,8 +68,8 @@ compiling spi.c...
 compiling timers.c...
 ..\drivers\c\timers.c(265): warning:  #177-D: variable "watchdog_timer"  was declared but never referenced
   	TIMER0_Type *watchdog_timer;
-..\drivers\c\timers.c(267): warning:  #177-D: variable "watchdog_address"  was declared but never referenced
-  	uint32_t watchdog_address = TIMER2_BASE ;
+..\drivers\c\timers.c(228): warning:  #177-D: function "watchdogTimeInit"  was declared but never referenced
+  static void watchdogTimeInit() {
 ..\drivers\c\timers.c: 2 warnings, 0 errors
 compiling uart.c...
 ..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
@@ -101,12 +101,12 @@ compiling serial_debug.c...
   __INLINE static void UART_Tx_Flow(uint32_t uart_base, PC_Buffer *tx_buffer)
 ..\peripherals\c\serial_debug.c: 5 warnings, 0 errors
 compiling spi_select.c...
+compiling image_data.c...
 compiling wireless.c...
 compiling ws2812b_ice.c...
 ..\peripherals\c\ws2812b_ice.c(52): warning:  #1-D: last line of file ends without a newline
   };
 ..\peripherals\c\ws2812b_ice.c: 1 warning, 0 errors
-compiling image_data.c...
 assembling startup_TM4C123.s...
 compiling graphics.c...
 graphics.h(33): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
@@ -184,7 +184,7 @@ graphics.c(425): warning:  #177-D: variable "y"  was declared but never referenc
 graphics.c: 28 warnings, 0 errors
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=17600 RO-data=2264 RW-data=132 ZI-data=4124  
+Program Size: Code=17512 RO-data=2264 RW-data=132 ZI-data=4124  
 ".\obj\ece353_base_project.axf" - 0 Error(s), 54 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -214,7 +214,7 @@ Package Vendor: Keil
       Include file:  Device\Include\TM4C123\TM4C123.h
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:11
+Build Time Elapsed:  00:00:13
 </pre>
 </body>
 </html>

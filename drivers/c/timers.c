@@ -264,9 +264,9 @@ bool timers_init(
 	TIMER0_Type *gp5_timer;
 	TIMER0_Type *watchdog_timer;
 	
-	uint32_t watchdog_address = TIMER2_BASE ;
+	//uint32_t watchdog_address = TIMER2_BASE ;
 	
-	watchdogTimeInit();
+	//watchdogTimeInit();
 
 	  // Verify the base address.
   if (!verify_base_addr(base1_address) || !verify_base_addr(base5_address))
@@ -343,7 +343,7 @@ void TIMER5A_Handler(void)
   ALERT_1MS = true;
 }
 
-
+/*
 // Alerts every 1 second
 void WDT0_Handler(void)
 {
@@ -353,4 +353,4 @@ void WDT0_Handler(void)
 		// Reset board ?
 		
 	}
-}
+}*/
