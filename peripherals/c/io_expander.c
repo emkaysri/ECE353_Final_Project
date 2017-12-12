@@ -16,12 +16,11 @@ static i2c_status_t io_expander_wait_for_write(int32_t I2C_base)
   // set I2C address to slave and in Write Mode
   status = i2cSetSlaveAddr(I2C_base, MCP23017_DEV_ID, I2C_WRITE);
 
-  // Ppoll while the device is busy.  The  MCP24LC32AT will not ACK
+  // Poll while device is busy.  The  MCP24LC32AT will not ACK
   // writing an address while the write has not finished.
   do 
   {
-    // The data we send does not matter.  This has been set to 0x00, but could
-    // be set to anything
+    // byte sent doesn't matter
     status = i2cSendByte( I2C_base, 0xFF, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
     
     // Wait for address to finish transmitting
@@ -34,24 +33,16 @@ static i2c_status_t io_expander_wait_for_write(int32_t I2C_base)
 } 
 
 //*****************************************************************************
-// Sets the address to read/write from in the MCP23017  
-//
-// Paramters
-//    I2C_base:   a valid base address of an I2C peripheral
-//
-//    address:    8-bit address
-//
-// Returns
-// I2C_OK if the byte was written to the MCP23017.
+// Sets the address to read/write from in the GPIO expander  
 //*****************************************************************************
 static i2c_status_t io_expander_byte_write(uint32_t  I2C_base, uint8_t  address, uint8_t data)
 {
   i2c_status_t status;
     
-  // Before doing anything, make sure the I2C device is idle
+  // check that I2C device is idle
   while ( I2CMasterBusy(I2C_base)) {};
   
-  // Set the I2C address to be the MCP23017
+  // Set I2C address to be MCP23017
 	status = i2cSetSlaveAddr(I2C_base, MCP23017_DEV_ID, I2C_WRITE);
 		
 	// If the EEPROM is still writing the last byte written, wait
@@ -68,26 +59,18 @@ static i2c_status_t io_expander_byte_write(uint32_t  I2C_base, uint8_t  address,
 
 //*****************************************************************************
 // Reads one byte of data from the current address of the MCP23017  
-//
-// Paramters
-//    I2C_base:   a valid base address of an I2C peripheral
-//
-//    data:       data to read.
-//
-// Returns
-// I2C_OK if the byte was written to the MCP23017.
 //*****************************************************************************
 static i2c_status_t io_expander_byte_read(uint32_t  I2C_base, uint8_t	address, uint8_t *data)
 {
   i2c_status_t status;
   
-  // Before doing anything, make sure the I2C device is idle
+  // check that I2C device is idle
   while ( I2CMasterBusy(I2C_base)) {};
 
   // If the EEPROM is still writing the last byte written, wait
   io_expander_wait_for_write(I2C_base);		
 		
-  // Set the I2C slave address to be the MCP23017 and in write mode
+  // Set the I2C slave address to be MCP23017 and in write mode
   status = i2cSetSlaveAddr(I2C_base, MCP23017_DEV_ID, I2C_WRITE);
   
   // Send the address
@@ -104,7 +87,7 @@ static i2c_status_t io_expander_byte_read(uint32_t  I2C_base, uint8_t	address, u
 
 
 //*****************************************************************************
-// Set the value of the 8 red LEDs
+// Set the value of 8 red LEDs
 //*****************************************************************************
 void io_expander_write_LEDs(uint8_t LEDs)
 {
@@ -129,56 +112,22 @@ uint8_t io_expander_read_buttons()
 bool io_expander_init(void)
 { 
   // Configure I2C GPIO Pins on TI Board  
-  if(gpio_enable_port(IO_EXPANDER_GPIO_BASE) == false)
-  {
-    return false;
-  }
+  gpio_enable_port(IO_EXPANDER_GPIO_BASE);
   
-  // Configure SCL 
-  if(gpio_config_digital_enable(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PIN)== false)
-  {
-    return false;
-  }
-    
-  if(gpio_config_alternate_function(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PIN)== false)
-  {
-    return false;
-  }
-    
-  if(gpio_config_port_control(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PCTL_M, IO_EXPANDER_I2C_SCL_PIN_PCTL)== false)
-  {
-    return false;
-  }
-    
+  // Configure SCL line
+  gpio_config_digital_enable(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PIN);  
+  gpio_config_alternate_function(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PIN); 
+  gpio_config_port_control(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PCTL_M, IO_EXPANDER_I2C_SCL_PIN_PCTL);
 
   
   // Configure SDA 
-  if(gpio_config_digital_enable(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PIN)== false)
-  {
-    return false;
-  }
-    
-  if(gpio_config_open_drain(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PIN)== false)
-  {
-    return false;
-  }
-    
-  if(gpio_config_alternate_function(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PIN)== false)
-  {
-    return false;
-  }
-    
-  if(gpio_config_port_control(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PCTL_M, IO_EXPANDER_I2C_SDA_PIN_PCTL)== false)
-  {
-    return false;
-  }
-  
+	gpio_config_digital_enable(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PIN);
+  gpio_config_open_drain(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PIN);  
+  gpio_config_alternate_function(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PIN);
+  gpio_config_port_control(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PCTL_M, IO_EXPANDER_I2C_SDA_PIN_PCTL);
   
   //  Initialize I2C peripheral
-  if( initializeI2CMaster(IO_EXPANDER_I2C_BASE)!= I2C_OK)
-  {
-    return false;
-  }
+  initializeI2CMaster(IO_EXPANDER_I2C_BASE);
 	
 	// Initialize GPIO pins on MCP23017
 	

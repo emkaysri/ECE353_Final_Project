@@ -1,5 +1,5 @@
 Dependencies for Project 'Blackjack', Target 'Blackjack': (DO NOT MODIFY !)
-F (.\main.c)(0x5A3047B8)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Blackjack-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
+F (.\main.c)(0x5A3061B8)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Blackjack-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
 I (main.h)(0x5A3036D5)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588C3A14)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C3A14)
@@ -60,7 +60,7 @@ I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123
 I (..\drivers\include\driver_defines.h)(0x5A303636)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588C3A14)
 I (C:\Keil_v5\ARM\ARMCC\include\errno.h)(0x588C3A14)
-F (..\drivers\c\i2c.c)(0x5A303636)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Blackjack-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\obj\i2c.o --omf_browse .\obj\i2c.crf --depend .\obj\i2c.d)
+F (..\drivers\c\i2c.c)(0x5A304DCC)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Blackjack-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\obj\i2c.o --omf_browse .\obj\i2c.crf --depend .\obj\i2c.d)
 I (..\drivers\include\i2c.h)(0x5A303636)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C3A14)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C3A14)
@@ -116,7 +116,7 @@ I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h)(0x5899005A)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h)(0x5899005A)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h)(0x5899005A)
 I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B74676)
-F (..\peripherals\c\io_expander.c)(0x5A303808)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Blackjack-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\obj\io_expander.o --omf_browse .\obj\io_expander.crf --depend .\obj\io_expander.d)
+F (..\peripherals\c\io_expander.c)(0x5A306378)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Blackjack-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\obj\io_expander.o --omf_browse .\obj\io_expander.crf --depend .\obj\io_expander.d)
 I (..\peripherals\include\io_expander.h)(0x5A3037FB)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C3A14)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588C3A14)
