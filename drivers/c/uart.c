@@ -1,23 +1,23 @@
 // Copyright (c) 2015, Joe Krachey
 // All rights reserved.
 //
-// Redistribution and use in source or binary form, with or without modification,
+// Redistribution and use in source or binary form, with or without modification, 
 // are permitted provided that the following conditions are met:
 //
-// 1. Redistributions in source form must reproduce the above copyright
-//    notice, this list of conditions and the following disclaimer in
+// 1. Redistributions in source form must reproduce the above copyright 
+//    notice, this list of conditions and the following disclaimer in 
 //    the documentation and/or other materials provided with the distribution.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-// PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-// EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-// PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-// OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-// WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+// PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+// EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+// PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
+// OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+// WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "uart.h"
@@ -266,59 +266,68 @@ char uart_rx_poll(uint32_t base, bool block)
 }
 
 //************************************************************************
-// Configure a UART to be 115200, 8N1.
+// Configure a UART to be 115200, 8N1.  
 //************************************************************************
 bool uart_init(uint32_t uart_base, bool enable_rx_irq, bool enable_tx_irq)
 {
-
+    
     UART0_Type *uart = (UART0_Type *)(uart_base);
     uint32_t rcgc_mask;
     uint32_t pr_mask;
-
+    
     if (verify_uart_base(uart_base) == false)
     {
       return false;
     }
-
+    
     rcgc_mask = uart_get_rcgc_mask(uart_base);
     pr_mask = uart_get_pr_mask(uart_base);
-
+    
     // ADD CODE
-		SYSCTL->RCGCUART|= rcgc_mask;
 		
-
-    // Wait for the PRUART to indicate the port is ready
-		while( !(SYSCTL->PRUART  & pr_mask) ) {}
-
+		SYSCTL->RCGCUART |= rcgc_mask;
+		while( !(SYSCTL->PRUART & pr_mask) );
+		
 		uart->CTL &= ~UART_CTL_UARTEN;
-			
-			
-		uart->LCRH = UART_LCRH_WLEN_8 | UART_LCRH_FEN; // TODO  could be wrong
-		//set the baud rate to be 115200.
 		uart->IBRD = 27;
 		uart->FBRD = 8;
+		
+		//uart->LCRH |= UART_LCRH_WLEN_8; OLD
+		
+		uart->LCRH = UART_LCRH_WLEN_8 | UART_LCRH_FEN; //FIFO
+		
 		if( enable_rx_irq)
-			{
-				// <ADD CODE> Turn on the UART Interrupts for Rx, and Rx Timeout
-				uart->IM = UART_IM_RXIM | UART_IM_RTIM;
-			}
-		if( enable_tx_irq)
-			{
-				// DO Nothing until next ICE
-        uart->IM |= UART_IM_TXIM;
-			}
-		if ( enable_rx_irq || enable_tx_irq )
-			{
-				// <ADD CODE> Set the priority to 0.  Be sure to call uart_get_irq_num(uart_base) to   // get the correct IRQn_Type
-				NVIC_SetPriority(uart_get_irq_num(uart_base), 0);
-				// <ADD CODE> Enable the NVIC.  Be sure to call uart_get_irq_num(uart_base) to get
-				// the correct IRQn_Type
-				NVIC_EnableIRQ(uart_get_irq_num(uart_base));
-			}
+		 {
+			 // <ADD CODE> Turn on the UART Interrupts for Rx, and Rx Timeout
+			 uart->IM = UART_IM_RTIM | UART_IM_RXIM;
+		 }
 
-		uart->CTL = (UART_CTL_RXE|UART_CTL_TXE|UART_CTL_UARTEN);
+		 if( enable_tx_irq)
+		 {
+			 uart->IM |= UART_IM_TXIM ; // TODO could be issue
+		 }
+
+		 if ( enable_rx_irq || enable_tx_irq )
+		 {
+			 // <ADD CODE> Set the priority to 0.  Be sure to call uart_get_irq_num(uart_base) to   // get the correct IRQn_Type
+			 
+			 NVIC_SetPriority( uart_get_irq_num(uart_base),  0);
+		 
+			 // <ADD CODE> Enable the NVIC.  Be sure to call uart_get_irq_num(uart_base) to get
+			 // the correct IRQn_Type
+			 
+			 NVIC_EnableIRQ(UART0_IRQn); // TODO WRONG?
+
+		 }
 
 
+		
+		uart->CTL = (UART_CTL_UARTEN|UART_CTL_RXE|UART_CTL_TXE);
+		
+    
     return true;
 
 }
+
+
+

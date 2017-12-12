@@ -71,7 +71,6 @@ compiling timers.c...
 ..\drivers\c\timers.c(228): warning:  #177-D: function "watchdogTimeInit"  was declared but never referenced
   static void watchdogTimeInit() {
 ..\drivers\c\timers.c: 2 warnings, 0 errors
-compiling lcd.c...
 compiling uart.c...
 ..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
          return 0;
@@ -82,33 +81,27 @@ compiling eeprom.c...
 ..\peripherals\c\eeprom.c(270): warning:  #940-D: missing return statement at end of non-void function "eeprom_bytes_write" 
   }
 ..\peripherals\c\eeprom.c: 2 warnings, 0 errors
-compiling launchpad_io.c...
+compiling lcd.c...
 compiling ft6x06.c...
 ..\peripherals\c\ft6x06.c(103): warning:  #940-D: missing return statement at end of non-void function "ft6x06_read_td_status" 
   } 
 ..\peripherals\c\ft6x06.c: 1 warning, 0 errors
+compiling launchpad_io.c...
 compiling ps2.c...
 compiling serial_debug.c...
-..\peripherals\c\serial_debug.c(164): warning:  #177-D: variable "uart_base"  was declared but never referenced
+..\peripherals\c\serial_debug.c(182): warning:  #177-D: variable "uart_base"  was declared but never referenced
      uint32_t uart_base;
-..\peripherals\c\serial_debug.c(165): warning:  #177-D: variable "tx_buffer"  was declared but never referenced
+..\peripherals\c\serial_debug.c(183): warning:  #177-D: variable "tx_buffer"  was declared but never referenced
      PC_Buffer *tx_buffer;
-..\peripherals\c\serial_debug.c(202): warning:  #177-D: variable "uart"  was declared but never referenced
-    UART0_Type *uart = (UART0_Type *)(uart_base);
-..\peripherals\c\serial_debug.c(220): warning:  #177-D: variable "c"  was declared but never referenced
-      char c;
-..\peripherals\c\serial_debug.c(217): warning:  #177-D: function "UART_Tx_Flow"  was declared but never referenced
-  __INLINE static void UART_Tx_Flow(uint32_t uart_base, PC_Buffer *tx_buffer)
-..\peripherals\c\serial_debug.c: 5 warnings, 0 errors
+..\peripherals\c\serial_debug.c: 2 warnings, 0 errors
 compiling spi_select.c...
-compiling image_data.c...
 compiling wireless.c...
+compiling image_data.c...
 compiling ws2812b_ice.c...
 ..\peripherals\c\ws2812b_ice.c(52): warning:  #1-D: last line of file ends without a newline
   };
 ..\peripherals\c\ws2812b_ice.c: 1 warning, 0 errors
 assembling startup_TM4C123.s...
-compiling system_TM4C123.c...
 compiling graphics.c...
 graphics.h(33): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
   int drawGameScreenOutLineAndData();
@@ -183,9 +176,10 @@ OWS/2+sin(theta)*r, 0, 2, 3);
 graphics.c(425): warning:  #177-D: variable "y"  was declared but never referenced
   	int y = ROWS/2;
 graphics.c: 28 warnings, 0 errors
+compiling system_TM4C123.c...
 linking...
-Program Size: Code=17616 RO-data=2264 RW-data=132 ZI-data=4124  
-".\obj\ece353_base_project.axf" - 0 Error(s), 54 Warning(s).
+Program Size: Code=17808 RO-data=2264 RW-data=132 ZI-data=4124  
+".\obj\ece353_base_project.axf" - 0 Error(s), 51 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -214,7 +208,7 @@ Package Vendor: Keil
       Include file:  Device\Include\TM4C123\TM4C123.h
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:18
+Build Time Elapsed:  00:00:10
 </pre>
 </body>
 </html>

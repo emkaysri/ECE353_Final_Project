@@ -145,9 +145,9 @@ void write_debug_data() {
 	
 	printf("**************************************\n\r");
   printf("* BLACK JACK DEBUG DATA\n\r");
-	printf("* CAP TOUCH X: Y:\n\r");
-	printf("* PS2 X: Y: \n\r");
-	printf("* LAST PUSHBUTTON X: Y: \n\r");
+	printf("* CAP TOUCH X: %d Y: %d\n\r",0,0);
+	printf("* PS2 X: %d Y: %d\n\r",0,0);
+	printf("* LAST PUSHBUTTON X: %d Y: %d \n\r",0,0);
   printf("**************************************\n\r");
 	
 }
@@ -202,6 +202,7 @@ main(void)
 		while (startScreen) {
 			drawHomeScreen(theta);
 			theta +=0.04;
+			write_debug_data() ; 
 		}
 		
 	
