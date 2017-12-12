@@ -140,7 +140,7 @@ int calcStringWidth(char * inputString) {
 			} else {
 				xLength += microsoftSansSerif_8ptDescriptors[charNumber].width;
 			}
-			
+			xLength++;
 			
 			
 			inputString++; 
@@ -161,13 +161,23 @@ void drawStringCentered(char * inputString, int x, int y, uint16_t color, uint16
 	
 }
 
+void drawStringSelected (char * inputString, int x, int y, uint16_t color, uint16_t colorBackground) {
+	int stringWidth = calcStringWidth(inputString) ; 
+	
+	drawRect (x-4, x + stringWidth+4, y-4, y+10+4 , LCD_COLOR_RED);
+	
+	drawRect (x-2, x + stringWidth+2, y-2, y +12, colorBackground);
+	
+	drawString(inputString,  x,  y,  color, colorBackground) ;
+}
+
 void drawStringSelectedAndCentered(char * inputString, int x, int y, uint16_t color, uint16_t colorBackground) {
 	
 	int stringWidth = calcStringWidth(inputString) ; 
 	
-	lcd_draw_rectangle_centered (x, stringWidth+18, y, 14, LCD_COLOR_RED);
+	lcd_draw_rectangle_centered (x, stringWidth+8, y, 18, LCD_COLOR_RED);
 	
-	lcd_draw_rectangle_centered (x, stringWidth+16, y, 12, colorBackground);
+	lcd_draw_rectangle_centered (x, stringWidth+4, y, 14, colorBackground);
 		
 	drawStringCentered(inputString,  x,  y,  color, colorBackground) ; 
 }
@@ -292,35 +302,61 @@ void drawBlackjackControlOptions(int x, int y, int controlOptionsWidth, int cont
 
 	drawRect(x + 5, x + controlOptionsWidth, y + 5, y + controlOptionsHieght, LCD_COLOR_BLACK);
 	
-	lcd_draw_rectangle_centered (x + xPos-5, 3, y + 14, 3, LCD_COLOR_WHITE);
+	drawRect(x + 10, x + controlOptionsWidth - 5, y + 10, y + controlOptionsHieght - 5, LCD_COLOR_WHITE);
 	
-	drawStringSelectedAndCentered("HIT", x + xPos, y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	//lcd_draw_rectangle_centered (x + xPos-5, 3, y + 14, 3, LCD_COLOR_WHITE);
+	
+	//controlOptionsHieght-=20;
+	
+	drawStringSelectedAndCentered("HIT", x + controlOptionsWidth/2, y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
 	y+=controlOptionsHieght/3;
 	
-	drawString("STAND", x + xPos, y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	drawStringCentered("STAND", x + controlOptionsWidth/2, y + 15, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
 	y+=controlOptionsHieght/3;
 	
-	drawString("SPLIT", x + xPos, y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	drawStringCentered("SPLIT", x + controlOptionsWidth/2, y + 15, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 }
 
 void drawBettingOptions(int x, int y, int width, int height) {
 	
-	drawString("CURRENT $", x , y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	drawString("TOTAL $1000", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
-	drawString("BET $500", x , y + 10, LCD_COLOR_WHITE,LCD_COLOR_BLACK) ; 
+	drawString("BET $500", x , y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	
+	drawStringSelected("INCREASE BET", x , y + 40, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	
+	drawString("DECREASE BET", x , y + 60, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
 }
 
 void drawDealer(int x, int y, int width, int height) {
+	int increment = 15;
 	
-	drawString("DEALER", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	
+		
+	struct POINT dealerCardOne; 
+	struct POINT dealerCardTwo; 
+	
+	height-=30;
+	
+	dealerCardOne.x = x+increment;
+	dealerCardOne.y = y + height - increment;
+	
+	dealerCardTwo.x = x+increment*2;
+	dealerCardTwo.y = y + height - increment*2;
+	
+	drawString("DEALER HAND", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	
+	drawCard(dealerCardOne.x, dealerCardOne.y, 1, 1, 0);
+	drawCard(dealerCardTwo.x, dealerCardTwo.y, 1, 1, 3);
+	
 	
 }
 
 void drawPlayer(int x, int y, int width, int height) {
-	int increment = 20;
+	int increment = 15;
 	struct POINT playerCardOne; 
 	struct POINT playerCardTwo; 
 	struct POINT playerCardThree; 
@@ -336,14 +372,16 @@ void drawPlayer(int x, int y, int width, int height) {
 	playerCardThree.x = x+increment*3;
 	playerCardThree.y = y + height - increment*3;
 	
-	drawString("YOUR HAND", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	drawStringCentered("YOUR HAND", x +30 , y + height + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
 	drawCard(playerCardOne.x, playerCardOne.y, 1, 1, 0);
 	drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
 	drawCard(playerCardThree.x, playerCardThree.y, 1, 1, 3);
-	
 }
 
+void drawGameState(int x, int y, int width, int height) {
+	drawString("WAIT FOR OTHER PLAYER TO PLAY", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+}
 
 
 int drawGameScreenOutLineAndData() {
@@ -357,17 +395,26 @@ int drawGameScreenOutLineAndData() {
 	int controlColumn;
 	
 	// Player Area
-	drawRect(0, COLS, (uint16_t)(0.4*ROWS), (uint16_t)(0.4*ROWS) + lineWidth, LCD_COLOR_BLACK);
-	drawPlayer(5, (uint16_t)(0.4*ROWS), COLS, (uint16_t)(0.6*ROWS));
+	drawPlayer(25, (uint16_t)(0.4*ROWS), COLS, (uint16_t)(0.6*ROWS)-50);
+	drawBlackjackControlOptions((uint16_t)(0.75*COLS)-15, (uint16_t)(0.4*ROWS),(uint16_t)(0.25*COLS),85 ) ; 
+	
 	
 	// Dealer Area
-	drawRect((uint16_t)(0.4*COLS), (uint16_t)(0.4*COLS) + lineWidth, 0, (uint16_t)(0.4*ROWS), LCD_COLOR_BLACK);
-	drawDealer((uint16_t)(0.4*COLS), 0, (uint16_t)(0.6*COLS), (uint16_t)(0.4*ROWS));
+	
+	drawDealer((uint16_t)(0.4*COLS)+10, 0, (uint16_t)(0.6*COLS)-10, (uint16_t)(0.4*ROWS));
 	// Controls Areas
+	drawRect(0, (uint16_t)(0.4*COLS), 0, (uint16_t)(0.3*ROWS), LCD_COLOR_BLACK);
+	drawRect(0, (uint16_t)(0.4*COLS)-4, 0, (uint16_t)(0.3*ROWS)-4, LCD_COLOR_WHITE);
 	
-	drawBlackjackControlOptions((uint16_t)(0.75*COLS), (uint16_t)(0.4*ROWS),(uint16_t)(0.25*COLS),70 ) ; 
 	
-	drawBettingOptions(0, 0, (uint16_t)(0.4*COLS), (uint16_t)(0.4*ROWS)); 
+	drawRect(0,COLS, ROWS-50, ROWS-45, LCD_COLOR_BLACK);
+	drawBettingOptions(10, 0, (uint16_t)(0.4*COLS), (uint16_t)(0.4*ROWS)); 
+	
+	
+	// Game state
+	
+	drawGameState(25, ROWS-50, COLS, 50);
+	
 	
 
 	return 0;

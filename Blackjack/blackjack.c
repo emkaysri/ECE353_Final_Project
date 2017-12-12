@@ -20,7 +20,7 @@
 // WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 // NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
+/*
 #include "blackjack.h"
 
 static struct player playerList[2];
@@ -31,13 +31,13 @@ int dealerSum, dealerNumCards;
 ********************************************************************************
 *******************************************************************************/
 
-bool display_main_menu(void) { return true; }
+//bool display_main_menu(void) { return true; }
 
 /*******************************************************************************
 * Function Name: display_main_menu
 ********************************************************************************
 *******************************************************************************/
-
+/*
 <<<<<<< HEAD
 void master_game(uint8_t* playerID) {
   player this_player;
@@ -269,3 +269,4 @@ void swap(int* a, int* b) {
   *a = *b;
   *b = temp;
 }
+*/

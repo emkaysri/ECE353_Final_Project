@@ -38,13 +38,12 @@ extern volatile bool ALERT_5000MS;
 
 // Capacitive Touch
 
-extern int LAST_CAPTOUCH_X ; 
-extern int LAST_CAPTOUCH_Y ;
+
 
 // Joystick
 
-extern int LAST_PS2_X ; 
-extern int LAST_PS2_Y ;
+extern volatile uint16_t PS2_X_DATA ; 
+extern volatile uint16_t PS2_Y_DATA ; 
 
 // Directional push buttons
 
@@ -83,7 +82,7 @@ void initializeBoard(void)
 	lp_io_init();
 
 	// PS2 TODO INTERRUPTS CODE
-	ps2_initialize_ss2();
+//	ps2_initialize_ss2();
 	
 	// EEPROM
 	eeprom_init();
@@ -146,7 +145,11 @@ int
 main(void)
 {
 	char info[80];
-	
+	int x = 30 ; 
+	int i = SPADES ;
+	int t = 0 ;
+	float theta = 3.1419/2; 
+	/*
 	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
 	printf("%s\n", info);
 	
@@ -163,29 +166,26 @@ main(void)
 	// connect to wireless network 
 	wireless_connect();
 	 
-	//while(1){
-	// display_main_menu return true if master user
-    //if(display_main_menu()){
-      //master_game();
-   // }else{
-      //play_game();
-   // }
-	//}
-	int x = 30 ; 
-	int i = SPADES ;
-	int t = 0 ;
+	*/
 	lcd_config_gpio();
 	lcd_config_screen();	
 	
 	clear() ;
+	
+	
+	drawGameScreenOutLineAndData();
 
 		
-	
+	// MAIN GAME LOGIC LOOP
+	// Program should never exit this loop, from starting screen to games
 	while(true) {
+		
+		
+		
 	
-	clear() ;
+	//clear() ;
 	
-}
+
 	// If SW2 is pressed, write names and group number to EEPROM
 	if (sw2_debounce()) 
 	{
@@ -196,6 +196,6 @@ main(void)
 	}
 
 
-	
+	}
 
 }
