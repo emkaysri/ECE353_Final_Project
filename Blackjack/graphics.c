@@ -13,7 +13,7 @@ int distanceAbs(struct POINT a , struct POINT b) {
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y) ;
 }
 
-const EVENT_DATA * global_event_data;
+const EVENT_DATA *  global_event_data;
 
 void graphics_init_data (EVENT_DATA * event_data) {
 	global_event_data = event_data;

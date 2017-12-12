@@ -44,6 +44,9 @@
 #include "ps2.h"
 #include "ft6x06.h"
 #include "io_expander.h"
+#include "event.h"
+
+static EVENT_DATA global_event_data;
 
 
 #endif

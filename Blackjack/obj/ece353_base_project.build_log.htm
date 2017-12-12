@@ -40,23 +40,25 @@ compiling gpio_port.c...
     GPIOA_Type  *gpioPort;
 ..\drivers\c\gpio_port.c: 2 warnings, 0 errors
 compiling main.c...
-graphics.h(87): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
-  int drawGameScreenOutLineAndData();
-graphics.h(89): warning:  #1295-D: Deprecated declaration clear - give arg types
-  void clear();
-graphics.h(94): warning:  #1-D: last line of file ends without a newline
+event.h(55): warning:  #1-D: last line of file ends without a newline
   #endif
-main.c(235): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+graphics.h(42): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
+  int drawGameScreenOutLineAndData();
+graphics.h(44): warning:  #1295-D: Deprecated declaration clear - give arg types
+  void clear();
+graphics.h(50): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c(230): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			theta +=0.04;
-main.c(185): warning:  #177-D: variable "info"  was declared but never referenced
+main.c(183): warning:  #177-D: variable "info"  was declared but never referenced
   	char info[80];
-main.c(186): warning:  #177-D: variable "x"  was declared but never referenced
+main.c(184): warning:  #177-D: variable "x"  was declared but never referenced
   	int x = 30 ; 
-main.c(188): warning:  #177-D: variable "t"  was declared but never referenced
+main.c(186): warning:  #177-D: variable "t"  was declared but never referenced
   	int t = 0 ;
-main.c(189): warning:  #177-D: variable "theta"  was declared but never referenced
+main.c(187): warning:  #177-D: variable "theta"  was declared but never referenced
   	float theta = 3.1419/2; 
-main.c: 8 warnings, 0 errors
+main.c: 9 warnings, 0 errors
 compiling adc.c...
 compiling pc_buffer.c...
 compiling i2c.c...
@@ -90,19 +92,27 @@ compiling serial_debug.c...
      PC_Buffer *tx_buffer;
 ..\peripherals\c\serial_debug.c: 2 warnings, 0 errors
 compiling spi_select.c...
-compiling image_data.c...
 compiling wireless.c...
+compiling image_data.c...
 compiling ws2812b_ice.c...
 ..\peripherals\c\ws2812b_ice.c(52): warning:  #1-D: last line of file ends without a newline
   };
 ..\peripherals\c\ws2812b_ice.c: 1 warning, 0 errors
+compiling event.c...
+event.c(1): warning:  #1-D: last line of file ends without a newline
+  #include "event.h"
+event.h(55): warning:  #1-D: last line of file ends without a newline
+  #endif
+event.c: 2 warnings, 0 errors
 assembling startup_TM4C123.s...
 compiling graphics.c...
-graphics.h(87): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
+event.h(55): warning:  #1-D: last line of file ends without a newline
+  #endif
+graphics.h(42): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
   int drawGameScreenOutLineAndData();
-graphics.h(89): warning:  #1295-D: Deprecated declaration clear - give arg types
+graphics.h(44): warning:  #1295-D: Deprecated declaration clear - give arg types
   void clear();
-graphics.h(94): warning:  #1-D: last line of file ends without a newline
+graphics.h(50): warning:  #1-D: last line of file ends without a newline
   #endif
 graphics.c(220): warning:  #177-D: variable "valIndex"  was declared but never referenced
   	int valIndex = 0 ; 
@@ -170,11 +180,11 @@ OLS/2+cos(theta)*r ,
 OWS/2+sin(theta)*r, 0, 2, 3);
 graphics.c(426): warning:  #177-D: variable "y"  was declared but never referenced
   	int y = ROWS/2;
-graphics.c: 28 warnings, 0 errors
+graphics.c: 29 warnings, 0 errors
 compiling system_TM4C123.c...
 linking...
 Program Size: Code=18376 RO-data=2280 RW-data=136 ZI-data=4144  
-".\obj\ece353_base_project.axf" - 0 Error(s), 48 Warning(s).
+".\obj\ece353_base_project.axf" - 0 Error(s), 52 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -203,7 +213,7 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_TM4C123.s
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:10
+Build Time Elapsed:  00:00:11
 </pre>
 </body>
 </html>

@@ -34,8 +34,6 @@ char group[] =     "Team Number: 36";
 extern volatile bool ALERT_1MS;
 extern volatile bool ALERT_5000MS;
 
-static EVENT_DATA global_event_data;
-
 //*****************************************************************************
 // 
 //*****************************************************************************
@@ -189,10 +187,7 @@ main(void)
 	float theta = 3.1419/2; 
 	
 	initializeBoard() ;
-	
-	
-	graphics_init_data (&global_event_data) ; 
-	
+	graphics_init_data (&global_event_data);
 	
 	/*
 	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);

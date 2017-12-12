@@ -16,6 +16,7 @@
 .\obj\main.o: ..\drivers\include\gpio_port.h
 .\obj\main.o: ..\peripherals\include\lcd.h
 .\obj\main.o: graphics.h
+.\obj\main.o: event.h
 .\obj\main.o: image_data.h
 .\obj\main.o: ..\drivers\include\interrupts.h
 .\obj\main.o: ..\peripherals\include\spi_select.h
