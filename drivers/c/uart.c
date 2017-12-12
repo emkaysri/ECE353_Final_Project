@@ -293,7 +293,7 @@ bool uart_init(uint32_t uart_base, bool enable_rx_irq, bool enable_tx_irq)
 		uart->CTL &= ~UART_CTL_UARTEN;
 			
 			
-		uart->LCRH = UART_LCRH_WLEN_8; // TODO | UART_LCRH_FEN could be wrong
+		uart->LCRH = UART_LCRH_WLEN_8 | UART_LCRH_FEN; // TODO  could be wrong
 		//set the baud rate to be 115200.
 		uart->IBRD = 27;
 		uart->FBRD = 8;

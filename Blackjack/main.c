@@ -141,6 +141,17 @@ bool sw2_debounce(void)
 	return true;
 }
 
+void write_debug_data() {
+	
+	printf("**************************************\n\r");
+  printf("* BLACK JACK DEBUG DATA\n\r");
+	printf("* CAP TOUCH X: Y:\n\r");
+	printf("* PS2 X: Y: \n\r");
+	printf("* LAST PUSHBUTTON X: Y: \n\r");
+  printf("**************************************\n\r");
+	
+}
+
 
 //*****************************************************************************
 // Main Function
@@ -183,6 +194,9 @@ main(void)
 	while(true) {
 		bool startScreen = true;
 		float theta = 3.1419/2;
+		write_debug_data() ; 
+		
+		
 		// This is the start screen state
 		
 		while (startScreen) {
