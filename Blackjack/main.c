@@ -166,6 +166,7 @@ void write_debug_data() {
 	
 	uint8_t buttons;
 	uint8_t LEDs = 0xF1;
+	char info[80];
 	
 	printf("**************************************\n\r");
   printf("* BLACK JACK DEBUG DATA\n\r");
@@ -198,7 +199,10 @@ void write_debug_data() {
 	// Test I2C LEDs
 	io_expander_write_LEDs(LEDs);
 	
-	
+	// Test EEPROM
+	eeprom_bytes_write((uint8_t *) student_1, EEPROM_STUDENT1, 80);
+	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
+	printf("%s\n\r", info);
 }
 
 
@@ -217,7 +221,7 @@ main(void)
 	initializeBoard() ;
 	graphics_init_data (&global_event_data);
 	
-	/*
+	
 	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
 	printf("%s\n", info);
 	
@@ -232,7 +236,7 @@ main(void)
 	
 	
 	// connect to wireless network 
-	wireless_connect();
+	//wireless_connect();
 	 
 	*/
 	//timers_init(TIMER1_BASE, 5000, 10, TIMER1A_IRQn, 1, TIMER5_BASE, 150000000, 0, TIMER5A_IRQn, 1); 

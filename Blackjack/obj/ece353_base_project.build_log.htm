@@ -36,13 +36,13 @@ blackjack.c: 2 warnings, 0 errors
 compiling pc_buffer.c...
 compiling spi.c...
 compiling i2c.c...
-compiling adc.c...
 compiling gpio_port.c...
 ..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
          return 0;
 ..\drivers\c\gpio_port.c(453): warning:  #177-D: variable "gpioPort"  was declared but never referenced
     GPIOA_Type  *gpioPort;
 ..\drivers\c\gpio_port.c: 2 warnings, 0 errors
+compiling adc.c...
 compiling main.c...
 event.h(55): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -52,17 +52,15 @@ graphics.h(44): warning:  #1295-D: Deprecated declaration clear - give arg types
   void clear();
 graphics.h(50): warning:  #1-D: last line of file ends without a newline
   #endif
-main.c(258): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+main.c(263): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			theta +=0.04;
-main.c(211): warning:  #177-D: variable "info"  was declared but never referenced
-  	char info[80];
 main.c(212): warning:  #177-D: variable "x"  was declared but never referenced
   	int x = 30 ; 
 main.c(214): warning:  #177-D: variable "t"  was declared but never referenced
   	int t = 0 ;
 main.c(215): warning:  #177-D: variable "theta"  was declared but never referenced
   	float theta = 3.1419/2; 
-main.c: 9 warnings, 0 errors
+main.c: 8 warnings, 0 errors
 compiling timers.c...
 ..\drivers\c\timers.c(229): warning:  #177-D: function "watchdogTimeInit"  was declared but never referenced
   static void watchdogTimeInit() {
@@ -77,30 +75,30 @@ compiling io_expander.c...
 ..\peripherals\c\io_expander.c(195): warning:  #1-D: last line of file ends without a newline
   }
 ..\peripherals\c\io_expander.c: 2 warnings, 0 errors
+compiling lcd.c...
 compiling eeprom.c...
 ..\peripherals\c\eeprom.c(255): warning:  #940-D: missing return statement at end of non-void function "eeprom_bytes_read" 
   }
 ..\peripherals\c\eeprom.c(270): warning:  #940-D: missing return statement at end of non-void function "eeprom_bytes_write" 
   }
 ..\peripherals\c\eeprom.c: 2 warnings, 0 errors
-compiling lcd.c...
 compiling ft6x06.c...
 compiling launchpad_io.c...
 compiling ps2.c...
-compiling image_data.c...
 compiling serial_debug.c...
 ..\peripherals\c\serial_debug.c(182): warning:  #177-D: variable "uart_base"  was declared but never referenced
      uint32_t uart_base;
 ..\peripherals\c\serial_debug.c(183): warning:  #177-D: variable "tx_buffer"  was declared but never referenced
      PC_Buffer *tx_buffer;
 ..\peripherals\c\serial_debug.c: 2 warnings, 0 errors
-assembling startup_TM4C123.s...
+compiling image_data.c...
 compiling event.c...
 event.c(1): warning:  #1-D: last line of file ends without a newline
   #include "event.h"
 event.h(55): warning:  #1-D: last line of file ends without a newline
   #endif
 event.c: 2 warnings, 0 errors
+assembling startup_TM4C123.s...
 compiling spi_select.c...
 compiling ws2812b_ice.c...
 ..\peripherals\c\ws2812b_ice.c(52): warning:  #1-D: last line of file ends without a newline
@@ -185,8 +183,8 @@ graphics.c(426): warning:  #177-D: variable "y"  was declared but never referenc
   	int y = ROWS/2;
 graphics.c: 29 warnings, 0 errors
 linking...
-Program Size: Code=19000 RO-data=2280 RW-data=136 ZI-data=4144  
-".\obj\ece353_base_project.axf" - 0 Error(s), 53 Warning(s).
+Program Size: Code=19180 RO-data=2284 RW-data=136 ZI-data=4144  
+".\obj\ece353_base_project.axf" - 0 Error(s), 52 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -215,7 +213,7 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_TM4C123.s
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
