@@ -23,14 +23,6 @@
 #include "adc.h"
 #include "driver_defines.h"
 
-
-/******************************************************************************
- * Global Variables
- *****************************************************************************/
-static volatile uint16_t PS2_X_DATA = 0;
-static volatile uint16_t PS2_Y_DATA = 0;
-volatile bool ALERT_NEW_ADC = false;
-
 /******************************************************************************
  * Initializes ADC to use Sample Sequencer #3, triggered by the processor,
  * no IRQs
@@ -49,31 +41,18 @@ bool initialize_adc(  uint32_t adc_base )
     case ADC0_BASE :
     {
       
-      // ADD CODE
-      // set rcgc_adc_mask
+      rcgc_adc_mask = SYSCTL_RCGCADC_R0;
               
-      rcgc_adc_mask = SYSCTL_RCGCADC_R0;     
-
-      // ADD CODE
-
-      // Set pr_mask 
-
       pr_mask = SYSCTL_PRADC_R0;
-
+      
       break;
     }
     case ADC1_BASE :
     {
-      // ADD CODE
-      // set rcgc_adc_mask
-      rcgc_adc_mask = SYSCTL_RCGCADC_R1; 
-
-      // ADD CODE
-
-      // Set pr_mask 
-
+      rcgc_adc_mask = SYSCTL_RCGCADC_R1;
+      
       pr_mask = SYSCTL_PRADC_R1;
-
+      
       break;
     }
     
@@ -93,96 +72,28 @@ bool initialize_adc(  uint32_t adc_base )
   // ADD CODE
   // disable sample sequencer #3 by writing a 0 to the 
   // corresponding ASENn bit in the ADCACTSS register 
-		myADC->ACTSS &= ~ADC_ACTSS_ASEN3; 
 		
+	myADC->ACTSS &= ~ADC_ACTSS_ASEN3;
+
   // ADD CODE
   // Set the event multiplexer to trigger conversion on a processor trigger
   // for sample sequencer #3.
-		myADC->EMUX |= ADC_EMUX_EM3_PROCESSOR;
+		
+	myADC->EMUX &= ~ADC_EMUX_EM3_M;	
+		
+	myADC->EMUX |= ADC_EMUX_EM3_PROCESSOR;
+		
+		
 
   // ADD CODE
   // Set IE0 and END0 in SSCTL3
-	myADC->SSCTL3 = ADC_SSCTL3_IE0 | ADC_SSCTL3_END0;
 		
+	myADC->SSCTL3 |= ADC_SSCTL3_END0 ;
+	myADC->SSCTL3 |= ADC_SSCTL3_IE0 ; 	
+  
   return true;
 }
 
-/******************************************************************************
- * Initializes ADC to use SS2, triggered by timer
- *****************************************************************************/
-bool initialize_adc_ss2(uint32_t adc_base)
-{
-  ADC0_Type  *myADC;
-  uint32_t rcgc_adc_mask;
-  uint32_t pr_mask;
-  
-
-  // examine the adc_base.  Verify that it is either ADC0 or ADC1
-  // Set the rcgc_adc_mask and pr_mask  
-  switch (adc_base) 
-  {
-    case ADC0_BASE :
-    {
-      
-      // set rcgc_adc_mask
-			rcgc_adc_mask = SYSCTL_RCGCADC_R0;
-	  
-              
-      // ADD CODE
-      // Set pr_mask 
-			pr_mask = SYSCTL_PRADC_R0;
-      
-      break;
-    }
-    case ADC1_BASE :
-    {
-      // ADD CODE
-      // set rcgc_adc_mask
-			rcgc_adc_mask = SYSCTL_RCGCADC_R1;
-      
-      // ADD CODE
-      // Set pr_mask 
-			pr_mask = SYSCTL_PRADC_R1;
-      
-      break;
-    }
-    
-    default:
-      return false;
-  }
-  
-  // Turn on the ADC Clock
-  SYSCTL->RCGCADC |= rcgc_adc_mask;
-  
-  // Wait for ADCx to become ready
-  while( (pr_mask & SYSCTL->PRADC) != pr_mask){}
-    
-  // Type Cast adc_base and set it to myADC
-  myADC = (ADC0_Type *)adc_base;
-  
-  // disable sample sequencer #2 by writing a 0 to the 
-  // corresponding ASENn bit in the ADCACTSS register 
-  myADC->ACTSS &= ~ADC_ACTSS_ASEN2;
-
-  // Set the event multiplexer to trigger conversion on software
-  // for sample sequencer #2.
-		// TODO: CHECK ON THIS
-  myADC->EMUX = ADC_EMUX_EM3_TIMER;
-
-  // Set IE0 and END0 in SSCTL3
-  myADC->SSCTL2  |= ADC_SSCTL2_IE1;
-  myADC->SSCTL2 |= ADC_SSCTL2_END1;
-		
-	// enable interrupts
-	myADC->IM |= ADC_IM_MASK2;
-	NVIC_EnableIRQ(ADC0SS2_IRQn);
-	NVIC_SetPriority(ADC0SS2_IRQn, 1);
-	
-	// Enable SS2
-	myADC->ACTSS |= ADC_ACTSS_ASEN2;
-  
-  return true;
-}
 
 /******************************************************************************
  * Reads SSMUX3 for the given ADC.  Busy waits until completion
@@ -217,40 +128,3 @@ uint32_t get_adc_value( uint32_t adc_base, uint8_t channel)
   return result;
 }
 
-
-
-//*****************************************************************************
-// Returns the most current reading of the X direction  Only the lower 12-bits
-// contain data.
-//*****************************************************************************
-uint16_t ps2_get_x(void)
-{
-  return PS2_X_DATA;
-}
-
-//*****************************************************************************
-// Returns the most current reading of the Y direction.  Only the lower 12-bits
-// contain data.
-//*****************************************************************************
-uint16_t ps2_get_y(void)
-{
-  return PS2_Y_DATA;
-}
-
-//*****************************************************************************
-//*****************************************************************************
-// Interrupt Service Routines
-//*****************************************************************************
-//*****************************************************************************
-
-void ADC0SS2_Handler(void)
-{
-  // Read data from FIFOs on ADC
-  PS2_X_DATA = ADC0->SSFIFO2;
-  PS2_Y_DATA = ADC0->SSFIFO2;
-  
-  // Clear SS2 interrupt
-  ADC0->ISC |= ADC_ISC_IN2;
-  
-  ALERT_NEW_ADC = true;
-}

@@ -1,18 +1,31 @@
 .\obj\main.o: main.c
 .\obj\main.o: main.h
+<<<<<<< HEAD
 .\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123.h
+=======
+.\obj\main.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\stdio.h
+.\obj\main.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\stdint.h
+.\obj\main.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\string.h
+.\obj\main.o: ..\drivers\include\adc.h
+.\obj\main.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\stdbool.h
+>>>>>>> d683649661653361124ddd75988af243d41ac44d
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123GH6PM.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h
-.\obj\main.o: ..\drivers\include\gpio_port.h
 .\obj\main.o: ..\drivers\include\driver_defines.h
+<<<<<<< HEAD
 .\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
+=======
+.\obj\main.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\errno.h
+.\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123.h
+.\obj\main.o: ..\drivers\include\gpio_port.h
+>>>>>>> d683649661653361124ddd75988af243d41ac44d
 .\obj\main.o: ..\peripherals\include\lcd.h
 .\obj\main.o: graphics.h
 .\obj\main.o: image_data.h
@@ -29,5 +42,4 @@
 .\obj\main.o: ..\drivers\include\uart.h
 .\obj\main.o: ..\peripherals\include\launchpad_io.h
 .\obj\main.o: ..\peripherals\include\ps2.h
-.\obj\main.o: ..\drivers\include\adc.h
 .\obj\main.o: ..\peripherals\include\ft6x06.h

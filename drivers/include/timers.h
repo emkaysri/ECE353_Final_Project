@@ -41,12 +41,12 @@ extern volatile int WATCHDOG_TESTING;
 //*****************************************************************************
 bool timers_init(
   uint32_t  base1_address, 
-  uint16_t  timer1A_ticks, 
+  uint32_t  timer1A_ticks, 
   uint8_t   timer1A_prescalar,
   IRQn_Type timer1A_irq_num,
   uint32_t  timer1A_priority,
   uint32_t  base5_address,
-  uint32_t  timer5A_ticks,
+  uint16_t  timer5A_ticks,
   uint16_t  timer5A_prescalar,
   IRQn_Type timer5A_irq_num,
   uint32_t  timer5A_priority
