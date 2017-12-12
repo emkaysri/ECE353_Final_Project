@@ -73,7 +73,7 @@ void ps2_initialize(void);
 * Initializes GPIO pins connected to the PS2 Joystick.  It also configures
 * ADC0 to use SS2 and triggers on timer interrupt
 *******************************************************************************/
-void ps2_initialize_ss2(void);
+//bool ps2_initialize_ss2(void);
 
 
 ///*******************************************************************************

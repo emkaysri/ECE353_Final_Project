@@ -78,8 +78,8 @@ void initializeBoard(void)
 	// GPIO 
 	lp_io_init();
 
-	// PS2 TODO INTERRUPTS CODE
-//	ps2_initialize_ss2();
+	// PS2
+	ps2_initialize();
 	
 	// EEPROM
 	eeprom_init();
@@ -158,7 +158,7 @@ void write_debug_data() {
 	if (capTouch > 0) {
 		printf("* CAP TOUCH X: %d Y: %d\n\r",ft6x06_read_x(),ft6x06_read_y());
 	}
-	//printf("* PS2 X: %d Y: %d\n\r",ps2_get_x(),ps2_get_y());
+	printf("* PS2 X: %d Y: %d\n\r",ps2_get_x(),ps2_get_y());
 	printf("* LAST PUSHBUTTON X: %d Y: %d \n\r",0,0);
   printf("**************************************\n\r");
 	

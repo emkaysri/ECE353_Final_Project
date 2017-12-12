@@ -336,7 +336,7 @@ void TIMER5A_Handler(void)
   
 	
 	// Start the ADC Conversion
-//	ADC0->PSSI |= ADC_PSSI_SS2;
+	ADC0->PSSI |= ADC_PSSI_SS2;
   ALERT_1MS = true;
 	
 	TIMER5->ICR |= TIMER_ICR_TATOCINT;

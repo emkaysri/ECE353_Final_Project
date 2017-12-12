@@ -24,7 +24,7 @@
 #include "driver_defines.h"
 
 /******************************************************************************
- * Initializes ADC to use Sample Sequencer #3, triggered by the processor,
+ * Initializes ADC to use Sample Sequencer #2, triggered by the processor,
  * no IRQs
  *****************************************************************************/
 bool initialize_adc(  uint32_t adc_base )
@@ -70,33 +70,33 @@ bool initialize_adc(  uint32_t adc_base )
   myADC = (ADC0_Type *)adc_base;
   
   // ADD CODE
-  // disable sample sequencer #3 by writing a 0 to the 
+  // disable sample sequencer #2 by writing a 0 to the 
   // corresponding ASENn bit in the ADCACTSS register 
 		
-	myADC->ACTSS &= ~ADC_ACTSS_ASEN3;
+	myADC->ACTSS &= ~ADC_ACTSS_ASEN2;
 
   // ADD CODE
   // Set the event multiplexer to trigger conversion on a processor trigger
-  // for sample sequencer #3.
+  // for sample sequencer #2.
 		
-	myADC->EMUX &= ~ADC_EMUX_EM3_M;	
+	myADC->EMUX &= ~ADC_EMUX_EM2_M;	
 		
-	myADC->EMUX |= ADC_EMUX_EM3_PROCESSOR;
+	myADC->EMUX |= ADC_EMUX_EM2_PROCESSOR;
 		
 		
 
   // ADD CODE
-  // Set IE0 and END0 in SSCTL3
+  // Set IE0 and END0 in SSCTL2
 		
-	myADC->SSCTL3 |= ADC_SSCTL3_END0 ;
-	myADC->SSCTL3 |= ADC_SSCTL3_IE0 ; 	
+	myADC->SSCTL2 |= ADC_SSCTL2_END0 ;
+	myADC->SSCTL2 |= ADC_SSCTL2_IE0 ; 	
   
   return true;
 }
 
 
 /******************************************************************************
- * Reads SSMUX3 for the given ADC.  Busy waits until completion
+ * Reads SSMUX2 for the given ADC.  Busy waits until completion
  *****************************************************************************/
 uint32_t get_adc_value( uint32_t adc_base, uint8_t channel)
 {
@@ -110,20 +110,20 @@ uint32_t get_adc_value( uint32_t adc_base, uint8_t channel)
   
   myADC = (ADC0_Type *)adc_base;
   
-  myADC->SSMUX3 = channel;          // Set the Channel
+  myADC->SSMUX2 = channel;          // Set the Channel
   
-  myADC->ACTSS |= ADC_ACTSS_ASEN3;  // Enable SS3
+  myADC->ACTSS |= ADC_ACTSS_ASEN2;  // Enable SS2
   
-  myADC->PSSI =   ADC_PSSI_SS3;     // Start SS3
+  myADC->PSSI =   ADC_PSSI_SS2;     // Start SS2
   
-  while( (myADC->RIS & ADC_RIS_INR3)  == 0)
+  while( (myADC->RIS & ADC_RIS_INR2)  == 0)
   {
     // wait
   }
   
-  result = myADC->SSFIFO3 & 0xFFF;    // Read 12-bit data
+  result = myADC->SSFIFO2 & 0xFFF;    // Read 12-bit data
   
-  myADC->ISC  = ADC_ISC_IN3;          // Ack the conversion
+  myADC->ISC  = ADC_ISC_IN2;          // Ack the conversion
   
   return result;
 }

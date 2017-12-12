@@ -22,7 +22,6 @@
 
 #include "ps2.h"
 
-extern uint16_t X_Val, Y_Val;
 
 /*******************************************************************************
 * Function Name: initialize_adc_gpio_pins
@@ -35,24 +34,63 @@ extern uint16_t X_Val, Y_Val;
 *******************************************************************************/
 static void initialize_adc_gpio_pins(void)
 {
-	// Enable GPIO Port
-	gpio_enable_port(PS2_GPIO_BASE);
-
 	
-
-	// Enable the pins as input pins
-	gpio_config_enable_input(PS2_GPIO_BASE, (PS2_X_DIR_MASK | PS2_Y_DIR_MASK));
-
+	gpio_enable_port(GPIOE_BASE) ;
 	
-
-	// Configure the pins as analog pins
-	gpio_config_analog_enable(PS2_GPIO_BASE, (PS2_X_DIR_MASK | PS2_Y_DIR_MASK));
-
+	gpio_config_enable_input(GPIOE_BASE, PS2_X_DIR_MASK) ; 
 	
-
-	// Configure alternate function
-	gpio_config_alternate_function(PS2_GPIO_BASE, (PS2_X_DIR_MASK | PS2_Y_DIR_MASK));
+	gpio_config_enable_input(GPIOE_BASE, PS2_Y_DIR_MASK) ; 
+	
+	gpio_config_analog_enable(PS2_GPIO_BASE, PS2_X_DIR_MASK) ;
+	
+	gpio_config_analog_enable(PS2_GPIO_BASE, PS2_Y_DIR_MASK);
+	
+	gpio_config_alternate_function(PS2_GPIO_BASE, PS2_X_DIR_MASK);
+	
+	gpio_config_alternate_function(PS2_GPIO_BASE, PS2_Y_DIR_MASK);
+	
 }
+
+bool ps2_initialize_ss2( uint32_t adc_base) {
+	ADC0_Type  *myADC;
+  uint32_t rcgc_adc_mask = SYSCTL_RCGCADC_R0;
+  uint32_t pr_mask = SYSCTL_PRADC_R0;
+  
+  
+  // Turn on the ADC Clock
+  SYSCTL->RCGCADC |= rcgc_adc_mask;
+  
+  // Wait for ADCx to become ready
+  while( (pr_mask & SYSCTL->PRADC) != pr_mask){}
+    
+  // Type Cast adc_base and set it to myADC
+  myADC = (ADC0_Type *)adc_base;
+  
+  // ADD CODE
+  // disable sample sequencer #3 by writing a 0 to the 
+  // corresponding ASENn bit in the ADCACTSS register 
+		
+	myADC->ACTSS &= ~ADC_ACTSS_ASEN2;
+
+  // ADD CODE
+  // Set the event multiplexer to trigger conversion on a processor trigger
+  // for sample sequencer #3.
+		
+	myADC->EMUX &= ~ADC_EMUX_EM2_M;	
+		
+	myADC->EMUX |= ADC_EMUX_EM2_PROCESSOR;
+		
+		
+
+  // ADD CODE
+  // Set IE0 and END0 in SSCTL3
+		
+	myADC->SSCTL2 |= ADC_SSCTL2_END0 ;
+	myADC->SSCTL2 |= ADC_SSCTL2_IE0 ; 	
+  
+  return true;
+}
+
 
 /*******************************************************************************
 * Function Name: ps2_initialize
@@ -63,19 +101,8 @@ static void initialize_adc_gpio_pins(void)
 void ps2_initialize(void)
 {
 	initialize_adc_gpio_pins();
-	initialize_adc(PS2_ADC_BASE);
-}
-
-/*******************************************************************************
-* Function Name: ps2_initialize_ss2_timer
-********************************************************************************
-* Initializes the GPIO pins connected to the PS2 Joystick.  It also configures
-* ADC0 to use SS2 to convert a programmable channel number. Triggers on timer interrupt
-*******************************************************************************/
-void ps2_initialize_ss2_timer(void)
-{
-	initialize_adc_gpio_pins();
-//	initialize_adc_ss2(PS2_ADC_BASE);
+	//initialize_adc(PS2_ADC_BASE);
+	ps2_initialize_ss2(PS2_ADC_BASE);
 }
 
 
@@ -85,29 +112,27 @@ void ps2_initialize_ss2_timer(void)
 *Returns the most current reading of the X direction  Only the lower 12-bits
 * contain data.
 ********************************************************************************/
-//uint16_t ps2_get_x(void)
-//{
-//	/*
-//  uint16_t adc_val;
-//  adc_val = get_adc_value(PS2_ADC_BASE ,PS2_X_ADC_CHANNEL);
-//  return adc_val & 0xFFF;
-//	
-//	*/
-//	return X_Val;
-//}
+uint16_t ps2_get_x(void)
+{
+  uint16_t adc_val;
+	
+	adc_val = get_adc_value( PS2_ADC_BASE, PS2_X_ADC_CHANNEL);
+  
+  return adc_val & 0xFFF;
+}
 
-///*******************************************************************************
-//* Function Name: ps2_get_y
-//********************************************************************************
-//* Returns the most current reading of the Y direction.  Only the lower 12-bits
-//*  contain data.
-//********************************************************************************/
-//uint16_t ps2_get_y(void)
-//{ 
-//	/*
-//  uint16_t adc_val;
-//  adc_val = get_adc_value(PS2_ADC_BASE ,PS2_Y_ADC_CHANNEL);
-//  return adc_val & 0xFFF;
-//	*/
-//	return Y_Val;
-//}
+/*******************************************************************************
+* Function Name: ps2_get_y
+********************************************************************************
+* Returns the most current reading of the Y direction.  Only the lower 12-bits
+*  contain data.
+********************************************************************************/
+uint16_t ps2_get_y(void)
+{
+  uint16_t adc_val;
+	
+	adc_val = get_adc_value( PS2_ADC_BASE, PS2_Y_ADC_CHANNEL);
+  
+  return adc_val & 0xFFF;
+}
+
