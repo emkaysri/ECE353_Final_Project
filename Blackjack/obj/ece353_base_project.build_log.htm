@@ -46,15 +46,15 @@ graphics.h(89): warning:  #1295-D: Deprecated declaration clear - give arg types
   void clear();
 graphics.h(94): warning:  #1-D: last line of file ends without a newline
   #endif
-main.c(234): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+main.c(235): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			theta +=0.04;
-main.c(184): warning:  #177-D: variable "info"  was declared but never referenced
+main.c(185): warning:  #177-D: variable "info"  was declared but never referenced
   	char info[80];
-main.c(185): warning:  #177-D: variable "x"  was declared but never referenced
+main.c(186): warning:  #177-D: variable "x"  was declared but never referenced
   	int x = 30 ; 
-main.c(187): warning:  #177-D: variable "t"  was declared but never referenced
+main.c(188): warning:  #177-D: variable "t"  was declared but never referenced
   	int t = 0 ;
-main.c(188): warning:  #177-D: variable "theta"  was declared but never referenced
+main.c(189): warning:  #177-D: variable "theta"  was declared but never referenced
   	float theta = 3.1419/2; 
 main.c: 8 warnings, 0 errors
 compiling adc.c...
@@ -82,22 +82,21 @@ compiling eeprom.c...
 ..\peripherals\c\eeprom.c: 2 warnings, 0 errors
 compiling ft6x06.c...
 compiling launchpad_io.c...
+compiling ps2.c...
 compiling serial_debug.c...
 ..\peripherals\c\serial_debug.c(182): warning:  #177-D: variable "uart_base"  was declared but never referenced
      uint32_t uart_base;
 ..\peripherals\c\serial_debug.c(183): warning:  #177-D: variable "tx_buffer"  was declared but never referenced
      PC_Buffer *tx_buffer;
 ..\peripherals\c\serial_debug.c: 2 warnings, 0 errors
-compiling ps2.c...
 compiling spi_select.c...
 compiling image_data.c...
+compiling wireless.c...
 compiling ws2812b_ice.c...
 ..\peripherals\c\ws2812b_ice.c(52): warning:  #1-D: last line of file ends without a newline
   };
 ..\peripherals\c\ws2812b_ice.c: 1 warning, 0 errors
-compiling wireless.c...
 assembling startup_TM4C123.s...
-compiling system_TM4C123.c...
 compiling graphics.c...
 graphics.h(87): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
   int drawGameScreenOutLineAndData();
@@ -172,8 +171,9 @@ OWS/2+sin(theta)*r, 0, 2, 3);
 graphics.c(426): warning:  #177-D: variable "y"  was declared but never referenced
   	int y = ROWS/2;
 graphics.c: 28 warnings, 0 errors
+compiling system_TM4C123.c...
 linking...
-Program Size: Code=18344 RO-data=2280 RW-data=136 ZI-data=4144  
+Program Size: Code=18376 RO-data=2280 RW-data=136 ZI-data=4144  
 ".\obj\ece353_base_project.axf" - 0 Error(s), 48 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -203,7 +203,7 @@ Package Vendor: Keil
       Source file:   Device\Source\ARM\startup_TM4C123.s
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:11
+Build Time Elapsed:  00:00:10
 </pre>
 </body>
 </html>

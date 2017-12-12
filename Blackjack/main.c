@@ -135,6 +135,7 @@ bool sw2_debounce(void)
 
 void update_global_event_data() {
 	if (ft6x06_read_td_status()) {
+		global_event_data.capTouchEvent.valid = true;
 		global_event_data.capTouchEvent.x = ft6x06_read_x();
 		global_event_data.capTouchEvent.y = ft6x06_read_y();
 	} else {

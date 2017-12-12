@@ -458,21 +458,23 @@ int drawHomeScreen(float theta) {
 	} else if ( distanceAbs(cap_touch_event , Player1Disp) < CAP_TOUCH_TOLERANCE_SQRD ) {
 		player_select_state = PLAYER_ONE_SELECT;
 	}
-
+	// cheat
+	
+	drawRect(0, Player2Disp.y - 8, COLS, Player2Disp.y + 8, LCD_COLOR_WHITE);
 	
 	switch(player_select_state) {
-		case PLAYER_ONE_SELECT :
-				drawStringSelectedAndCentered("1 PLAYER", Player2Disp.x, Player2Disp.y ,LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-				drawStringCentered("2 PLAYER",Player1Disp.x, Player1Disp.y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-				break;
 		case PLAYER_TWO_SELECT :
-				drawStringCentered("1 PLAYER", Player2Disp.x, Player2Disp.y ,LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-				drawStringSelectedAndCentered("2 PLAYER",Player1Disp.x, Player1Disp.y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				drawStringSelectedAndCentered("2 PLAYER", Player2Disp.x, Player2Disp.y ,LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				drawStringCentered("1 PLAYER",Player1Disp.x, Player1Disp.y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				break;
+		case PLAYER_ONE_SELECT :
+				drawStringCentered("2 PLAYER", Player2Disp.x, Player2Disp.y ,LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				drawStringSelectedAndCentered("1 PLAYER",Player1Disp.x, Player1Disp.y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 				break;
 		default:
 			return -1;
 	}
-	
+
 
 	drawStringCentered("TOUCH TO SELECT", COLS/2 , ROWS-10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 	
