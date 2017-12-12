@@ -26,6 +26,7 @@
 #include <stdint.h>
 #include <string.h>
 
+#include "adc.h"
 #include "TM4C123.h"
 #include "gpio_port.h"
 #include "lcd.h"

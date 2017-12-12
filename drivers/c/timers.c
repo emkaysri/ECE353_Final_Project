@@ -3,6 +3,7 @@
 
 volatile bool ALERT_1MS = false;
 volatile bool ALERT_5000MS = false;
+
 volatile int WATCHDOG_TESTING = 0;
 
 //*****************************************************************************
@@ -249,12 +250,12 @@ static void watchdogTimeInit() {
 //*****************************************************************************
 bool timers_init(
   uint32_t  base1_address, 
-  uint16_t  timer1A_ticks, 
+  uint32_t  timer1A_ticks, 
   uint8_t   timer1A_prescalar,
   IRQn_Type timer1A_irq_num,
   uint32_t  timer1A_priority,
   uint32_t  base5_address,
-  uint32_t  timer5A_ticks,
+  uint16_t  timer5A_ticks,
   uint16_t  timer5A_prescalar,
   IRQn_Type timer5A_irq_num,
   uint32_t  timer5A_priority
@@ -262,10 +263,7 @@ bool timers_init(
 	
 	TIMER0_Type *gp1_timer;
 	TIMER0_Type *gp5_timer;
-	TIMER0_Type *watchdog_timer;
-	
-	//uint32_t watchdog_address = TIMER2_BASE ;
-	
+
 	//watchdogTimeInit();
 
 	  // Verify the base address.
@@ -277,14 +275,11 @@ bool timers_init(
 	// Turn on clock for timers
 	SYSCTL->RCGCTIMER |= SYSCTL_RCGCTIMER_R1;
 	SYSCTL->RCGCTIMER |= SYSCTL_RCGCTIMER_R5;
-	
-	// Turn on clock for watchdog
-	SYSCTL->RCGCTIMER |= SYSCTL_RCGCTIMER_R2;
 
   // Wait for the timers to turn on
   while((SYSCTL->PRTIMER & SYSCTL_PRTIMER_R1) ==0) {};
 		
-	while((SYSCTL->PRTIMER & SYSCTL_PRTIMER_R2) ==0) {};	
+	while((SYSCTL->PRTIMER & SYSCTL_PRTIMER_R5) ==0) {};	
 
   // Type cast the base address to a TIMER0_Type
   gp1_timer = (TIMER0_Type *)base1_address;
@@ -325,8 +320,11 @@ bool timers_init(
 //*****************************************************************************
 void TIMER1A_Handler(void)
 {
-  TIMER1->ICR |= TIMER_ICR_TATOCINT;
+  
   ALERT_5000MS = true;
+
+	
+	TIMER1->ICR |= TIMER_ICR_TATOCINT;
 }
 
 
@@ -335,12 +333,13 @@ void TIMER1A_Handler(void)
 //*****************************************************************************
 void TIMER5A_Handler(void)
 {
-  TIMER5->ICR |= TIMER_ICR_TATOCINT;
+  
 	
 	// Start the ADC Conversion
-	ADC0->PSSI |= ADC_PSSI_SS2;
-  
+//	ADC0->PSSI |= ADC_PSSI_SS2;
   ALERT_1MS = true;
+	
+	TIMER5->ICR |= TIMER_ICR_TATOCINT;
 }
 
 /*
