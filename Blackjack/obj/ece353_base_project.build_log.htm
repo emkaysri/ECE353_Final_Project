@@ -27,22 +27,22 @@ Project File Date:  12/12/2017
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Blackjack'
+compiling pc_buffer.c...
 compiling blackjack.c...
 blackjack.c(29): warning:  #9-D: nested comment is not allowed
   /*******************************************************************************
 blackjack.c(272): warning:  #1-D: last line of file ends without a newline
   */
 blackjack.c: 2 warnings, 0 errors
-compiling pc_buffer.c...
-compiling spi.c...
 compiling i2c.c...
+compiling adc.c...
+compiling spi.c...
 compiling gpio_port.c...
 ..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
          return 0;
 ..\drivers\c\gpio_port.c(453): warning:  #177-D: variable "gpioPort"  was declared but never referenced
     GPIOA_Type  *gpioPort;
 ..\drivers\c\gpio_port.c: 2 warnings, 0 errors
-compiling adc.c...
 compiling main.c...
 event.h(55): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -52,15 +52,19 @@ graphics.h(44): warning:  #1295-D: Deprecated declaration clear - give arg types
   void clear();
 graphics.h(50): warning:  #1-D: last line of file ends without a newline
   #endif
-main.c(263): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+main.c(169): warning:  #177-D: variable "info"  was declared but never referenced
+  	char info[80];
+main.c(267): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			theta +=0.04;
-main.c(212): warning:  #177-D: variable "x"  was declared but never referenced
+main.c(220): warning:  #177-D: variable "info"  was declared but never referenced
+  	char info[80];
+main.c(221): warning:  #177-D: variable "x"  was declared but never referenced
   	int x = 30 ; 
-main.c(214): warning:  #177-D: variable "t"  was declared but never referenced
+main.c(223): warning:  #177-D: variable "t"  was declared but never referenced
   	int t = 0 ;
-main.c(215): warning:  #177-D: variable "theta"  was declared but never referenced
+main.c(224): warning:  #177-D: variable "theta"  was declared but never referenced
   	float theta = 3.1419/2; 
-main.c: 8 warnings, 0 errors
+main.c: 10 warnings, 0 errors
 compiling timers.c...
 ..\drivers\c\timers.c(229): warning:  #177-D: function "watchdogTimeInit"  was declared but never referenced
   static void watchdogTimeInit() {
@@ -85,13 +89,13 @@ compiling eeprom.c...
 compiling ft6x06.c...
 compiling launchpad_io.c...
 compiling ps2.c...
+compiling image_data.c...
 compiling serial_debug.c...
 ..\peripherals\c\serial_debug.c(182): warning:  #177-D: variable "uart_base"  was declared but never referenced
      uint32_t uart_base;
 ..\peripherals\c\serial_debug.c(183): warning:  #177-D: variable "tx_buffer"  was declared but never referenced
      PC_Buffer *tx_buffer;
 ..\peripherals\c\serial_debug.c: 2 warnings, 0 errors
-compiling image_data.c...
 compiling event.c...
 event.c(1): warning:  #1-D: last line of file ends without a newline
   #include "event.h"
@@ -100,11 +104,11 @@ event.h(55): warning:  #1-D: last line of file ends without a newline
 event.c: 2 warnings, 0 errors
 assembling startup_TM4C123.s...
 compiling spi_select.c...
+compiling wireless.c...
 compiling ws2812b_ice.c...
 ..\peripherals\c\ws2812b_ice.c(52): warning:  #1-D: last line of file ends without a newline
   };
 ..\peripherals\c\ws2812b_ice.c: 1 warning, 0 errors
-compiling wireless.c...
 compiling system_TM4C123.c...
 compiling graphics.c...
 event.h(55): warning:  #1-D: last line of file ends without a newline
@@ -183,8 +187,8 @@ graphics.c(426): warning:  #177-D: variable "y"  was declared but never referenc
   	int y = ROWS/2;
 graphics.c: 29 warnings, 0 errors
 linking...
-Program Size: Code=19180 RO-data=2284 RW-data=136 ZI-data=4144  
-".\obj\ece353_base_project.axf" - 0 Error(s), 52 Warning(s).
+Program Size: Code=19032 RO-data=2280 RW-data=136 ZI-data=4144  
+".\obj\ece353_base_project.axf" - 0 Error(s), 54 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -208,12 +212,12 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.1
-      Source file:   Device\Source\system_TM4C123.c
       Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\ARM\startup_TM4C123.s
+      Source file:   Device\Source\system_TM4C123.c
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

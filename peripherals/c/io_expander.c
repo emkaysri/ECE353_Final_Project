@@ -1,34 +1,34 @@
 #include "io_expander.h"
 
 //*****************************************************************************
-// Used to determine if the MCP23017 is busy writing the last transaction to  non-volatile storage
+// Checks if io expander is busy writing the last transaction
 //*****************************************************************************
-static i2c_status_t io_expander_wait_for_write(int32_t i2c_base)
+static i2c_status_t io_expander_wait_for_write(int32_t I2C_base)
 {
   
   i2c_status_t status;
   
-  if( !i2cVerifyBaseAddr(i2c_base) )
+  if( !i2cVerifyBaseAddr(I2C_base) )
   {
     return  I2C_INVALID_BASE;
   }
 
-  // Set  I2C address to slave and in Write Mode
-  status = i2cSetSlaveAddr(i2c_base, MCP23017_DEV_ID, I2C_WRITE);
+  // set I2C address to slave and in Write Mode
+  status = i2cSetSlaveAddr(I2C_base, MCP23017_DEV_ID, I2C_WRITE);
 
-  // Poll while the device is busy.  The  MCP24LC32AT will not ACK
+  // Ppoll while the device is busy.  The  MCP24LC32AT will not ACK
   // writing an address while the write has not finished.
   do 
   {
     // The data we send does not matter.  This has been set to 0x00, but could
     // be set to anything
-    status = i2cSendByte( i2c_base, 0x00, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
+    status = i2cSendByte( I2C_base, 0xFF, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
     
-    // Wait for the address to finish transmitting
-    while ( I2CMasterBusy(i2c_base)) {};
+    // Wait for address to finish transmitting
+    while ( I2CMasterBusy(I2C_base)) {};
     
     // If the address was not ACKed, try again.
-  } while (I2CMasterAdrAck(i2c_base) == false);
+  } while (I2CMasterAdrAck(I2C_base) == false);
 
   return  status;
 } 
@@ -37,31 +37,31 @@ static i2c_status_t io_expander_wait_for_write(int32_t i2c_base)
 // Sets the address to read/write from in the MCP23017  
 //
 // Paramters
-//    i2c_base:   a valid base address of an I2C peripheral
+//    I2C_base:   a valid base address of an I2C peripheral
 //
 //    address:    8-bit address
 //
 // Returns
 // I2C_OK if the byte was written to the MCP23017.
 //*****************************************************************************
-static i2c_status_t io_expander_byte_write(uint32_t  i2c_base, uint8_t  address, uint8_t data)
+static i2c_status_t io_expander_byte_write(uint32_t  I2C_base, uint8_t  address, uint8_t data)
 {
   i2c_status_t status;
     
   // Before doing anything, make sure the I2C device is idle
-  while ( I2CMasterBusy(i2c_base)) {};
+  while ( I2CMasterBusy(I2C_base)) {};
   
   // Set the I2C address to be the MCP23017
-	status = i2cSetSlaveAddr(i2c_base, MCP23017_DEV_ID, I2C_WRITE);
+	status = i2cSetSlaveAddr(I2C_base, MCP23017_DEV_ID, I2C_WRITE);
 		
 	// If the EEPROM is still writing the last byte written, wait
-  io_expander_wait_for_write(i2c_base);
+  io_expander_wait_for_write(I2C_base);
   
   // Send the address
-	status = i2cSendByte(i2c_base, address, I2C_MCS_START | I2C_MCS_RUN);
+	status = i2cSendByte(I2C_base, address, I2C_MCS_START | I2C_MCS_RUN);
 		
   // Send the data		
-	status = i2cSendByte(i2c_base, data, I2C_MCS_RUN | I2C_MCS_STOP);
+	status = i2cSendByte(I2C_base, data, I2C_MCS_RUN | I2C_MCS_STOP);
 	
   return status;
 }
@@ -70,34 +70,34 @@ static i2c_status_t io_expander_byte_write(uint32_t  i2c_base, uint8_t  address,
 // Reads one byte of data from the current address of the MCP23017  
 //
 // Paramters
-//    i2c_base:   a valid base address of an I2C peripheral
+//    I2C_base:   a valid base address of an I2C peripheral
 //
 //    data:       data to read.
 //
 // Returns
 // I2C_OK if the byte was written to the MCP23017.
 //*****************************************************************************
-static i2c_status_t io_expander_byte_read(uint32_t  i2c_base, uint8_t	address, uint8_t *data)
+static i2c_status_t io_expander_byte_read(uint32_t  I2C_base, uint8_t	address, uint8_t *data)
 {
   i2c_status_t status;
   
   // Before doing anything, make sure the I2C device is idle
-  while ( I2CMasterBusy(i2c_base)) {};
+  while ( I2CMasterBusy(I2C_base)) {};
 
   // If the EEPROM is still writing the last byte written, wait
-  io_expander_wait_for_write(i2c_base);		
+  io_expander_wait_for_write(I2C_base);		
 		
   // Set the I2C slave address to be the MCP23017 and in write mode
-  status = i2cSetSlaveAddr(i2c_base, MCP23017_DEV_ID, I2C_WRITE);
+  status = i2cSetSlaveAddr(I2C_base, MCP23017_DEV_ID, I2C_WRITE);
   
   // Send the address
-	status = i2cSendByte(i2c_base, address, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);		
+	status = i2cSendByte(I2C_base, address, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);		
 
   // Set the I2C slave address to be the MCP23017 and in Read Mode
-	status = i2cSetSlaveAddr(i2c_base, MCP23017_DEV_ID, I2C_READ);
+	status = i2cSetSlaveAddr(I2C_base, MCP23017_DEV_ID, I2C_READ);
 		
   // Read the data returned by the MCP23017
-  status = i2cGetByte( i2c_base, data , I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
+  status = i2cGetByte( I2C_base, data , I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
 
   return I2C_OK;
 }
@@ -124,7 +124,7 @@ uint8_t io_expander_read_buttons()
 }
 
 //*****************************************************************************
-// Initialize the MCP23017
+// Initialize the GPIO Expander
 //*****************************************************************************
 bool io_expander_init(void)
 { 
@@ -174,7 +174,7 @@ bool io_expander_init(void)
   }
   
   
-  //  Initialize the I2C peripheral
+  //  Initialize I2C peripheral
   if( initializeI2CMaster(IO_EXPANDER_I2C_BASE)!= I2C_OK)
   {
     return false;

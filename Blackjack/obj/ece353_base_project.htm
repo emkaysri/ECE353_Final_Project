@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\obj\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Dec 12 15:02:51 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Dec 12 15:18:52 2017
 <BR><P>
-<H3>Maximum Stack Usage =        440 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        360 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; drawHomeScreen &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 <P>
@@ -250,7 +250,7 @@ Function Pointers
  <LI><a href="#[58]">WTIMER5A_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[59]">WTIMER5B_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[79]">__main</a> from entry.o(.ARM.Collect$$$$00000000) referenced from startup_tm4c123.o(.text)
- <LI><a href="#[7a]">fputc</a> from serial_debug.o(.text) referenced from printf3.o(i.__0printf$3)
+ <LI><a href="#[7a]">fputc</a> from serial_debug.o(.text) referenced from printf1.o(i.__0printf$1)
  <LI><a href="#[77]">main</a> from main.o(.text) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
 <P>
@@ -318,8 +318,13 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_configure_device
 </UL>
 
-<P><STRONG><a name="[90]"></a>sw2_debounce</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lp_io_read_pin
+<P><STRONG><a name="[90]"></a>sw2_debounce</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = sw2_debounce
+</UL>
+<BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lp_io_read_pin
+</UL>
+<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_debug_data
 </UL>
 
 <P><STRONG><a name="[92]"></a>update_global_event_data</STRONG> (Thumb, 128 bytes, Stack size 8 bytes, main.o(.text))
@@ -334,38 +339,38 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[98]"></a>write_debug_data</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[98]"></a>write_debug_data</STRONG> (Thumb, 146 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = write_debug_data &rArr; io_expander_write_LEDs &rArr; io_expander_byte_write &rArr; io_expander_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_write_LEDs
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_read_buttons
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_debounce
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[77]"></a>main</STRONG> (Thumb, 272 bytes, Stack size 104 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 440<LI>Call Chain = main &rArr; drawHomeScreen &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[77]"></a>main</STRONG> (Thumb, 196 bytes, Stack size 24 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = main &rArr; drawHomeScreen &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphics_init_data
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_bytes_write
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_bytes_read
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_bytes_write
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_debug_data
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_global_event_data
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_debounce
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
 <P><STRONG><a name="[12b]"></a>gpio_get_irq_num</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, gpio_port.o(.text), UNUSED)
 
-<P><STRONG><a name="[c9]"></a>gpio_enable_port</STRONG> (Thumb, 156 bytes, Stack size 8 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[c8]"></a>gpio_enable_port</STRONG> (Thumb, 156 bytes, Stack size 8 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = gpio_enable_port
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_adc_gpio_pins
@@ -378,10 +383,10 @@ Global Symbols
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_init
 </UL>
 
-<P><STRONG><a name="[a5]"></a>gpio_config_digital_enable</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[a4]"></a>gpio_config_digital_enable</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_digital_enable
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_initialize
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_select_init
@@ -392,48 +397,48 @@ Global Symbols
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_init
 </UL>
 
-<P><STRONG><a name="[a7]"></a>gpio_config_enable_output</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[a6]"></a>gpio_config_enable_output</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_enable_output
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_initialize
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_select_init
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_config_gpio
 </UL>
 
-<P><STRONG><a name="[a8]"></a>gpio_config_enable_input</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[a7]"></a>gpio_config_enable_input</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_enable_input
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_adc_gpio_pins
 </UL>
 
-<P><STRONG><a name="[a9]"></a>gpio_config_enable_pullup</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[a8]"></a>gpio_config_enable_pullup</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_enable_pullup
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_config_gpio
 </UL>
 
-<P><STRONG><a name="[aa]"></a>gpio_config_enable_pulldown</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<P><STRONG><a name="[a9]"></a>gpio_config_enable_pulldown</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 
-<P><STRONG><a name="[ab]"></a>gpio_config_analog_enable</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[aa]"></a>gpio_config_analog_enable</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_analog_enable
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_adc_gpio_pins
 </UL>
 
-<P><STRONG><a name="[ac]"></a>gpio_config_alternate_function</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[ab]"></a>gpio_config_alternate_function</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_alternate_function
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_adc_gpio_pins
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_initialize
@@ -443,10 +448,10 @@ Global Symbols
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_init
 </UL>
 
-<P><STRONG><a name="[ad]"></a>gpio_config_port_control</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[ac]"></a>gpio_config_port_control</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = gpio_config_port_control
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_initialize
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
@@ -455,10 +460,10 @@ Global Symbols
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_init
 </UL>
 
-<P><STRONG><a name="[ae]"></a>gpio_config_open_drain</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
+<P><STRONG><a name="[ad]"></a>gpio_config_open_drain</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_open_drain
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_init
@@ -476,103 +481,103 @@ Global Symbols
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ps2_get_x
 </UL>
 
-<P><STRONG><a name="[ca]"></a>initializeI2CMaster</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, i2c.o(.text))
+<P><STRONG><a name="[c9]"></a>initializeI2CMaster</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, i2c.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_init
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_init
 </UL>
 
-<P><STRONG><a name="[b0]"></a>i2cVerifyBaseAddr</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, i2c.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDatAck
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterAdrAck
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cStop
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
+<P><STRONG><a name="[af]"></a>i2cVerifyBaseAddr</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, i2c.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDatAck
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterAdrAck
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cStop
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
 </UL>
 
-<P><STRONG><a name="[af]"></a>i2cSetSlaveAddr</STRONG> (Thumb, 30 bytes, Stack size 12 bytes, i2c.o(.text))
+<P><STRONG><a name="[ae]"></a>i2cSetSlaveAddr</STRONG> (Thumb, 30 bytes, Stack size 12 bytes, i2c.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = i2cSetSlaveAddr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_read_data
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_set_addr
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
 </UL>
 
-<P><STRONG><a name="[b1]"></a>i2cStop</STRONG> (Thumb, 26 bytes, Stack size 4 bytes, i2c.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<P><STRONG><a name="[b0]"></a>i2cStop</STRONG> (Thumb, 26 bytes, Stack size 4 bytes, i2c.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
 </UL>
 
-<P><STRONG><a name="[b2]"></a>I2CMasterBusy</STRONG> (Thumb, 34 bytes, Stack size 4 bytes, i2c.o(.text))
+<P><STRONG><a name="[b1]"></a>I2CMasterBusy</STRONG> (Thumb, 34 bytes, Stack size 4 bytes, i2c.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_read_data
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_set_addr
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
 </UL>
 
-<P><STRONG><a name="[b3]"></a>I2CMasterAdrAck</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, i2c.o(.text))
+<P><STRONG><a name="[b2]"></a>I2CMasterAdrAck</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, i2c.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = I2CMasterAdrAck
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
-</UL>
-
-<P><STRONG><a name="[b4]"></a>I2CMasterDatAck</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, i2c.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
 </UL>
 
-<P><STRONG><a name="[b5]"></a>i2cSendByte</STRONG> (Thumb, 82 bytes, Stack size 20 bytes, i2c.o(.text))
+<P><STRONG><a name="[b3]"></a>I2CMasterDatAck</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, i2c.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+</UL>
+
+<P><STRONG><a name="[b4]"></a>i2cSendByte</STRONG> (Thumb, 82 bytes, Stack size 20 bytes, i2c.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_set_addr
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
 </UL>
 
-<P><STRONG><a name="[b6]"></a>i2cGetByte</STRONG> (Thumb, 60 bytes, Stack size 20 bytes, i2c.o(.text))
+<P><STRONG><a name="[b5]"></a>i2cGetByte</STRONG> (Thumb, 60 bytes, Stack size 20 bytes, i2c.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = i2cGetByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_read_data
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
 </UL>
 
-<P><STRONG><a name="[b7]"></a>pc_buffer_init</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, pc_buffer.o(.text))
+<P><STRONG><a name="[b6]"></a>pc_buffer_init</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, pc_buffer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = pc_buffer_init &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
+<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_serial_debug
 </UL>
@@ -625,20 +630,20 @@ Global Symbols
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_configure_device
 </UL>
 
-<P><STRONG><a name="[b9]"></a>gp_timer_wait</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, timers.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<P><STRONG><a name="[b8]"></a>gp_timer_wait</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, timers.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 
-<P><STRONG><a name="[bb]"></a>gp_timer_config_32</STRONG> (Thumb, 140 bytes, Stack size 32 bytes, timers.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_clock_masks
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<P><STRONG><a name="[ba]"></a>gp_timer_config_32</STRONG> (Thumb, 140 bytes, Stack size 32 bytes, timers.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_clock_masks
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 
 <P><STRONG><a name="[8c]"></a>timers_init</STRONG> (Thumb, 170 bytes, Stack size 40 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = timers_init &rArr; blackjack_timerA
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blackjack_timerA
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
+<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blackjack_timerA
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
@@ -649,50 +654,50 @@ Global Symbols
 <P><STRONG><a name="[4c]"></a>TIMER5A_Handler</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, timers.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[bf]"></a>verify_uart_base</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, uart.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_rx_poll
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_tx_poll_string
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_tx_poll
+<P><STRONG><a name="[be]"></a>verify_uart_base</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, uart.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_rx_poll
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_tx_poll_string
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_tx_poll
 </UL>
 
-<P><STRONG><a name="[c3]"></a>uart_get_rcgc_mask</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, uart.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<P><STRONG><a name="[c2]"></a>uart_get_rcgc_mask</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, uart.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 </UL>
 
-<P><STRONG><a name="[c4]"></a>uart_get_pr_mask</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, uart.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<P><STRONG><a name="[c3]"></a>uart_get_pr_mask</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, uart.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 </UL>
 
-<P><STRONG><a name="[c5]"></a>uart_get_irq_num</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, uart.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<P><STRONG><a name="[c4]"></a>uart_get_irq_num</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, uart.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 </UL>
 
-<P><STRONG><a name="[be]"></a>uart_tx_poll</STRONG> (Thumb, 38 bytes, Stack size 12 bytes, uart.o(.text))
+<P><STRONG><a name="[bd]"></a>uart_tx_poll</STRONG> (Thumb, 38 bytes, Stack size 12 bytes, uart.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = uart_tx_poll
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_uart_base
+<BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_uart_base
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
 
-<P><STRONG><a name="[c0]"></a>uart_tx_poll_string</STRONG> (Thumb, 50 bytes, Stack size 12 bytes, uart.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_uart_base
+<P><STRONG><a name="[bf]"></a>uart_tx_poll_string</STRONG> (Thumb, 50 bytes, Stack size 12 bytes, uart.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_uart_base
 </UL>
 
-<P><STRONG><a name="[c1]"></a>uart_rx_poll</STRONG> (Thumb, 70 bytes, Stack size 12 bytes, uart.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_uart_base
+<P><STRONG><a name="[c0]"></a>uart_rx_poll</STRONG> (Thumb, 70 bytes, Stack size 12 bytes, uart.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_uart_base
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fgetc
 </UL>
 
-<P><STRONG><a name="[c2]"></a>uart_init</STRONG> (Thumb, 192 bytes, Stack size 32 bytes, uart.o(.text))
+<P><STRONG><a name="[c1]"></a>uart_init</STRONG> (Thumb, 192 bytes, Stack size 32 bytes, uart.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = uart_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_get_irq_num
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_get_pr_mask
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_get_rcgc_mask
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_uart_base
+<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_get_irq_num
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_get_pr_mask
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_get_rcgc_mask
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_uart_base
 </UL>
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_serial_debug
 </UL>
@@ -700,7 +705,7 @@ Global Symbols
 <P><STRONG><a name="[9b]"></a>io_expander_write_LEDs</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = io_expander_write_LEDs &rArr; io_expander_byte_write &rArr; io_expander_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
+<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_debug_data
 </UL>
@@ -708,7 +713,7 @@ Global Symbols
 <P><STRONG><a name="[9a]"></a>io_expander_read_buttons</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = io_expander_read_buttons &rArr; io_expander_byte_read &rArr; io_expander_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
+<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_debug_data
 </UL>
@@ -716,44 +721,44 @@ Global Symbols
 <P><STRONG><a name="[83]"></a>io_expander_init</STRONG> (Thumb, 196 bytes, Stack size 8 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = io_expander_init &rArr; io_expander_byte_write &rArr; io_expander_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeI2CMaster
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
+<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeI2CMaster
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
 
-<P><STRONG><a name="[cb]"></a>lcd_set_pos</STRONG> (Thumb, 58 bytes, Stack size 24 bytes, lcd.o(.text))
+<P><STRONG><a name="[ca]"></a>lcd_set_pos</STRONG> (Thumb, 58 bytes, Stack size 24 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_cmd_u8
+<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_cmd_u8
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_color_image
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_color_image
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 </UL>
 
 <P><STRONG><a name="[86]"></a>lcd_clear_screen</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = lcd_clear_screen &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear
+<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
 
-<P><STRONG><a name="[ce]"></a>lcd_draw_image</STRONG> (Thumb, 242 bytes, Stack size 56 bytes, lcd.o(.text))
+<P><STRONG><a name="[cd]"></a>lcd_draw_image</STRONG> (Thumb, 242 bytes, Stack size 56 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCard
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawTen
@@ -763,10 +768,10 @@ Global Symbols
 <P><STRONG><a name="[84]"></a>lcd_config_gpio</STRONG> (Thumb, 222 bytes, Stack size 8 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = lcd_config_gpio &rArr; gpio_config_enable_pullup
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_pullup
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_output
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
+<BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_pullup
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_output
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_config_screen
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
@@ -775,77 +780,71 @@ Global Symbols
 <P><STRONG><a name="[85]"></a>lcd_config_screen</STRONG> (Thumb, 572 bytes, Stack size 8 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = lcd_config_screen &rArr; lcd_config_gpio &rArr; gpio_config_enable_pullup
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u8
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_cmd_u8
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayms
+<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u8
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_cmd_u8
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delayms
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_config_gpio
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
 
-<P><STRONG><a name="[d1]"></a>lcd_draw_color_image</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, lcd.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
+<P><STRONG><a name="[d0]"></a>lcd_draw_color_image</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, lcd.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
 </UL>
 
-<P><STRONG><a name="[d2]"></a>lcd_draw_rectangle_centered</STRONG> (Thumb, 118 bytes, Stack size 48 bytes, lcd.o(.text))
+<P><STRONG><a name="[d1]"></a>lcd_draw_rectangle_centered</STRONG> (Thumb, 118 bytes, Stack size 48 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = lcd_draw_rectangle_centered &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawStringSelectedAndCentered
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawRect
 </UL>
 
-<P><STRONG><a name="[d4]"></a>eeprom_byte_write</STRONG> (Thumb, 100 bytes, Stack size 24 bytes, eeprom.o(.text))
+<P><STRONG><a name="[d3]"></a>eeprom_byte_write</STRONG> (Thumb, 100 bytes, Stack size 24 bytes, eeprom.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = eeprom_byte_write &rArr; eeprom_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
+<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_bytes_write
+<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_bytes_write
 </UL>
 
-<P><STRONG><a name="[d5]"></a>eeprom_byte_read</STRONG> (Thumb, 118 bytes, Stack size 24 bytes, eeprom.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = eeprom_byte_read &rArr; eeprom_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
+<P><STRONG><a name="[d4]"></a>eeprom_byte_read</STRONG> (Thumb, 118 bytes, Stack size 24 bytes, eeprom.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_wait_for_write
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
-</UL>
-<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_bytes_read
+<BR>[Called By]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_bytes_read
 </UL>
 
 <P><STRONG><a name="[82]"></a>eeprom_init</STRONG> (Thumb, 156 bytes, Stack size 8 bytes, eeprom.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = eeprom_init &rArr; gpio_config_port_control
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeI2CMaster
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
+<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeI2CMaster
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
 
-<P><STRONG><a name="[9e]"></a>eeprom_bytes_read</STRONG> (Thumb, 44 bytes, Stack size 24 bytes, eeprom.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = eeprom_bytes_read &rArr; eeprom_byte_read &rArr; eeprom_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
-</UL>
-<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
-</UL>
-<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[d5]"></a>eeprom_bytes_read</STRONG> (Thumb, 44 bytes, Stack size 24 bytes, eeprom.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
 </UL>
 
-<P><STRONG><a name="[9d]"></a>eeprom_bytes_write</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, eeprom.o(.text))
+<P><STRONG><a name="[a3]"></a>eeprom_bytes_write</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, eeprom.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = eeprom_bytes_write &rArr; eeprom_byte_write &rArr; eeprom_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
+<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -880,12 +879,12 @@ Global Symbols
 <P><STRONG><a name="[87]"></a>ft6x06_init</STRONG> (Thumb, 156 bytes, Stack size 8 bytes, ft6x06.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ft6x06_init &rArr; gpio_config_port_control
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeI2CMaster
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
+<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeI2CMaster
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
@@ -894,7 +893,7 @@ Global Symbols
 
 <P><STRONG><a name="[12f]"></a>lp_io_clear_pin</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, launchpad_io.o(.text), UNUSED)
 
-<P><STRONG><a name="[91]"></a>lp_io_read_pin</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, launchpad_io.o(.text), UNUSED)
+<P><STRONG><a name="[91]"></a>lp_io_read_pin</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, launchpad_io.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sw2_debounce
 </UL>
 
@@ -936,12 +935,12 @@ Global Symbols
 <P><STRONG><a name="[88]"></a>init_serial_debug</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, serial_debug.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = init_serial_debug &rArr; pc_buffer_init &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pc_buffer_init
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
+<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pc_buffer_init
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
@@ -971,16 +970,16 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = fputc &rArr; serial_debug_tx &rArr; pc_buffer_add
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_debug_tx
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_tx_poll
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_tx_poll
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fgetc
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> printf3.o(i.__0printf$3)
+<BR>[Address Reference Count : 1]<UL><LI> printf1.o(i.__0printf$1)
 </UL>
 <P><STRONG><a name="[e1]"></a>fgetc</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, serial_debug.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_debug_rx
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_rx_poll
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_rx_poll
 </UL>
 
 <P><STRONG><a name="[10]"></a>UART0_Handler</STRONG> (Thumb, 152 bytes, Stack size 40 bytes, serial_debug.o(.text))
@@ -1000,9 +999,9 @@ Global Symbols
 <P><STRONG><a name="[89]"></a>spi_select_init</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, spi_select.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = spi_select_init &rArr; gpio_config_enable_output
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_output
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_output
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_select
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
@@ -1061,11 +1060,11 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = wireless_initialize &rArr; gpio_config_port_control
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_spi
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_output
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_output
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
@@ -1080,14 +1079,14 @@ Global Symbols
 <P><STRONG><a name="[10a]"></a>distanceAbs</STRONG> (Thumb, 40 bytes, Stack size 12 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = distanceAbs
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 </UL>
 
 <P><STRONG><a name="[9c]"></a>graphics_init_data</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, graphics.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[9f]"></a>clear</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, graphics.o(.text))
+<P><STRONG><a name="[9d]"></a>clear</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = clear &rArr; lcd_clear_screen &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
@@ -1098,10 +1097,10 @@ Global Symbols
 <P><STRONG><a name="[f8]"></a>drawRect</STRONG> (Thumb, 84 bytes, Stack size 40 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = drawRect &rArr; lcd_draw_rectangle_centered &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
+<BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawBlackjackControlOptions
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawStringSelected
 </UL>
@@ -1109,7 +1108,7 @@ Global Symbols
 <P><STRONG><a name="[f9]"></a>drawString</STRONG> (Thumb, 204 bytes, Stack size 64 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = drawString &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 </UL>
 <BR>[Called By]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameState
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawDealer
@@ -1132,7 +1131,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcStringWidth
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawString
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawPlayer
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawBlackjackControlOptions
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawStringSelectedAndCentered
@@ -1151,18 +1150,18 @@ Global Symbols
 <P><STRONG><a name="[fd]"></a>drawStringSelectedAndCentered</STRONG> (Thumb, 78 bytes, Stack size 32 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = drawStringSelectedAndCentered &rArr; drawStringCentered &rArr; drawString &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
+<BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawStringCentered
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcStringWidth
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawBlackjackControlOptions
 </UL>
 
 <P><STRONG><a name="[fe]"></a>drawTen</STRONG> (Thumb, 198 bytes, Stack size 32 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = drawTen &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCard
 </UL>
@@ -1170,10 +1169,10 @@ Global Symbols
 <P><STRONG><a name="[ff]"></a>drawCard</STRONG> (Thumb, 408 bytes, Stack size 56 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = drawCard &rArr; drawTen &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawTen
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawPlayer
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawDealer
 </UL>
@@ -1185,7 +1184,7 @@ Global Symbols
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawStringCentered
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawRect
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
 </UL>
 
 <P><STRONG><a name="[101]"></a>drawBettingOptions</STRONG> (Thumb, 92 bytes, Stack size 24 bytes, graphics.o(.text))
@@ -1194,7 +1193,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawStringSelected
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawString
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
 </UL>
 
 <P><STRONG><a name="[102]"></a>drawDealer</STRONG> (Thumb, 120 bytes, Stack size 40 bytes, graphics.o(.text))
@@ -1203,7 +1202,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCard
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawString
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
 </UL>
 
 <P><STRONG><a name="[103]"></a>drawPlayer</STRONG> (Thumb, 170 bytes, Stack size 40 bytes, graphics.o(.text))
@@ -1212,7 +1211,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCard
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawStringCentered
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
 </UL>
 
 <P><STRONG><a name="[104]"></a>drawGameState</STRONG> (Thumb, 32 bytes, Stack size 24 bytes, graphics.o(.text))
@@ -1220,10 +1219,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawString
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameScreenOutLineAndData
 </UL>
 
-<P><STRONG><a name="[a4]"></a>drawGameScreenOutLineAndData</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, graphics.o(.text))
+<P><STRONG><a name="[a2]"></a>drawGameScreenOutLineAndData</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = drawGameScreenOutLineAndData &rArr; drawBlackjackControlOptions &rArr; drawStringSelectedAndCentered &rArr; drawStringCentered &rArr; drawString &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGameState
@@ -1236,12 +1235,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a0]"></a>drawHomeScreen</STRONG> (Thumb, 1392 bytes, Stack size 96 bytes, graphics.o(.text))
+<P><STRONG><a name="[9e]"></a>drawHomeScreen</STRONG> (Thumb, 1392 bytes, Stack size 96 bytes, graphics.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = drawHomeScreen &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sin
 <LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_cos
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
@@ -2063,7 +2062,7 @@ Global Symbols
 <P><STRONG><a name="[78]"></a>SystemInit</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, system_tm4c123.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(.text)
 </UL>
-<P><STRONG><a name="[a2]"></a>__aeabi_dadd</STRONG> (Thumb, 322 bytes, Stack size 48 bytes, dadd.o(.text))
+<P><STRONG><a name="[a0]"></a>__aeabi_dadd</STRONG> (Thumb, 322 bytes, Stack size 48 bytes, dadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_lasr
@@ -2071,7 +2070,7 @@ Global Symbols
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
@@ -2084,7 +2083,7 @@ Global Symbols
 <P><STRONG><a name="[111]"></a>__aeabi_dsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
@@ -2094,7 +2093,7 @@ Global Symbols
 <P><STRONG><a name="[112]"></a>__aeabi_drsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = __aeabi_drsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
@@ -2106,7 +2105,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
@@ -2119,7 +2118,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 </UL>
 
@@ -2128,22 +2127,22 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 </UL>
 
-<P><STRONG><a name="[a1]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<P><STRONG><a name="[9f]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a3]"></a>__aeabi_d2f</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, d2f.o(.text))
+<P><STRONG><a name="[a1]"></a>__aeabi_d2f</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, d2f.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_d2f
 </UL>
 <BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -2154,7 +2153,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[10d]"></a>__aeabi_llsl</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, llshl.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR><BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 
@@ -2168,7 +2167,7 @@ Global Symbols
 <P><STRONG><a name="[132]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
 
 <P><STRONG><a name="[10e]"></a>__aeabi_lasr</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, llsshr.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR><BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
 <P><STRONG><a name="[133]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)
@@ -2176,7 +2175,7 @@ Global Symbols
 <P><STRONG><a name="[134]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, iusefp.o(.text), UNUSED)
 
 <P><STRONG><a name="[114]"></a>_float_round</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, fepilogue.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+<BR><BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 
 <P><STRONG><a name="[135]"></a>_float_epilogue</STRONG> (Thumb, 92 bytes, Stack size 4 bytes, fepilogue.o(.text), UNUSED)
@@ -2184,7 +2183,7 @@ Global Symbols
 <P><STRONG><a name="[110]"></a>_double_round</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, depilogue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
@@ -2196,7 +2195,7 @@ Global Symbols
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
@@ -2226,17 +2225,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 </UL>
 
-<P><STRONG><a name="[118]"></a>__0printf$3</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3), UNUSED)
+<P><STRONG><a name="[118]"></a>__0printf$1</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[137]"></a>__1printf$3</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3), UNUSED)
+<P><STRONG><a name="[137]"></a>__1printf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
 
-<P><STRONG><a name="[99]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3))
+<P><STRONG><a name="[99]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_test
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_debug_data
 </UL>
 
@@ -2256,7 +2254,7 @@ Global Symbols
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_infnan
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 </UL>
 
 <P><STRONG><a name="[106]"></a>__hardfp_sin</STRONG> (Thumb, 180 bytes, Stack size 32 bytes, sin.o(i.__hardfp_sin))
@@ -2269,13 +2267,13 @@ Global Symbols
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_infnan
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHomeScreen
 </UL>
 
 <P><STRONG><a name="[11d]"></a>__ieee754_rem_pio2</STRONG> (Thumb, 938 bytes, Stack size 120 bytes, rred.o(i.__ieee754_rem_pio2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = __ieee754_rem_pio2 &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
@@ -2304,7 +2302,7 @@ Global Symbols
 <P><STRONG><a name="[121]"></a>__kernel_poly</STRONG> (Thumb, 248 bytes, Stack size 24 bytes, poly.o(i.__kernel_poly))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
@@ -2314,7 +2312,7 @@ Global Symbols
 <P><STRONG><a name="[11e]"></a>__kernel_sin</STRONG> (Thumb, 280 bytes, Stack size 72 bytes, sin_i.o(i.__kernel_sin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = __kernel_sin &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
@@ -2329,7 +2327,7 @@ Global Symbols
 <P><STRONG><a name="[11c]"></a>__mathlib_dbl_infnan</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, dunder.o(i.__mathlib_dbl_infnan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = __mathlib_dbl_infnan &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sin
 <LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_cos
@@ -2369,122 +2367,122 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 </UL>
 
-<P><STRONG><a name="[b8]"></a>malloc</STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))
+<P><STRONG><a name="[b7]"></a>malloc</STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pc_buffer_init
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pc_buffer_init
 </UL>
 <P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[a6]"></a>verify_base_addr</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, gpio_port.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_analog_enable
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_pulldown
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_pullup
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_input
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_output
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
+<P><STRONG><a name="[a5]"></a>verify_base_addr</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, gpio_port.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_analog_enable
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_pulldown
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_pullup
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_input
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_output
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
 </UL>
 
-<P><STRONG><a name="[ba]"></a>verify_base_addr</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, timers.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_wait
+<P><STRONG><a name="[b9]"></a>verify_base_addr</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, timers.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_wait
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timers_init
 </UL>
 
-<P><STRONG><a name="[bc]"></a>get_clock_masks</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, timers.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
+<P><STRONG><a name="[bb]"></a>get_clock_masks</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, timers.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
 </UL>
 
-<P><STRONG><a name="[bd]"></a>blackjack_timerA</STRONG> (Thumb, 146 bytes, Stack size 28 bytes, timers.o(.text))
+<P><STRONG><a name="[bc]"></a>blackjack_timerA</STRONG> (Thumb, 146 bytes, Stack size 28 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = blackjack_timerA
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timers_init
 </UL>
 
-<P><STRONG><a name="[c6]"></a>io_expander_wait_for_write</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, io_expander.o(.text))
+<P><STRONG><a name="[c5]"></a>io_expander_wait_for_write</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = io_expander_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterAdrAck
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterAdrAck
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
+<BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_read
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_byte_write
 </UL>
 
-<P><STRONG><a name="[c7]"></a>io_expander_byte_write</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, io_expander.o(.text))
+<P><STRONG><a name="[c6]"></a>io_expander_byte_write</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = io_expander_byte_write &rArr; io_expander_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
+<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_write_LEDs
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 </UL>
 
-<P><STRONG><a name="[c8]"></a>io_expander_byte_read</STRONG> (Thumb, 82 bytes, Stack size 24 bytes, io_expander.o(.text))
+<P><STRONG><a name="[c7]"></a>io_expander_byte_read</STRONG> (Thumb, 82 bytes, Stack size 24 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = io_expander_byte_read &rArr; io_expander_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
+<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_wait_for_write
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_read_buttons
 </UL>
 
-<P><STRONG><a name="[cf]"></a>delayms</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, lcd.o(.text))
+<P><STRONG><a name="[ce]"></a>delayms</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, lcd.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_config_screen
 </UL>
 
-<P><STRONG><a name="[cc]"></a>lcd_write_cmd_u8</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, lcd.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
+<P><STRONG><a name="[cb]"></a>lcd_write_cmd_u8</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_config_screen
 </UL>
 
-<P><STRONG><a name="[d0]"></a>lcd_write_data_u8</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, lcd.o(.text))
+<P><STRONG><a name="[cf]"></a>lcd_write_data_u8</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, lcd.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_config_screen
 </UL>
 
-<P><STRONG><a name="[cd]"></a>lcd_write_data_u16</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, lcd.o(.text))
+<P><STRONG><a name="[cc]"></a>lcd_write_data_u16</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = lcd_write_data_u16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_color_image
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_color_image
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 </UL>
 
-<P><STRONG><a name="[d3]"></a>eeprom_wait_for_write</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, eeprom.o(.text))
+<P><STRONG><a name="[d2]"></a>eeprom_wait_for_write</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, eeprom.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = eeprom_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterAdrAck
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterAdrAck
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cVerifyBaseAddr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
+<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_read
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_byte_write
 </UL>
 
 <P><STRONG><a name="[d6]"></a>ft6x06_set_addr</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, ft6x06.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = ft6x06_set_addr &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSendByte
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_read_y
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_read_x
@@ -2494,9 +2492,9 @@ Local Symbols
 <P><STRONG><a name="[d7]"></a>ft6x06_read_data</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, ft6x06.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = ft6x06_read_data &rArr; i2cGetByte &rArr; I2CMasterBusy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
+<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cGetByte
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_read_y
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_read_x
@@ -2506,10 +2504,10 @@ Local Symbols
 <P><STRONG><a name="[d8]"></a>initialize_adc_gpio_pins</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, ps2.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = initialize_adc_gpio_pins &rArr; gpio_config_alternate_function
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_analog_enable
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_input
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_analog_enable
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_input
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 </UL>
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ps2_initialize
 </UL>
@@ -2634,10 +2632,10 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
 </UL>
 
-<P><STRONG><a name="[119]"></a>_printf_core</STRONG> (Thumb, 436 bytes, Stack size 96 bytes, printf3.o(i._printf_core), UNUSED)
+<P><STRONG><a name="[119]"></a>_printf_core</STRONG> (Thumb, 336 bytes, Stack size 88 bytes, printf1.o(i._printf_core), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$3
+<BR>[Called By]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$1
 </UL>
 <P>
 <H3>

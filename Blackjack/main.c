@@ -199,10 +199,15 @@ void write_debug_data() {
 	// Test I2C LEDs
 	io_expander_write_LEDs(LEDs);
 	
-	// Test EEPROM
-	eeprom_bytes_write((uint8_t *) student_1, EEPROM_STUDENT1, 80);
-	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
-	printf("%s\n\r", info);
+//	// Test EEPROM
+//	eeprom_bytes_write((uint8_t *) student_1, EEPROM_STUDENT1, 80);
+//	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
+//	printf("%s\n\r", info);
+	
+	if (sw2_debounce()) 
+	{
+		printf("Switch 2 pressed");
+	}
 }
 
 
@@ -222,23 +227,23 @@ main(void)
 	graphics_init_data (&global_event_data);
 	
 	
-	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
-	printf("%s\n", info);
-	
-	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT2, 80);
-	printf("%s\n", info);
-	
-	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT3, 80);
-	printf("%s\n", info);
-	
-	eeprom_bytes_read((uint8_t *)info, EEPROM_GROUP, 80);
-	printf("%s\n", info);
+//	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
+//	printf("%s\n", info);
+//	
+//	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT2, 80);
+//	printf("%s\n", info);
+//	
+//	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT3, 80);
+//	printf("%s\n", info);
+//	
+//	eeprom_bytes_read((uint8_t *)info, EEPROM_GROUP, 80);
+//	printf("%s\n", info);
 	
 	
 	// connect to wireless network 
 	//wireless_connect();
 	 
-	*/
+	
 	//timers_init(TIMER1_BASE, 5000, 10, TIMER1A_IRQn, 1, TIMER5_BASE, 150000000, 0, TIMER5A_IRQn, 1); 
 	
 	
