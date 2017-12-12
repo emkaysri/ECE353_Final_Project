@@ -149,6 +149,8 @@ main(void)
 	int i = SPADES ;
 	int t = 0 ;
 	float theta = 3.1419/2; 
+	
+	initializeBoard() ;
 	/*
 	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
 	printf("%s\n", info);
@@ -171,19 +173,23 @@ main(void)
 	lcd_config_screen();	
 	
 	clear() ;
-	
-	
-	drawGameScreenOutLineAndData();
-
 		
 	// MAIN GAME LOGIC LOOP
 	// Program should never exit this loop, from starting screen to games
 	while(true) {
+		bool startScreen = true;
+		float theta = 3.1419/2;
+		// This is the start screen state
 		
-		
+		while (startScreen) {
+			drawHomeScreen(theta);
+			theta +=0.04;
+		}
 		
 	
-	//clear() ;
+	clear() ;
+		
+	drawGameScreenOutLineAndData();
 	
 
 	// If SW2 is pressed, write names and group number to EEPROM

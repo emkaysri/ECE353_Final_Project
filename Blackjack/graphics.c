@@ -447,8 +447,9 @@ int drawHomeScreen(float theta) {
 	//drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
 	
 	
-	drawStringSelectedAndCentered("2 PLAYER", COLS/2 , ROWS-40, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-	drawStringCentered("1 PLAYER", COLS/2 , ROWS-20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawStringSelectedAndCentered("2 PLAYER", COLS/2 - 40, ROWS-30, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawStringCentered("1 PLAYER", COLS/2 + 40 , ROWS-30, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawStringCentered("TOUCH TO SELECT", COLS/2 , ROWS-10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 	
 	return 0;
 	
