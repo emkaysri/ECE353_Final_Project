@@ -111,14 +111,14 @@ void play_game(void);
 * Summary: creates a deck and suffles it
 *
 *******************************************************************************/
-void shuffle_cards(void);
+int nextCard(void);
 int Bet(void);
 bool requestbet(struct player *p);
 void play_game(void);
 void shuffle_cards(void);
 void swap(int *a, int *b);
 void sendbet(void);
-void finalScore(void);
+void endTurn(void);
 void DisplayWinorLoss(struct player *p, int winLoss);
 void playerturn(struct player *p);
 int score(int val, bool high);
