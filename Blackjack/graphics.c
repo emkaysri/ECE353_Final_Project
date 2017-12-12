@@ -1,22 +1,23 @@
 #include "graphics.h"
 #include "math.h"
 
-#define SUIT_WIDTH 2*8
-#define SUIT_HEIGHT 15
-
-#define VAL_WIDTH 8
-#define VAL_HEIGHT 9
-
 uint16_t defaultColor = LCD_COLOR_BLACK; 
 
 uint16_t defaultBackgroundColor = LCD_COLOR_WHITE; 
 
-struct POINT {
-	uint16_t x;
-	uint16_t y;
-};
 
 
+enum PLAYER_SELECT player_select_state = PLAYER_ONE_SELECT ; 
+
+int distanceAbs(struct POINT a , struct POINT b) {
+	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y) ;
+}
+
+const EVENT_DATA * global_event_data;
+
+void graphics_init_data (EVENT_DATA * event_data) {
+	global_event_data = event_data;
+}
 
 
 void clear(){
@@ -424,7 +425,12 @@ int drawGameScreenOutLineAndData() {
 int drawHomeScreen(float theta) {
 	int y = ROWS/2;
 	int r = 80;
-	theta += 3.1419/100.0 ; 
+	struct POINT cap_touch_event;
+	struct POINT Player2Disp = {COLS/2 - 40, ROWS-30} ; 
+	struct POINT Player1Disp = {COLS/2 + 40 , ROWS-30} ;
+	LAST_CAP_TOUCH_EVENT eventData = global_event_data->capTouchEvent ; 
+
+	theta += 3.1419/100.0 ;	
 	drawStringCentered("BLACKJACK", COLS/2 , ROWS/2, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 	
 	drawStringCentered("ECE 353", COLS/2 , ROWS/2+20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
@@ -441,14 +447,33 @@ int drawHomeScreen(float theta) {
 		theta+=(3.1419*(2.0/4.0));
 	
 	drawCard(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 0, 2, 3);
+	
+	// update state
+	
+	
+	cap_touch_event.x = eventData.x ;
+	cap_touch_event.y = eventData.y ;
+	if ( distanceAbs(cap_touch_event , Player2Disp) < CAP_TOUCH_TOLERANCE_SQRD ) {
+		player_select_state = PLAYER_TWO_SELECT;
+	} else if ( distanceAbs(cap_touch_event , Player1Disp) < CAP_TOUCH_TOLERANCE_SQRD ) {
+		player_select_state = PLAYER_ONE_SELECT;
+	}
 
-	//drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
 	
-	//drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
+	switch(player_select_state) {
+		case PLAYER_ONE_SELECT :
+				drawStringSelectedAndCentered("1 PLAYER", Player2Disp.x, Player2Disp.y ,LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				drawStringCentered("2 PLAYER",Player1Disp.x, Player1Disp.y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				break;
+		case PLAYER_TWO_SELECT :
+				drawStringCentered("1 PLAYER", Player2Disp.x, Player2Disp.y ,LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				drawStringSelectedAndCentered("2 PLAYER",Player1Disp.x, Player1Disp.y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				break;
+		default:
+			return -1;
+	}
 	
-	
-	drawStringSelectedAndCentered("2 PLAYER", COLS/2 - 40, ROWS-30, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-	drawStringCentered("1 PLAYER", COLS/2 + 40 , ROWS-30, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+
 	drawStringCentered("TOUCH TO SELECT", COLS/2 , ROWS-10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 	
 	return 0;

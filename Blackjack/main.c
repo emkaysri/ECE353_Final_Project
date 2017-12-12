@@ -34,18 +34,7 @@ char group[] =     "Team Number: 36";
 extern volatile bool ALERT_1MS;
 extern volatile bool ALERT_5000MS;
 
-// Event variables
-
-// Capacitive Touch
-
-
-
-// Joystick
-
-// Directional push buttons
-
-extern int LAST_PUSHBUTTON_X ; 
-extern int LAST_PUSHBUTTON_Y ;
+static EVENT_DATA global_event_data;
 
 //*****************************************************************************
 // 
@@ -84,10 +73,6 @@ void initializeBoard(void)
 	// EEPROM
 	eeprom_init();
 
-	
-
-	//
-
 	// LCD
 	lcd_config_gpio();
 	lcd_config_screen();
@@ -119,7 +104,7 @@ void initializeBoard(void)
 	*/
 	timers_init(TIMER1_BASE, 250000000, 0, TIMER1A_IRQn, 1, TIMER5_BASE, 12500, 3, TIMER5A_IRQn, 1); 
 	
-  EnableInterrupts(); // HARD FAULT ??
+  EnableInterrupts();
 }
 
 //*****************************************************************************
@@ -148,17 +133,42 @@ bool sw2_debounce(void)
 	return true;
 }
 
-void write_debug_data() {
-	int capTouch = ft6x06_read_td_status();
+void update_global_event_data() {
+	if (ft6x06_read_td_status()) {
+		global_event_data.capTouchEvent.x = ft6x06_read_x();
+		global_event_data.capTouchEvent.y = ft6x06_read_y();
+	} else {
+		global_event_data.capTouchEvent.valid = false;
+	}
 	
+	global_event_data.joystickEvent.x = ps2_get_x() ; 
+	global_event_data.joystickEvent.y = ps2_get_y() ; 
+	
+	// TODO CURRENTLY ONE OVERWRITES THE OTHER
+	
+	if (global_event_data.joystickEvent.x > JOYSTICK_THRESH*3) {
+		global_event_data.joystickEvent.dir = LEFT_DIR;
+	} else if (global_event_data.joystickEvent.x < JOYSTICK_THRESH) {
+		global_event_data.joystickEvent.dir = RIGHT_DIR;
+	}
+	
+	if (global_event_data.joystickEvent.y > JOYSTICK_THRESH*3) {
+		global_event_data.joystickEvent.dir = UP_DIR ; 
+	} else if (global_event_data.joystickEvent.y < JOYSTICK_THRESH) {
+		global_event_data.joystickEvent.dir = DOWN_DIR ; 
+	}
+	
+}
+
+void write_debug_data() {	
 	printf("**************************************\n\r");
   printf("* BLACK JACK DEBUG DATA\n\r");
-	printf("* CAP TOUCH EVENT #: %d\n\r",capTouch);
+	printf("* CAP TOUCH EVENT #: %d\n\r",global_event_data.capTouchEvent.valid);
 	
-	if (capTouch > 0) {
-		printf("* CAP TOUCH X: %d Y: %d\n\r",ft6x06_read_x(),ft6x06_read_y());
+	if (global_event_data.capTouchEvent.valid) {
+		printf("* CAP TOUCH X: %d Y: %d\n\r",global_event_data.joystickEvent.x,global_event_data.joystickEvent.y);
 	}
-	printf("* PS2 X: %d Y: %d\n\r",ps2_get_x(),ps2_get_y());
+	printf("* PS2 X: %d Y: %d\n\r",global_event_data.joystickEvent.x,global_event_data.joystickEvent.y);
 	printf("* LAST PUSHBUTTON X: %d Y: %d \n\r",0,0);
   printf("**************************************\n\r");
 	
@@ -178,6 +188,11 @@ main(void)
 	float theta = 3.1419/2; 
 	
 	initializeBoard() ;
+	
+	
+	graphics_init_data (&global_event_data) ; 
+	
+	
 	/*
 	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
 	printf("%s\n", info);
@@ -206,12 +221,15 @@ main(void)
 	while(true) {
 		bool startScreen = true;
 		float theta = 3.1419/2;
+		update_global_event_data() ;
 		write_debug_data() ; 
 		
 		
 		// This is the start screen state
 		
 		while (startScreen) {
+			update_global_event_data() ;
+			write_debug_data() ; 
 			drawHomeScreen(theta);
 			theta +=0.04;
 			
@@ -223,7 +241,7 @@ main(void)
 			
 				ALERT_1MS = false; 
 			}
-			write_debug_data() ; 
+			
 			//clear() ;
 		}
 		

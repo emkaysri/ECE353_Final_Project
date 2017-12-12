@@ -22,6 +22,9 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
+
+#define JOYSTICK_THRESH 1000
+
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
