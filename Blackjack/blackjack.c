@@ -38,6 +38,7 @@ bool display_main_menu(void) { return true; }
 ********************************************************************************
 *******************************************************************************/
 
+<<<<<<< HEAD
 void master_game(uint8_t* playerID) {
   player this_player;
   bool nextRound;
@@ -62,6 +63,56 @@ void master_game(uint8_t* playerID) {
         playerList[i].stand[j] = false;
         playerList[i].numCards[j] = 0;
       }
+=======
+void master_game(uint8_t* playerID)
+{
+    player this_player;
+    bool nextRound;
+    currCard = 0;
+    *gameState.dealerHand = malloc(sizeof(uint8_t));
+    this_player.playerID = playerID;
+    this_player.money = 25000;
+    playerList[0] = this_player;
+    playerList[1] = getplayer();
+    shuffle_cards();
+    while (1) {
+        //get bet
+        setbet(playerList[0], Bet(playerList[0]));
+        requestbet(playerList[1]);
+
+        dealerNumCards = 0;
+
+        int i, j;
+        for (i = 0; i < 2; i++) {
+            playerList[i].spilt = false;
+            for (j = 0; j < 2; j++) {
+                playerList[i].stand[j] = false;
+                playerList[i].numCards[j] = 0;
+            }
+        }
+
+        for (i = 0; i < 2; i++) {
+            *(gameState.dealerHand + i) = gameState.Deck[currCard++];
+            dealerNumCards++;
+            playerList[0].hand[0][i] = gameState.Deck[currCard++];
+            playerList[0].numCards[0]++;
+            playerList[1].hand[0][i] = gameState.Deck[currCard++];
+            playerList[1].numCards[0]++;
+        }
+
+        if (score(gameState.dealerHand, 2, true) == 21) {
+            dealerSum = 21;
+            finalScore();
+        }
+        bool done;
+        do {
+            done = true;
+            for (i = 0; i < 2; i++) {
+                done = done && playerturn(playerList[i]) ? true : false;
+            }
+        } while (!done)
+            finalScore();
+>>>>>>> c4c9601f36a0b5d4779eca85c9ff5d2660e7b0e8
     }
 
     for (i = 0; i < 2; i++) {
