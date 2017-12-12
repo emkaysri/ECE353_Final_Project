@@ -85,7 +85,7 @@ static i2c_status_t io_expander_byte_read(uint32_t  i2c_base, uint8_t	address, u
   while ( I2CMasterBusy(i2c_base)) {};
 
   // If the EEPROM is still writing the last byte written, wait
-  //mcp23017_wait_for_write(i2c_base);		
+  io_expander_wait_for_write(i2c_base);		
 		
   // Set the I2C slave address to be the MCP23017 and in write mode
   status = i2cSetSlaveAddr(i2c_base, MCP23017_DEV_ID, I2C_WRITE);

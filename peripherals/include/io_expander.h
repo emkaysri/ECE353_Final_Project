@@ -48,10 +48,10 @@
 #define   IO_EXPANDER_IRQ_GPIO_BASE       GPIOF_BASE
 #define   IO_EXPANDER_IRQ_PIN_NUM         PF0
 
-#define   DIR_BTN_UP_PIN                  0
-#define   DIR_BTN_DOWN_PIN                1
-#define   DIR_BTN_LEFT_PIN                2
-#define   DIR_BTN_RIGHT_PIN               3
+#define   DIR_BTN_UP_PIN                  (1<<0)
+#define   DIR_BTN_DOWN_PIN                (1<<1)
+#define   DIR_BTN_LEFT_PIN                (1<<2)
+#define   DIR_BTN_RIGHT_PIN               (1<<3)
 
 // Define the 7-bit Address of the MCP23017. 
 #define MCP23017_DEV_ID    		0x27

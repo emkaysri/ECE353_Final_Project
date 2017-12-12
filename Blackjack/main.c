@@ -70,6 +70,9 @@ void initializeBoard(void)
 	
 	// EEPROM
 	eeprom_init();
+	
+	// GPIO EXPANDER
+	io_expander_init();
 
 	// LCD
 	lcd_config_gpio();
@@ -160,6 +163,10 @@ void update_global_event_data() {
 }
 
 void write_debug_data() {	
+	
+	uint8_t buttons;
+	uint8_t LEDs = 0xF1;
+	
 	printf("**************************************\n\r");
   printf("* BLACK JACK DEBUG DATA\n\r");
 	printf("* CAP TOUCH EVENT #: %d\n\r",global_event_data.capTouchEvent.valid);
@@ -170,6 +177,27 @@ void write_debug_data() {
 	printf("* PS2 X: %d Y: %d\n\r",global_event_data.joystickEvent.x,global_event_data.joystickEvent.y);
 	printf("* LAST PUSHBUTTON X: %d Y: %d \n\r",0,0);
   printf("**************************************\n\r");
+	
+	// Test I2C buttons
+	buttons = io_expander_read_buttons();
+	
+	if (buttons & DIR_BTN_UP_PIN) {
+		printf("UP BUTTON PRESSED \n\r");
+	}
+	
+	if (buttons & DIR_BTN_DOWN_PIN) {
+		printf("DOWN BUTTON PRESSED \n\r");
+	}
+	if (buttons & DIR_BTN_LEFT_PIN) {
+		printf("LEFT BUTTON PRESSED \n\r");
+	}
+	if (buttons & DIR_BTN_RIGHT_PIN) {
+		printf("RIGHT BUTTON PRESSED \n\r");
+	}
+	
+	// Test I2C LEDs
+	io_expander_write_LEDs(LEDs);
+	
 	
 }
 
