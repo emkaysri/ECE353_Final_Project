@@ -40,6 +40,7 @@
 #include "launchpad_io.h"
 #include "ps2.h"
 #include "ft6x06.h"
+#include "io_expander.h"
 
 
 #endif

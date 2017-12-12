@@ -446,6 +446,11 @@
           <GroupName>peripherals</GroupName>
           <Files>
             <File>
+              <FileName>io_expander.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\peripherals\c\io_expander.c</FilePath>
+            </File>
+            <File>
               <FileName>lcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\peripherals\c\lcd.c</FilePath>

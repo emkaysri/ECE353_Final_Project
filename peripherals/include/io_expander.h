@@ -28,6 +28,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include "gpio_port.h"
+#include <stdint.h>
+#include "driver_defines.h"
 #include "i2c.h"
 
 //*****************************************************************************
@@ -77,10 +79,13 @@
 #define MCP23017_OLATA_R 	    0x14 
 #define MCP23017_OLATB_R	    0x15 
 
-
-
-
+// initialize I2C and GPIO interrupt
 bool io_expander_init(void);
-void io_expander_write_reg(uint8_t reg, uint8_t data);
-uint8_t io_expander_read_reg(uint8_t);
+
+// set val of 8 LEDs
+void io_expander_write_LEDs(uint8_t LEDs);
+	
+// read value of buttons	
+uint8_t io_expander_read_buttons(void);
+
 #endif
