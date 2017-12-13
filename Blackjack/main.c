@@ -34,6 +34,17 @@ char group[] =     "Team Number: 36";
 extern volatile bool ALERT_1MS;
 extern volatile bool ALERT_5000MS;
  volatile int up, down, left, right;
+ 
+int dealerHand[5];
+
+int dealerNumCards;
+int currCard;
+int Deck[52];
+int dealerSum;
+CURRENT_GAME_STATE gameState;
+ 
+ 
+ player this_player;
 
 //*****************************************************************************
 // 
@@ -114,8 +125,8 @@ void initializeBoard(void)
 void wireless_connect(){
 	
 	// Input correct IDs for boards
-	uint8_t myID[]  				= { 3,5,3,9,1} ;
-	uint8_t remoteID[]      = { 3,5,3,9,2};
+	uint8_t myID[]  				= { 3,5,3,9,2} ;
+	uint8_t remoteID[]      = { 3,5,3,9,1};
 	
 	wireless_configure_device(myID, remoteID); 
 }
@@ -268,6 +279,14 @@ void write_debug_data() {
 		wireless_get_32(false, &data);
 		printf("%d", data);	
 	}
+	
+	wireless_get_32(false, &data);
+	
+	if (data > 0) {
+		printf("RECEIVED %d\n\r", data);
+	} else {
+		printf("NO %d\n\r", data);
+	}
 }
 
 
@@ -278,7 +297,6 @@ int
 main(void)
 {
 	char info[80];
-	int x = 30 ; 
 	int i = SPADES ;
 	int t = 0 ;
 	float theta = 3.1419/2; 
@@ -323,7 +341,12 @@ main(void)
 		
 	// MAIN GAME LOGIC LOOP
 	// Program should never exit this loop, from starting screen to games
+	master_game();
 	while(true) {
+		uint8_t buttons; 
+		
+		enum BLACKJACK_GAME_OPTION x = NOTVALID;
+		
 		bool startScreen = true;
 		float theta = 3.1419/2;
 		update_global_event_data() ;
@@ -334,6 +357,8 @@ main(void)
 			global_game_state_data.currentScreenState != CONTROLS	) {
 				prev_state = global_game_state_data.currentScreenState;
 		}
+			
+		
 	
 
 	// If SW2 is pressed, write names and group number to EEPROM
@@ -352,12 +377,28 @@ main(void)
 		} else if (global_event_data.LAST_PUSHBUTTON != RIGHT_DIR
 			&& global_game_state_data.currentScreenState == CONTROLS) { 
 			global_game_state_data.currentScreenState = GAME_SCREEN ; 
-		}
+		} 
+			
+		  
+	buttons = io_expander_read_buttons();
+
+	if(buttons & DIR_BTN_UP_PIN)
+			x = HIT;
+	if(buttons == DIR_BTN_DOWN_PIN)
+			x = STAND;
+	if(buttons == DIR_BTN_LEFT_PIN)
+			x = SPLIT;	
+
+		
+			if(x!=NOTVALID){
+				playerturn();
+			x = NOTVALID;
+			}
 	
 
 	
 	
-	for (i =0 ; i< 10; i++) {
+	for (i =0 ; i< 100; i++) {
 				while (!ALERT_1MS) {
 				
 				}
@@ -365,7 +406,7 @@ main(void)
 				ALERT_1MS = false; 
 			}
 
-			reset_watchDog();
+			//reset_watchDog();
 	}
 
 }

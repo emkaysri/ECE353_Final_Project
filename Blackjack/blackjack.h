@@ -28,6 +28,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "event.h"
+#include "io_expander.h"
 
 #define DEALER_CARD_WIDTH     XX
 #define DEALER_CARD_HEIGHT    XX
@@ -47,19 +48,6 @@ typedef struct{
   int bet;
   uint8_t *playerID;
 } player;
-
-player this_player;
-/*
-* cardnum % 13 = CARD_VALUE
-* cardnum / 13 = CARD_SUIT
-*/
-int *dealerHand;
-int dealerNumCards;
-
-int currCard;
-int Deck[52];
-int dealerSum;
-
 
 enum BLACKJACK_GAME_OPTION {
 	HIT,
@@ -90,7 +78,6 @@ typedef struct{
 } CURRENT_GAME_STATE;
 
 
-CURRENT_GAME_STATE gameState;
 
 typedef enum{
   ACE,
@@ -117,6 +104,23 @@ typedef enum{
 
 
 
+
+/*
+* cardnum % 13 = CARD_VALUE
+* cardnum / 13 = CARD_SUIT
+*/
+extern int dealerHand[5];
+extern int dealerNumCards;
+extern int currCard;
+extern int Deck[52];
+extern int dealerSum;
+extern CURRENT_GAME_STATE gameState;
+
+
+
+
+
+
 /*******************************************************************************
 * Function Name: display_main_menu
 ********************************************************************************
@@ -133,7 +137,7 @@ bool display_main_menu(void);
 * Summary: Creates game
 *
 *******************************************************************************/
-void master_game(uint8_t* playerOneID, uint8_t* playerTwoID);
+void master_game(void);
 
 /*******************************************************************************
 * Function Name: play_game

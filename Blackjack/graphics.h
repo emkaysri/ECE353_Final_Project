@@ -12,37 +12,21 @@
 #include "lcd.h"
 #include "event.h"
 #include "image_data.h"
+#include "math.h"
+#include <stdlib.h>
 
-typedef enum{
-  ACE,
-  TWO,
-  THREE,
-  FOUR,
-  FIVE,
-  SIX,
-  SEVEN,
-  EIGHT,
-  NINE,
-  TEN,
-  JACK,
-  QUEEN,
-  KING
-} CARD_VALUE;
+#include "blackjack.h"
 
-typedef enum{
-  SPADES,
-  CLUBS,
-  HEARTS,
-  DIAMONDS
-} CARD_SUIT;
 
-int drawCard(int x, int y, CARD_VALUE val, CARD_SUIT suit, int state) ;
-void drawString(char * inputString, int x, int y, uint16_t color, uint16_t colorBackground);
 
 int drawGameScreenOutLineAndData();
 int drawHomeScreen(float theta);
 void clear();
 int draw(); 
+
+extern EVENT_DATA   global_event_data;
+extern GAMESTATE_DATA  global_game_state_data;
+extern player this_player;
 
 
 #endif

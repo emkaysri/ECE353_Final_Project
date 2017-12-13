@@ -273,7 +273,7 @@ bool timers_init(
 	TIMER0_Type *gp1_timer;
 	TIMER0_Type *gp5_timer;
 
-	watchdogTimeInit();
+	//watchdogTimeInit();
 
 	  // Verify the base address.
   if (!verify_base_addr(base1_address) || !verify_base_addr(base5_address))

@@ -7,6 +7,8 @@
 *******************************************************************************/
 bool display_main_menu(void) { return true; }
 
+extern  player this_player;
+
 /*******************************************************************************
 * Function Name: display_main_menu
 ********************************************************************************
@@ -15,7 +17,7 @@ bool display_main_menu(void) { return true; }
 extern EVENT_DATA   global_event_data;
 extern GAMESTATE_DATA  global_game_state_data;
 
-void master_game(uint8_t* playerOneID, uint8_t* playerTwoID)
+void master_game(void)
 {
     
     bool nextRound, done;
@@ -23,44 +25,16 @@ void master_game(uint8_t* playerOneID, uint8_t* playerTwoID)
 	
 	
     currCard = 0;
-    *gameState.dealerHand = (int) malloc(sizeof(uint8_t));
-    this_player.playerID = playerOneID;
     this_player.money = 25000;
-    nextCard();
-    while (1) {
-        //get bet
-			
-        bool done;
-			this_player.bet = global_game_state_data.playerOneBet;
-
-        dealerNumCards = 0;       
-        for (j = 0; j < 2; j++) {
-            this_player.stand[j] = false;
-            this_player.numCards[j] = 0;
-        }
-        
-
-        
-         *(gameState.dealerHand + i) = gameState.Deck[currCard++];
-        dealerNumCards++;
-        this_player.hand[0][i] = gameState.Deck[currCard++];
-        this_player.numCards[0]++;
-        this_player.hand[0][i] = gameState.Deck[currCard++];
-        this_player.numCards[0]++;
-        
-
-        if (score(gameState.dealerHand, 2, true) == 21) {
-            dealerSum = 21;
-            endTurn();
-        }
-        do {
-            done = true;
-            for (i = 0; i < 2; i++) {
-                done = done && playerturn(&this_player) ? true : false;
-            }
-        } while (!done);
-            endTurn();
-    }
+	for(i = 0; i < 2; i++){
+    dealerHand[i] = nextCard();
+	this_player.hand[0][i]  = nextCard();
+		this_player.stand[i] = false;
+		
+	}
+	dealerNumCards = 2;
+	this_player.numCards[0] = 2;
+	this_player.numCards[1] = 0;
  }
 
 
@@ -81,18 +55,11 @@ int score(int * val, int num, bool high) {
   return sum;
 }
 
-bool playerturn() {
-	enum BLACKJACK_GAME_OPTION x = NOTVALID;
+bool playerturn(enum BLACKJACK_GAME_OPTION x) {
+	bool finished = true;
 	int i, num = 1;
-  bool finished = true;
-	while(x == NOTVALID){
-	if(up == 8)
-			x = HIT;
-	if(down == 8)
-			x = STAND;
-	if(left == 8)
-			x = SPLIT;
-}
+	
+	printf("\n\n\n\n\n\n\n##########BUTTON %d", x);
   if ((x == SPLIT) && (this_player.hand[0][0] % 13 == this_player.hand[0][1] % 13) && !this_player.numCards[1]) {
     this_player.hand[0][0] = this_player.hand[0][1];
     this_player.numCards[0]--;
@@ -104,9 +71,9 @@ bool playerturn() {
 	}
 	for(i = 0; i < num; i++){
 		if (this_player.stand[i]){
-		} else if (x == STAND) {
+		} else if (x == STAND || this_player.numCards[i] == 5 || score(this_player.hand[i], this_player.numCards[i], false) > 21 ) {
       this_player.stand[i] = true;
-    } else if ((x == HIT) && score(this_player.hand[i], this_player.numCards[i], false)) {
+    } else if (x == HIT ) {
 			this_player.hand[i][this_player.numCards[i]++] = nextCard();
       finished = false;
     }
@@ -170,7 +137,7 @@ int Bet(player *p) {
 
 
 int nextCard(void) {
-  if (currCard == 52) {
+  if (currCard % 52 == 0) {
 		int index, i;
     int high, low, random;
     currCard = 0;

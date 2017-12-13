@@ -27,57 +27,80 @@ Project File Date:  12/12/2017
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Blackjack'
-compiling blackjack.c...
-blackjack.h(151): warning:  #1295-D: Deprecated declaration requestbet - give arg types
-  
-ool requestbet();
-blackjack.h(158): warning:  #1295-D: Deprecated declaration playerturn - give arg types
-  void playerturn();
-blackjack.c(223): warning:  #1-D: last line of file ends without a newline
-  */
-blackjack.c: 3 warnings, 0 errors
 compiling gpio_port.c...
 ..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
          return 0;
 ..\drivers\c\gpio_port.c(453): warning:  #177-D: variable "gpioPort"  was declared but never referenced
     GPIOA_Type  *gpioPort;
 ..\drivers\c\gpio_port.c: 2 warnings, 0 errors
-compiling main.c...
-event.h(71): warning:  #1-D: last line of file ends without a newline
+compiling blackjack.c...
+event.h(72): warning:  #1-D: last line of file ends without a newline
   #endif
-graphics.h(42): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
+blackjack.h(158): warning:  #1295-D: Deprecated declaration requestbet - give arg types
+  
+ool requestbet();
+blackjack.h(165): warning:  #1295-D: Deprecated declaration playerturn - give arg types
+  
+ool playerturn();
+blackjack.c(23): warning:  #177-D: variable "nextRound"  was declared but never referenced
+      bool nextRound, done;
+blackjack.c(23): warning:  #177-D: variable "done"  was declared but never referenced
+      bool nextRound, done;
+blackjack.c(24): warning:  #177-D: variable "j"  was declared but never referenced
+  		int i, j;
+blackjack.c(113): warning:  #68-D: integer conversion resulted in a change of sign
+  			global_game_state_data.playerOneWin = -1;
+blackjack.c(85): warning:  #177-D: variable "i"  was declared but never referenced
+    int i, j, k, totalmoney, playersum_l, playersum;
+blackjack.c(85): warning:  #177-D: variable "k"  was declared but never referenced
+    int i, j, k, totalmoney, playersum_l, playersum;
+blackjack.c(142): warning:  #177-D: variable "random"  was declared but never referenced
+      int high, low, random;
+blackjack.c(163): warning:  #1-D: last line of file ends without a newline
+  }
+blackjack.c: 11 warnings, 0 errors
+compiling main.c...
+event.h(72): warning:  #1-D: last line of file ends without a newline
+  #endif
+blackjack.h(158): warning:  #1295-D: Deprecated declaration requestbet - give arg types
+  
+ool requestbet();
+blackjack.h(165): warning:  #1295-D: Deprecated declaration playerturn - give arg types
+  
+ool playerturn();
+graphics.h(22): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
   int drawGameScreenOutLineAndData();
-graphics.h(44): warning:  #1295-D: Deprecated declaration clear - give arg types
+graphics.h(24): warning:  #1295-D: Deprecated declaration clear - give arg types
   void clear();
-graphics.h(47): warning:  #1295-D: Deprecated declaration draw - give arg types
+graphics.h(25): warning:  #1295-D: Deprecated declaration draw - give arg types
   int draw(); 
-graphics.h(50): warning:  #1-D: last line of file ends without a newline
+graphics.h(32): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\drivers\include\timers.h(55): warning:  #1295-D: Deprecated declaration reset_watchDog - give arg types
   void reset_watchDog();
-main.c(236): warning:  #177-D: variable "info"  was declared but never referenced
+main.c(247): warning:  #177-D: variable "info"  was declared but never referenced
   	char info[80];
-main.c(328): warning:  #177-D: variable "startScreen"  was declared but never referenced
+main.c(350): warning:  #177-D: variable "startScreen"  was declared but never referenced
   		bool startScreen = true;
-main.c(329): warning:  #177-D: variable "theta"  was declared but never referenced
+main.c(351): warning:  #177-D: variable "theta"  was declared but never referenced
   		float theta = 3.1419/2;
-main.c(280): warning:  #177-D: variable "info"  was declared but never referenced
+main.c(299): warning:  #177-D: variable "info"  was declared but never referenced
   	char info[80];
-main.c(281): warning:  #177-D: variable "x"  was declared but never referenced
-  	int x = 30 ; 
-main.c(283): warning:  #177-D: variable "t"  was declared but never referenced
+main.c(301): warning:  #177-D: variable "t"  was declared but never referenced
   	int t = 0 ;
-main.c(284): warning:  #177-D: variable "theta"  was declared but never referenced
+main.c(302): warning:  #177-D: variable "theta"  was declared but never referenced
   	float theta = 3.1419/2; 
-main.c: 13 warnings, 0 errors
-compiling adc.c...
+main.c: 14 warnings, 0 errors
 compiling pc_buffer.c...
+compiling adc.c...
 compiling i2c.c...
 compiling spi.c...
 compiling timers.c...
 ..\drivers\include\timers.h(55): warning:  #1295-D: Deprecated declaration reset_watchDog - give arg types
   void reset_watchDog();
-..\drivers\c\timers.c: 1 warning, 0 errors
+..\drivers\c\timers.c(229): warning:  #177-D: function "watchdogTimeInit"  was declared but never referenced
+  static void watchdogTimeInit() {
+..\drivers\c\timers.c: 2 warnings, 0 errors
 compiling uart.c...
 ..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
          return 0;
@@ -117,105 +140,109 @@ compiling ws2812b_ice.c...
 ..\peripherals\c\ws2812b_ice.c(52): warning:  #1-D: last line of file ends without a newline
   };
 ..\peripherals\c\ws2812b_ice.c: 1 warning, 0 errors
+assembling startup_TM4C123.s...
 compiling event.c...
 event.c(1): warning:  #1-D: last line of file ends without a newline
   #include "event.h"
-event.h(71): warning:  #1-D: last line of file ends without a newline
+event.h(72): warning:  #1-D: last line of file ends without a newline
   #endif
 event.c: 2 warnings, 0 errors
-assembling startup_TM4C123.s...
 compiling graphics.c...
-event.h(71): warning:  #1-D: last line of file ends without a newline
+event.h(72): warning:  #1-D: last line of file ends without a newline
   #endif
-graphics.h(42): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
+blackjack.h(158): warning:  #1295-D: Deprecated declaration requestbet - give arg types
+  
+ool requestbet();
+blackjack.h(165): warning:  #1295-D: Deprecated declaration playerturn - give arg types
+  
+ool playerturn();
+graphics.h(22): warning:  #1295-D: Deprecated declaration drawGameScreenOutLineAndData - give arg types
   int drawGameScreenOutLineAndData();
-graphics.h(44): warning:  #1295-D: Deprecated declaration clear - give arg types
+graphics.h(24): warning:  #1295-D: Deprecated declaration clear - give arg types
   void clear();
-graphics.h(47): warning:  #1295-D: Deprecated declaration draw - give arg types
+graphics.h(25): warning:  #1295-D: Deprecated declaration draw - give arg types
   int draw(); 
-graphics.h(50): warning:  #1-D: last line of file ends without a newline
+graphics.h(32): warning:  #1-D: last line of file ends without a newline
   #endif
-graphics.c(223): warning:  #177-D: variable "valIndex"  was declared but never referenced
+graphics.c(217): warning:  #177-D: variable "valIndex"  was declared but never referenced
   	int valIndex = 0 ; 
-graphics.c(305): warning:  #177-D: variable "xPos"  was declared but never referenced
+graphics.c(299): warning:  #177-D: variable "xPos"  was declared but never referenced
   	int xPos = controlOptionsWidth/2-10;
-graphics.c(400): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(dealerCardOne.x, dealerCardOne.y, 1, 1, 0);
-graphics.c(400): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(dealerCardOne.x, dealerCardOne.y, 1, 1, 0);
-graphics.c(401): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(dealerCardTwo.x, dealerCardTwo.y, 1, 1, 3);
-graphics.c(401): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(dealerCardTwo.x, dealerCardTwo.y, 1, 1, 3);
-graphics.c(425): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(playerCardOne.x, playerCardOne.y, 1, 1, 0);
-graphics.c(425): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(playerCardOne.x, playerCardOne.y, 1, 1, 0);
-graphics.c(426): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
-graphics.c(426): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
-graphics.c(427): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(playerCardThree.x, playerCardThree.y, 1, 1, 3);
-graphics.c(427): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(playerCardThree.x, playerCardThree.y, 1, 1, 3);
-graphics.c(440): warning:  #177-D: variable "lineWidth"  was declared but never referenced
+graphics.c(392): warning:  #188-D: enumerated type mixed with another type
+  		drawCard(dealerCards[i].x, dealerCards[i].y, dealerHand[i] % 13, dealerHand[i] / 13, 0);
+graphics.c(392): warning:  #188-D: enumerated type mixed with another type
+  		drawCard(dealerCards[i].x, dealerCards[i].y, dealerHand[i] % 13, dealerHand[i] / 13, 0);
+graphics.c(396): warning:  #188-D: enumerated type mixed with another type
+  		drawCard(dealerCards[i].x, dealerCards[i].y, dealerHand[i]%13, dealerHand[i]/13, 3);
+graphics.c(396): warning:  #188-D: enumerated type mixed with another type
+  		drawCard(dealerCards[i].x, dealerCards[i].y, dealerHand[i]%13, dealerHand[i]/13, 3);
+graphics.c(424): warning:  #188-D: enumerated type mixed with another type
+  		drawCard(playerCards[0][i].x, playerCards[0][i].y, this_player.hand[0][i]%13,this_player.hand[0][i]/13, 3);
+graphics.c(424): warning:  #188-D: enumerated type mixed with another type
+  		drawCard(playerCards[0][i].x, playerCards[0][i].y, this_player.hand[0][i]%13,this_player.hand[0][i]/13, 3);
+graphics.c(428): warning:  #188-D: enumerated type mixed with another type
+  		drawCard(playerCards[1][i].x, playerCards[1][i].y, this_player.hand[1][i]%13,this_player.hand[1][i]/13, 3);
+graphics.c(428): warning:  #188-D: enumerated type mixed with another type
+  		drawCard(playerCards[1][i].x, playerCards[1][i].y, this_player.hand[1][i]%13,this_player.hand[1][i]/13, 3);
+graphics.c(443): warning:  #177-D: variable "lineWidth"  was declared but never referenced
   	int lineWidth = 4;
-graphics.c(442): warning:  #177-D: variable "controlAreaWidth"  was declared but never referenced
+graphics.c(445): warning:  #177-D: variable "controlAreaWidth"  was declared but never referenced
   	int controlAreaWidth = 50;
-graphics.c(443): warning:  #177-D: variable "controlAreaHeight"  was declared but never referenced
+graphics.c(446): warning:  #177-D: variable "controlAreaHeight"  was declared but never referenced
   	int controlAreaHeight = 70;
-graphics.c(446): warning:  #177-D: variable "controlColumn"  was declared but never referenced
+graphics.c(449): warning:  #177-D: variable "controlColumn"  was declared but never referenced
   	int controlColumn;
-graphics.c(490): warning:  #188-D: enumerated type mixed with another type
-  	drawCard(
-OLS/2+cos(theta)*r , 
-OWS/2+sin(theta)*r, 0, 0, 3);
-graphics.c(490): warning:  #188-D: enumerated type mixed with another type
+graphics.c(493): warning:  #188-D: enumerated type mixed with another type
   	drawCard(
 OLS/2+cos(theta)*r , 
 OWS/2+sin(theta)*r, 0, 0, 3);
 graphics.c(493): warning:  #188-D: enumerated type mixed with another type
   	drawCard(
 OLS/2+cos(theta)*r , 
-OWS/2+sin(theta)*r, 0, 3, 3);
-graphics.c(493): warning:  #188-D: enumerated type mixed with another type
+OWS/2+sin(theta)*r, 0, 0, 3);
+graphics.c(496): warning:  #188-D: enumerated type mixed with another type
   	drawCard(
 OLS/2+cos(theta)*r , 
 OWS/2+sin(theta)*r, 0, 3, 3);
 graphics.c(496): warning:  #188-D: enumerated type mixed with another type
   	drawCard(
 OLS/2+cos(theta)*r , 
-OWS/2+sin(theta)*r, 0, 1, 3);
-graphics.c(496): warning:  #188-D: enumerated type mixed with another type
+OWS/2+sin(theta)*r, 0, 3, 3);
+graphics.c(499): warning:  #188-D: enumerated type mixed with another type
   	drawCard(
 OLS/2+cos(theta)*r , 
 OWS/2+sin(theta)*r, 0, 1, 3);
 graphics.c(499): warning:  #188-D: enumerated type mixed with another type
   	drawCard(
 OLS/2+cos(theta)*r , 
-OWS/2+sin(theta)*r, 0, 2, 3);
-graphics.c(499): warning:  #188-D: enumerated type mixed with another type
+OWS/2+sin(theta)*r, 0, 1, 3);
+graphics.c(502): warning:  #188-D: enumerated type mixed with another type
   	drawCard(
 OLS/2+cos(theta)*r , 
 OWS/2+sin(theta)*r, 0, 2, 3);
-graphics.c(476): warning:  #177-D: variable "y"  was declared but never referenced
+graphics.c(502): warning:  #188-D: enumerated type mixed with another type
+  	drawCard(
+OLS/2+cos(theta)*r , 
+OWS/2+sin(theta)*r, 0, 2, 3);
+graphics.c(479): warning:  #177-D: variable "y"  was declared but never referenced
   	int y = ROWS/2;
-graphics.c(562): warning:  #940-D: missing return statement at end of non-void function "drawWirelessSearchScreen" 
+graphics.c(565): warning:  #940-D: missing return statement at end of non-void function "drawWirelessSearchScreen" 
   }
-graphics.c(550): warning:  #177-D: variable "y"  was declared but never referenced
+graphics.c(553): warning:  #177-D: variable "y"  was declared but never referenced
   	int y = ROWS/2;
-graphics.c(573): warning:  #940-D: missing return statement at end of non-void function "drawControls" 
+graphics.c(576): warning:  #940-D: missing return statement at end of non-void function "drawControls" 
   }
-graphics.c(592): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+graphics.c(633): warning:  #940-D: missing return statement at end of non-void function "drawEndGame" 
+  }
+graphics.c(652): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			theta +=0.04;
-graphics.c(604): warning:  #940-D: missing return statement at end of non-void function "draw" 
+graphics.c(667): warning:  #940-D: missing return statement at end of non-void function "draw" 
   }
-graphics.c: 35 warnings, 0 errors
+graphics.c: 36 warnings, 0 errors
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=20704 RO-data=2384 RW-data=172 ZI-data=4156  
-".\obj\ece353_base_project.axf" - 0 Error(s), 66 Warning(s).
+Program Size: Code=22160 RO-data=2592 RW-data=188 ZI-data=4772  
+".\obj\ece353_base_project.axf" - 0 Error(s), 77 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -239,12 +266,12 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.1
-      Include file:  Device\Include\TM4C123\TM4C123.h
-      Source file:   Device\Source\system_TM4C123.c
       Source file:   Device\Source\ARM\startup_TM4C123.s
+      Source file:   Device\Source\system_TM4C123.c
+      Include file:  Device\Include\TM4C123\TM4C123.h
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:11
+Build Time Elapsed:  00:00:12
 </pre>
 </body>
 </html>

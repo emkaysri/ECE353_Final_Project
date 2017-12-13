@@ -1,6 +1,5 @@
 #include "graphics.h"
-#include "math.h"
-#include <stdlib.h>
+
 
 uint16_t defaultColor = LCD_COLOR_BLACK; 
 
@@ -14,8 +13,7 @@ int distanceAbs(struct POINT a , struct POINT b) {
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y) ;
 }
 
-extern EVENT_DATA   global_event_data;
-extern GAMESTATE_DATA  global_game_state_data;
+
 
 
 
@@ -375,52 +373,61 @@ void drawBettingOptions(int x, int y, int width, int height) {
 	
 }
 
-void drawDealer(int x, int y, int width, int height) {
+void drawDealer(int x, int y, int width, int height, bool reveal) {
 	int increment = 15;
 	
-	
-		
-	struct POINT dealerCardOne; 
-	struct POINT dealerCardTwo; 
+	int i = 0 ;
+	struct POINT dealerCards[5];
+	for (i = 0 ; i<5;i++) {
+		dealerCards[i].x = x+increment*i;
+		dealerCards[i].y = y + height - increment*i;
+	}
 	
 	height-=30;
 	
-	dealerCardOne.x = x+increment;
-	dealerCardOne.y = y + height - increment;
-	
-	dealerCardTwo.x = x+increment*2;
-	dealerCardTwo.y = y + height - increment*2;
-	
 	drawString("DEALER HAND", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
-	
-	drawCard(dealerCardOne.x, dealerCardOne.y, 1, 1, 0);
-	drawCard(dealerCardTwo.x, dealerCardTwo.y, 1, 1, 3);
+	if(reveal){
+		i = 0;
+	} else{
+		drawCard(dealerCards[i].x, dealerCards[i].y, dealerHand[i] % 13, dealerHand[i] / 13, 0);
+		i = 1;
+	}
+	for (; i<dealerNumCards;i++) {
+		drawCard(dealerCards[i].x, dealerCards[i].y, dealerHand[i]%13, dealerHand[i]/13, 3);
+	}
 	
 	
 }
 
 void drawPlayer(int x, int y, int width, int height) {
-	int increment = 15;
-	struct POINT playerCardOne; 
-	struct POINT playerCardTwo; 
-	struct POINT playerCardThree; 
+	int increment = 12;
+	int i;
+	struct POINT playerCards[2][5]; 
 	
 	height-=30;
 	
-	playerCardOne.x = x+increment;
-	playerCardOne.y = y + height - increment;
+	for (i = 0 ; i<5;i++) {
+		playerCards[0][i].x = x+increment*i;
+		playerCards[0][i].y = y + height - increment*i;
+	}
+	x+=20;
 	
-	playerCardTwo.x = x+increment*2;
-	playerCardTwo.y = y + height - increment*2;
-	
-	playerCardThree.x = x+increment*3;
-	playerCardThree.y = y + height - increment*3;
+	for (i = 0 ; i<5;i++) {
+		playerCards[1][i].x = x+increment*i;
+		playerCards[1][i].y = y + height - increment*i;
+	}
+
 	
 	drawStringCentered("YOUR HAND", x +30 , y + height + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
-	drawCard(playerCardOne.x, playerCardOne.y, 1, 1, 0);
-	drawCard(playerCardTwo.x, playerCardTwo.y, 1, 2, 1);
-	drawCard(playerCardThree.x, playerCardThree.y, 1, 1, 3);
+	for (i = 0 ; i<this_player.numCards[0];i++) {
+		drawCard(playerCards[0][i].x, playerCards[0][i].y, this_player.hand[0][i]%13,this_player.hand[0][i]/13, 3);
+	}
+	
+	for (i = 0 ; i<this_player.numCards[1];i++) {
+		drawCard(playerCards[1][i].x, playerCards[1][i].y, this_player.hand[1][i]%13,this_player.hand[1][i]/13, 3);
+	}
+
 }
 
 void drawGameState(int x, int y, int width, int height) {
@@ -448,7 +455,7 @@ int drawGameScreenOutLineAndData() {
 	
 	// Dealer Area
 	
-	drawDealer((uint16_t)(0.4*COLS)+10, 0, (uint16_t)(0.6*COLS)-10, (uint16_t)(0.4*ROWS));
+	drawDealer((uint16_t)(0.4*COLS)+10, 0, (uint16_t)(0.6*COLS)-10, (uint16_t)(0.4*ROWS), false);
 	// Controls Areas
 	//drawRect(0, (uint16_t)(0.4*COLS), 0, (uint16_t)(0.3*ROWS), LCD_COLOR_BLACK);
 	//drawRect(0, (uint16_t)(0.4*COLS)-4, 0, (uint16_t)(0.3*ROWS)-4, LCD_COLOR_WHITE);
@@ -616,6 +623,12 @@ int drawEndGame() {
 	strcat(betMoney, number);	
 	
 	drawString(betMoney, x , y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	}
+	
+	drawStringCentered("PRESS SCREEN TO CONTINUE", COLS/2 , y-20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	
+	if (global_event_data.capTouchEvent.valid) {
+		global_game_state_data.currentScreenState = RESET;
 	}
 }
 
