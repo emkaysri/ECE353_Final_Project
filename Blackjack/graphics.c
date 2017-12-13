@@ -355,16 +355,22 @@ void reverse(char s[])
 void drawBettingOptions(int x, int y, int width, int height) {
 	
 	
-	char totalString[50] = "TOTAL$";
+	char totalMoney[50] = "TOTAL$";
+	char betMoney[50] = "BET $";
 	
 	char number[10];
 	itoa(global_game_state_data->playerOneMoney,number);
 	
-	strcat(totalString, number);
+	strcat(totalMoney, number);
 	
-	drawString(totalString, x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	drawString(totalMoney, x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+
+
+	itoa(global_game_state_data->playerOneBet,number);
 	
-	drawString("BET $500", x , y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	strcat(betMoney, number);	
+	
+	drawString(betMoney, x , y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
 	drawStringSelected("INCREASE BET", x , y + 40, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	

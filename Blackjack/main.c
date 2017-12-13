@@ -154,6 +154,8 @@ void update_global_event_data() {
 	global_event_data.joystickEvent.x = ps2_get_x() ; 
 	global_event_data.joystickEvent.y = ps2_get_y() ; 
 	
+	
+	
 	// TODO CURRENTLY ONE OVERWRITES THE OTHER
 	
 	if (global_event_data.joystickEvent.x > JOYSTICK_THRESH*3) {
@@ -162,10 +164,21 @@ void update_global_event_data() {
 		global_event_data.joystickEvent.dir = RIGHT_DIR;
 	}
 	
-	if (global_event_data.joystickEvent.y > JOYSTICK_THRESH*3) {
+	if (global_event_data.joystickEvent.y > 2100) {
+		uint16_t inc = (global_event_data.joystickEvent.y-2040)/100;
 		global_event_data.joystickEvent.dir = UP_DIR ; 
-	} else if (global_event_data.joystickEvent.y < JOYSTICK_THRESH) {
-		global_event_data.joystickEvent.dir = DOWN_DIR ; 
+		
+		if (global_game_state_data.playerOneBet+inc <= global_game_state_data.playerOneMoney) {
+			global_game_state_data.playerOneBet+=inc;
+		}
+		
+	} else if (global_event_data.joystickEvent.y < 2000) {
+		uint16_t inc = (2040-global_event_data.joystickEvent.y)/100;		
+		global_event_data.joystickEvent.dir = DOWN_DIR ;
+		
+		if (global_game_state_data.playerOneBet-inc >= 0) {
+			global_game_state_data.playerOneBet-=inc;
+		}
 	}
 	
 	
@@ -192,6 +205,8 @@ void update_global_event_data() {
 void initGameState() {
 	global_game_state_data.numPlayer = 1;
 	global_game_state_data.currentScreenState = START_SCREEN; 
+	global_game_state_data.playerOneMoney = 25000;
+	global_game_state_data.playerOneBet = 0;
 }
 
 void write_debug_data() {	
