@@ -1,9 +1,11 @@
 #include "wireless.h"
+#include "timers.h"
 
 const char *wireless_error_messages[] = {"NRF24L01_TX_SUCCESS","NRF24L01_TX_FIFO_FULL","NRF24L01_TX_PCK_LOST", "NRF24L01_RX_SUCCESS", "NRF24L01_RX_FIFO_EMPTY", "NRF24L01_ERR"};
 
 extern void spiTx(uint32_t base, uint8_t *tx_data, int size, uint8_t *rx_data);
 extern bool spiVerifyBaseAddr(uint32_t base);
+extern volatile bool data_flag;
 
 //*****************************************************************************
 // Busy wait for roughly 15uS.
@@ -611,6 +613,8 @@ wireless_get_32(
   {
     return NRF24L01_ERR;
   }
+	
+	data_flag = false; 
 }
 
 //*****************************************************************************
@@ -734,13 +738,16 @@ void wireless_initialize(void)
   RF_CE_PORT->DATA |= RF_CE_PIN;
 }
 
-void GPIOD_Handler(void)
+void GPIOC_Handler(void)
 {
-	// while(1) {};
-	// feed the dog here
-	//feed_dog();
+	
+	reset_watchDog();
+	
+	// indicate we have data present
+	data_flag = true; 
+	
 	// need to clear interrupt still
 	GPIOA_Type * gpio;
-	gpio = (GPIOA_Type *)GPIOD_BASE;
+	gpio = (GPIOA_Type *)GPIOC_BASE;
 	gpio->ICR |= RF_IRQ_PIN;
 }
