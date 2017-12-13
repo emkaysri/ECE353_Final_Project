@@ -14,13 +14,9 @@ int distanceAbs(struct POINT a , struct POINT b) {
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y) ;
 }
 
-EVENT_DATA *  global_event_data;
-GAMESTATE_DATA * global_game_state_data;
+extern EVENT_DATA   global_event_data;
+extern GAMESTATE_DATA  global_game_state_data;
 
-void graphics_init_data (EVENT_DATA * event_data,GAMESTATE_DATA * global_game) {
-	global_event_data = event_data;
-	global_game_state_data = global_game;
-}
 
 
 void clear(){
@@ -360,14 +356,14 @@ void drawBettingOptions(int x, int y, int width, int height) {
 	
 	char number[10];
 	drawRect(x, x+60,y, y +40, LCD_COLOR_WHITE);
-	itoa(global_game_state_data->playerOneMoney,number);
+	itoa(global_game_state_data.playerOneMoney,number);
 	
 	strcat(totalMoney, number);
 	 
 	drawString(totalMoney, x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 
 
-	itoa(global_game_state_data->playerOneBet,number);
+	itoa(global_game_state_data.playerOneBet,number);
 	
 	strcat(betMoney, number);	
 	
@@ -478,7 +474,7 @@ int drawHomeScreen(float theta) {
 	struct POINT cap_touch_event;
 	struct POINT Player2Disp = {COLS/2 - 40, ROWS-30} ; 
 	struct POINT Player1Disp = {COLS/2 + 40 , ROWS-30} ;
-	LAST_CAP_TOUCH_EVENT eventData = global_event_data->capTouchEvent ; 
+	LAST_CAP_TOUCH_EVENT eventData = global_event_data.capTouchEvent ; 
 
 	theta += 3.1419/100.0 ;	
 	drawStringCentered("BLACKJACK", COLS/2 , ROWS/2, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
@@ -504,13 +500,13 @@ int drawHomeScreen(float theta) {
 	cap_touch_event.y = eventData.y ;
 	
 	if ( distanceAbs(cap_touch_event , Player2Disp) < CAP_TOUCH_TOLERANCE_SQRD ) {
-		global_game_state_data->currentScreenState = GAME_SCREEN;
+		global_game_state_data.currentScreenState = GAME_SCREEN;
 		clear();
 		
 		
 		player_select_state = PLAYER_TWO_SELECT;
 	} else if ( distanceAbs(cap_touch_event , Player1Disp) < CAP_TOUCH_TOLERANCE_SQRD ) {
-		global_game_state_data->currentScreenState = GAME_SCREEN;
+		global_game_state_data.currentScreenState = GAME_SCREEN;
 		clear();
 		
 	
@@ -572,6 +568,57 @@ int drawControls() {
 	drawStringCentered("DOWN IS STAND", COLS/2 , 120, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 }
 
+int drawEndGame() {
+	int x = ROWS/2;
+	int y = COLS/2;
+
+	
+	
+	if (global_game_state_data.playerOneWin == 1) {
+	char totalMoney[50] = "YOU HAVE$";
+	char betMoney[50] = "YOU WON $";
+	
+	char number[10];
+	clear();
+		drawStringCentered("CONGRATS", COLS/2 , y-20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	itoa(global_game_state_data.playerOneMoney,number);
+	
+	strcat(totalMoney, number);
+	 
+	drawString(totalMoney, x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+
+
+	itoa(global_game_state_data.playerOneBet,number);
+	
+	strcat(betMoney, number);	
+	
+	drawString(betMoney, x , y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+		
+
+	} else {
+		
+		
+			char totalMoney[50] = "YOU HAVE $";
+	char betMoney[50] = "YOU LOST $";
+	
+	char number[10];
+	clear();
+		drawStringCentered("YOU LOST", COLS/2 , y-20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	itoa(global_game_state_data.playerOneMoney,number);
+	
+	strcat(totalMoney, number);
+	 
+	drawString(totalMoney, x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+
+
+	itoa(global_game_state_data.playerOneBet,number);
+	
+	strcat(betMoney, number);	
+	
+	drawString(betMoney, x , y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	}
+}
+
 static float theta = 3.1419/2;
 
 SCREEN_STATE prev_state;
@@ -579,14 +626,14 @@ SCREEN_STATE prev_state;
 int draw() {
 	
 
-	if (prev_state!=global_game_state_data->currentScreenState) {
+	if (prev_state!=global_game_state_data.currentScreenState) {
 		clear();
-		prev_state = global_game_state_data->currentScreenState; 
+		prev_state = global_game_state_data.currentScreenState; 
 	}
 	
 
 	
-	switch(global_game_state_data->currentScreenState) {
+	switch(global_game_state_data.currentScreenState) {
 		case START_SCREEN:
 			drawHomeScreen(theta);
 			theta +=0.04;
@@ -596,6 +643,9 @@ int draw() {
 			break;
 		case CONTROLS:
 			drawControls();
+			break;
+		case END_GAME:
+			drawEndGame();
 			break;
 		default:
 			drawStringCentered("DRAW STATE ERROR", COLS/2 , ROWS/2, LCD_COLOR_RED,LCD_COLOR_WHITE) ;

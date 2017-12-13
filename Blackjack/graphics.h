@@ -42,8 +42,6 @@ void drawString(char * inputString, int x, int y, uint16_t color, uint16_t color
 int drawGameScreenOutLineAndData();
 int drawHomeScreen(float theta);
 void clear();
-
-void graphics_init_data (EVENT_DATA * event_data,GAMESTATE_DATA * global_game_state_data);
 int draw(); 
 
 

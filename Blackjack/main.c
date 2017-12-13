@@ -245,7 +245,7 @@ void write_debug_data() {
 	}
 	printf("* PS2 X: %d Y: %d\n\r",global_event_data.joystickEvent.x,global_event_data.joystickEvent.y);
 	printf("* LAST PUSHBUTTON X: %d Y: %d \n\r",0,0);
-  printf("**************************************\n\r");
+  printf("**************************************\n\r"); 
 	
 	// Test I2C buttons
 
@@ -289,7 +289,6 @@ main(void)
 	
 	initializeBoard() ;
 	initGameState();
-	graphics_init_data (&global_event_data,&global_game_state_data);
 	
 	
 	printf("**************************************\n\r");

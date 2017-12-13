@@ -46,8 +46,8 @@
 #include "io_expander.h"
 #include "event.h"
 
-static EVENT_DATA global_event_data;
-static GAMESTATE_DATA global_game_state_data;
+ EVENT_DATA global_event_data;
+ GAMESTATE_DATA global_game_state_data;
 volatile bool data_flag;
 
 #endif

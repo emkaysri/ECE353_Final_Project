@@ -37,7 +37,7 @@ extern const uint8_t Bitmaps_X[];
 #define USER_CARD_HEIGHT    XX
 extern const uint8_t Bitmaps_X[];
 
-volatile int up, down, left, right;
+extern volatile int up, down, left, right;
 
 typedef struct{
   int hand[2][5];

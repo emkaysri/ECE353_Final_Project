@@ -53,7 +53,9 @@ enum PLAYER_SELECT {
 typedef enum  {
 	START_SCREEN,
 	GAME_SCREEN,
-	CONTROLS
+	CONTROLS,
+	END_GAME,
+	RESET
 }SCREEN_STATE;
 
 
@@ -61,9 +63,8 @@ typedef struct {
 	uint8_t numPlayer;
 	SCREEN_STATE currentScreenState;
 	uint16_t playerOneMoney;
-	uint16_t playerTwoMoney;
 	uint16_t playerOneBet;
-	uint16_t playerTwoBet;
+	uint16_t playerOneWin;
 } GAMESTATE_DATA;
 
 

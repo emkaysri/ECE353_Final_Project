@@ -744,11 +744,9 @@ void GPIOC_Handler(void)
 	reset_watchDog();
 	
 	// indicate we have data present
-	
+	data_flag = true; 
 	
 	// need to clear interrupt still
-	
-	data_flag = true; 
 	gpio = (GPIOA_Type *)GPIOC_BASE;
 	gpio->ICR |= RF_IRQ_PIN;
 }

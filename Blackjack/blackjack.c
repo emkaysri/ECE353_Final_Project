@@ -1,26 +1,10 @@
 
 #include "blackjack.h"
 
-
-EVENT_DATA *  global_event_data;
-GAMESTATE_DATA * global_game_state_data;
-/*
- EVENT_DATA * global_event_data;
- GAMESTATE_DATA * global_game_state_data;
-
-int dealerSum, dealerNumCards;
-player this_player;
-*/
 /*******************************************************************************
 * Function Name: display_main_menu
 ********************************************************************************
 *******************************************************************************/
-
-void blackjack_init_data (EVENT_DATA * event_data,GAMESTATE_DATA * global_game) {
-	global_event_data = event_data;
-	global_game_state_data = global_game;
-}
-
 bool display_main_menu(void) { return true; }
 
 /*******************************************************************************
@@ -28,6 +12,9 @@ bool display_main_menu(void) { return true; }
 ********************************************************************************
 *******************************************************************************/
  
+extern EVENT_DATA   global_event_data;
+extern GAMESTATE_DATA  global_game_state_data;
+
 void master_game(uint8_t* playerOneID, uint8_t* playerTwoID)
 {
     
@@ -39,12 +26,12 @@ void master_game(uint8_t* playerOneID, uint8_t* playerTwoID)
     *gameState.dealerHand = (int) malloc(sizeof(uint8_t));
     this_player.playerID = playerOneID;
     this_player.money = 25000;
-    shuffle_cards();
+    nextCard();
     while (1) {
         //get bet
 			
         bool done;
-			this_player.bet = global_game_state_data->playerOneBet;
+			this_player.bet = global_game_state_data.playerOneBet;
 
         dealerNumCards = 0;       
         for (j = 0; j < 2; j++) {
@@ -151,8 +138,18 @@ void endTurn(void) {
         totalmoney += this_player.bet;
       }
     }
-    this_player.money += totalmoney;
-    DisplayWinorLoss(&this_player, totalmoney);
+    //this_player.money += totalmoney;
+		
+		global_game_state_data.playerOneMoney += totalmoney;
+		
+		if (totalmoney < 0) {
+			global_game_state_data.playerOneWin = -1;
+		} else {
+			global_game_state_data.playerOneWin = 1;
+		}
+		
+		global_game_state_data.currentScreenState = END_GAME;
+    //DisplayWinorLoss(&this_player, totalmoney);
 }
 /*
 int Bet(player *p) {
