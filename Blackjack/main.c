@@ -172,12 +172,18 @@ void update_global_event_data() {
 			global_game_state_data.playerOneBet+=inc;
 		}
 		
+		
+		
 	} else if (global_event_data.joystickEvent.y < 2000) {
 		uint16_t inc = (2040-global_event_data.joystickEvent.y)/100;		
 		global_event_data.joystickEvent.dir = DOWN_DIR ;
 		
 		if (global_game_state_data.playerOneBet-inc >= 0) {
 			global_game_state_data.playerOneBet-=inc;
+		}
+		
+		if (global_game_state_data.playerOneBet<inc) {
+			global_game_state_data.playerOneBet=0;
 		}
 	}
 	
