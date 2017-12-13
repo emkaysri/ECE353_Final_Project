@@ -47,6 +47,6 @@
 #include "event.h"
 
 static EVENT_DATA global_event_data;
-
+static GAMESTATE_DATA global_game_state_data;
 
 #endif

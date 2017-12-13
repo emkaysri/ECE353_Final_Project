@@ -48,7 +48,18 @@ struct POINT {
 enum PLAYER_SELECT {
 	PLAYER_ONE_SELECT,
 	PLAYER_TWO_SELECT,
+	NONE
 };
+
+typedef enum  {
+	START_SCREEN,
+	GAME_SCREEN
+}SCREEN_STATE;
+
+typedef struct {
+	uint8_t numPlayer;
+	SCREEN_STATE currentScreenState;
+} GAMESTATE_DATA;
 
 
 

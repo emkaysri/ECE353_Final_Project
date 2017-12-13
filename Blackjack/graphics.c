@@ -7,16 +7,18 @@ uint16_t defaultBackgroundColor = LCD_COLOR_WHITE;
 
 
 
-enum PLAYER_SELECT player_select_state = PLAYER_ONE_SELECT ; 
+enum PLAYER_SELECT player_select_state = NONE ; 
 
 int distanceAbs(struct POINT a , struct POINT b) {
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y) ;
 }
 
-const EVENT_DATA *  global_event_data;
+EVENT_DATA *  global_event_data;
+GAMESTATE_DATA * global_game_state_data;
 
-void graphics_init_data (EVENT_DATA * event_data) {
+void graphics_init_data (EVENT_DATA * event_data,GAMESTATE_DATA * global_game) {
 	global_event_data = event_data;
+	global_game_state_data = global_game;
 }
 
 
@@ -454,8 +456,16 @@ int drawHomeScreen(float theta) {
 	cap_touch_event.x = eventData.x ;
 	cap_touch_event.y = eventData.y ;
 	if ( distanceAbs(cap_touch_event , Player2Disp) < CAP_TOUCH_TOLERANCE_SQRD ) {
+		global_game_state_data->currentScreenState = GAME_SCREEN;
+		clear();
+		
+		
 		player_select_state = PLAYER_TWO_SELECT;
 	} else if ( distanceAbs(cap_touch_event , Player1Disp) < CAP_TOUCH_TOLERANCE_SQRD ) {
+		global_game_state_data->currentScreenState = GAME_SCREEN;
+		clear();
+		
+	
 		player_select_state = PLAYER_ONE_SELECT;
 	}
 	// cheat
@@ -471,15 +481,54 @@ int drawHomeScreen(float theta) {
 				drawStringCentered("2 PLAYER", Player2Disp.x, Player2Disp.y ,LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 				drawStringSelectedAndCentered("1 PLAYER",Player1Disp.x, Player1Disp.y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 				break;
+		case NONE :
+				drawStringCentered("2 PLAYER", Player2Disp.x, Player2Disp.y ,LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				drawStringCentered("1 PLAYER",Player1Disp.x, Player1Disp.y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+				break;
 		default:
 			return -1;
 	}
 
-
-	drawStringCentered("TOUCH TO SELECT", COLS/2 , ROWS-10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	if (player_select_state==NONE) {
+		drawStringCentered("TOUCH TO SELECT", COLS/2 , ROWS-10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	} else {
+		drawStringCentered("TAP AGAIN TO CONFIRM", COLS/2 , ROWS-10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	}
 	
 	return 0;
 	
+}
+
+
+int drawWirelessSearchScreen(float theta) {
+	int y = ROWS/2;
+	int r = 80;
+	
+	theta+=(3.1419*(2.0/4.0));
+	lcd_draw_rectangle_centered(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 0, 0, 3);
+		theta+=(3.1419*(2.0/4.0));
+//	drawStringCentered("JASON SYLVESTRE", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	lcd_draw_rectangle_centered(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 0, 3, 3);
+		theta+=(3.1419*(2.0/4.0));
+//	drawStringCentered("SRINIDHI EMKAY", COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	lcd_draw_rectangle_centered(COLS/2+cos(theta)*r , ROWS/2+sin(theta)*r, 0, 1, 3);
+		theta+=(3.1419*(2.0/4.0));
+}
+
+static float theta = 3.1419/2;
+int draw() {
+	switch(global_game_state_data->currentScreenState) {
+		case START_SCREEN:
+			drawHomeScreen(theta);
+			theta +=0.04;
+			break;
+		case GAME_SCREEN:
+			drawGameScreenOutLineAndData();
+			break;
+		default:
+			drawStringCentered("DRAW STATE ERROR", COLS/2 , ROWS/2, LCD_COLOR_RED,LCD_COLOR_WHITE) ;
+			return -1;
+	}
 }
 
 

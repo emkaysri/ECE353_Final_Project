@@ -43,8 +43,8 @@ int drawGameScreenOutLineAndData();
 int drawHomeScreen(float theta);
 void clear();
 
-void graphics_init_data (EVENT_DATA * event_data);
-
+void graphics_init_data (EVENT_DATA * event_data,GAMESTATE_DATA * global_game_state_data);
+int draw(); 
 
 
 #endif

@@ -54,6 +54,9 @@ void EnableInterrupts(void)
   }
 }
 
+uint8_t myID[]      = { 3,5,3,9,8};
+uint8_t remoteID[]  = { 3,5,3,9,7};
+
 
 //*****************************************************************************
 // Initialize board hardware
@@ -136,9 +139,13 @@ bool sw2_debounce(void)
 
 void update_global_event_data() {
 	if (ft6x06_read_td_status()) {
-		global_event_data.capTouchEvent.valid = true;
-		global_event_data.capTouchEvent.x = ft6x06_read_x();
-		global_event_data.capTouchEvent.y = ft6x06_read_y();
+		
+		if (!global_event_data.capTouchEvent.valid) {
+			global_event_data.capTouchEvent.valid = true;
+			global_event_data.capTouchEvent.x = ft6x06_read_x();
+			global_event_data.capTouchEvent.y = ft6x06_read_y();
+		}
+		
 	} else {
 		global_event_data.capTouchEvent.valid = false;
 	}
@@ -162,6 +169,11 @@ void update_global_event_data() {
 	
 }
 
+void initGameState() {
+	global_game_state_data.numPlayer = 1;
+	global_game_state_data.currentScreenState = START_SCREEN; 
+}
+
 void write_debug_data() {	
 	
 	uint8_t buttons;
@@ -173,7 +185,7 @@ void write_debug_data() {
 	printf("* CAP TOUCH EVENT #: %d\n\r",global_event_data.capTouchEvent.valid);
 	
 	if (global_event_data.capTouchEvent.valid) {
-		printf("* CAP TOUCH X: %d Y: %d\n\r",global_event_data.joystickEvent.x,global_event_data.joystickEvent.y);
+		printf("* CAP TOUCH X: %d Y: %d\n\r",global_event_data.capTouchEvent.x,global_event_data.capTouchEvent.y);
 	}
 	printf("* PS2 X: %d Y: %d\n\r",global_event_data.joystickEvent.x,global_event_data.joystickEvent.y);
 	printf("* LAST PUSHBUTTON X: %d Y: %d \n\r",0,0);
@@ -223,8 +235,19 @@ main(void)
 	int t = 0 ;
 	float theta = 3.1419/2; 
 	
+
+	
 	initializeBoard() ;
-	graphics_init_data (&global_event_data);
+	initGameState();
+	graphics_init_data (&global_event_data,&global_game_state_data);
+	
+	
+	printf("**************************************\n\r");
+	
+	printf("****				INIT BLACK JACK				****\n\r");
+	
+	printf("**************************************\n\r");
+	
 	
 	
 //	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
@@ -244,10 +267,11 @@ main(void)
 	//wireless_connect();
 	 
 	
-	//timers_init(TIMER1_BASE, 5000, 10, TIMER1A_IRQn, 1, TIMER5_BASE, 150000000, 0, TIMER5A_IRQn, 1); 
-	
-	
 	clear() ;
+	
+	//Throw out first few cap touch event
+	write_debug_data() ; 
+	write_debug_data() ; 
 		
 	// MAIN GAME LOGIC LOOP
 	// Program should never exit this loop, from starting screen to games
@@ -257,31 +281,7 @@ main(void)
 		update_global_event_data() ;
 		write_debug_data() ; 
 		
-		
-		// This is the start screen state
-		
-		while (startScreen) {
-			update_global_event_data() ;
-			write_debug_data() ; 
-			drawHomeScreen(theta);
-			theta +=0.04;
-			
-			// essentially wait 0.01 second
-			for (i =0 ; i< 10; i++) {
-				while (!ALERT_1MS) {
-				
-				}
-			
-				ALERT_1MS = false; 
-			}
-			
-			//clear() ;
-		}
-		
-	
-	clear() ;
-		
-	drawGameScreenOutLineAndData();
+		draw() ; 
 	
 
 	// If SW2 is pressed, write names and group number to EEPROM
