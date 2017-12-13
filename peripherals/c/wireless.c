@@ -1,7 +1,5 @@
 #include "wireless.h"
 
-#define TX_MODE  true
-
 const char *wireless_error_messages[] = {"NRF24L01_TX_SUCCESS","NRF24L01_TX_FIFO_FULL","NRF24L01_TX_PCK_LOST", "NRF24L01_RX_SUCCESS", "NRF24L01_RX_FIFO_EMPTY", "NRF24L01_ERR"};
 
 extern void spiTx(uint32_t base, uint8_t *tx_data, int size, uint8_t *rx_data);
@@ -686,7 +684,8 @@ bool wireless_configure_device(
 //*****************************************************************************
 void wireless_initialize(void)
 {  
-  
+	GPIOA_Type  *gpioPort;
+
   gpio_enable_port(RF_GPIO_BASE);
   
   // Configure SPI CLK
@@ -714,54 +713,34 @@ void wireless_initialize(void)
   gpio_enable_port(RF_CE_GPIO_BASE);
   gpio_config_digital_enable(RF_CE_GPIO_BASE,RF_CE_PIN);
   gpio_config_enable_output(RF_CE_GPIO_BASE,RF_CE_PIN);
+  
+	// configure IRQ
+	gpio_enable_port(RF_IRQ_GPIO_BASE);
+	gpio_config_digital_enable(RF_IRQ_GPIO_BASE, RF_IRQ_PIN);
+	gpio_config_enable_input(RF_IRQ_GPIO_BASE, RF_IRQ_PIN);
+	
+	gpioPort = (GPIOA_Type *) RF_IRQ_GPIO_BASE;
+	gpioPort->IM &= ~RF_IRQ_PIN; // mask interrupt
+	gpioPort->IS &= ~RF_IRQ_PIN; // level-sensitive
+	gpioPort->IBE &= ~RF_IRQ_PIN; // int controlled bt IEV
+	gpioPort->IEV &= ~RF_IRQ_PIN; // falling edge triggers
+	gpioPort->ICR |= RF_IRQ_PIN;  // clear the interrupt reg
+	gpioPort->IM |= RF_IRQ_PIN; // unmask interrupt
+	
+	NVIC_EnableIRQ(gpio_get_irq_num(RF_IRQ_GPIO_BASE));
+	NVIC_SetPriority(gpio_get_irq_num(RF_IRQ_GPIO_BASE), 0);
 
   initialize_spi( RF_SPI_BASE, 0, 10);
   RF_CE_PORT->DATA |= RF_CE_PIN;
 }
 
-//*****************************************************************************
-// Test Rx and Tx of the wireless radio
-//*****************************************************************************
-void wireless_test(void)
+void GPIOD_Handler(void)
 {
-	wireless_com_status_t status;
-	int i = 0;
-	int j = 0;
-	uint32_t data;
-	
-	if(TX_MODE)
-  {
-    printf("Tx Mode\n\r");
-  }
-  else
-  {
-    printf("Rx Mode\n\r");
-  }
-
-  // Infinite Loop
-  while(1)
-  {
-
-      if(TX_MODE && AlertOneSec)
-      {
-          printf("Sending: %d\n\r",i);
-          status = wireless_send_32(false, false, i);
-          if(status != NRF24L01_TX_SUCCESS)
-          {
-            printf("Error Message: %s\n\r",wireless_error_messages[status]);
-          }
-          AlertOneSec = false;
-          i++;
-      }
-      else if (!TX_MODE)
-      {
-        status =  wireless_get_32(false, &data);
-        if(status == NRF24L01_RX_SUCCESS)
-        {
-            printf("Received: %d\n\r", data);
-        }
-        
-        AlertOneSec = false;
-      }
-    }
+	// while(1) {};
+	// feed the dog here
+	//feed_dog();
+	// need to clear interrupt still
+	GPIOA_Type * gpio;
+	gpio = (GPIOA_Type *)GPIOD_BASE;
+	gpio->ICR |= RF_IRQ_PIN;
 }
