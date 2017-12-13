@@ -33,6 +33,7 @@ char group[] =     "Team Number: 36";
 // timer variables
 extern volatile bool ALERT_1MS;
 extern volatile bool ALERT_5000MS;
+extern volatile int up, down, left, right;
 
 //*****************************************************************************
 // 
@@ -123,14 +124,14 @@ void wireless_connect(){
 //*****************************************************************************
 // Switch 2 Debounce 
 //*****************************************************************************
-bool sw2_debounce(void) 
+void button_debounce(void) 
 {
-	if (lp_io_read_pin(SW2_BIT)){
-	// button pressed
-	  return false;
-	}
-	// button not pressed
-	return true;
+	uint8_t buttons;
+	buttons = io_expander_read_buttons();
+	up = (buttons & DIR_BTN_UP_PIN) == 0 ? ++up : 0;
+	down = (buttons & DIR_BTN_DOWN_PIN) == 0 ? ++down : 0;	
+	right = (buttons & DIR_BTN_RIGHT_PIN) == 0 ? ++right : 0;	
+	left = (buttons & DIR_BTN_LEFT_PIN) == 0 ? ++left : 0;
 }
 
 
@@ -211,7 +212,7 @@ void initGameState() {
 
 void write_debug_data() {	
 	
-	uint8_t buttons;
+	
 	uint8_t LEDs = 0xF1;
 	char info[80];
 	uint32_t data; 
@@ -228,20 +229,6 @@ void write_debug_data() {
   printf("**************************************\n\r");
 	
 	// Test I2C buttons
-	buttons = io_expander_read_buttons();
-	if (buttons & DIR_BTN_UP_PIN) {
-		printf("UP BUTTON PRESSED \n\r");
-	}
-	
-	if (buttons & DIR_BTN_DOWN_PIN) {
-		printf("DOWN BUTTON PRESSED \n\r");
-	}
-	if (buttons & DIR_BTN_LEFT_PIN) {
-		printf("LEFT BUTTON PRESSED \n\r");
-	}
-	if (buttons & DIR_BTN_RIGHT_PIN) {
-		printf("RIGHT BUTTON PRESSED \n\r");
-	}
 
 	
 	// Test I2C LEDs
@@ -280,6 +267,7 @@ main(void)
 	int i = SPADES ;
 	int t = 0 ;
 	float theta = 3.1419/2; 
+	up = 0, down = 0, left = 0, right = 0;
 	SCREEN_STATE prev_state = START_SCREEN;
 
 	
