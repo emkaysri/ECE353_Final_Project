@@ -240,7 +240,7 @@ static void watchdogTimeInit() {
 		
 	watchDog->LOAD = 750000000;
 		
-	//watchDog->CTL|=0x2;
+	watchDog->CTL|=0x2;
 		
 	watchDog->CTL |= 0x1;
 	NVIC_EnableIRQ(WATCHDOG0_IRQn);
@@ -354,5 +354,5 @@ void TIMER5A_Handler(void)
 
 void WDT0_Handler(void)
 {
-	while(1);
+//	while(1);
 }
