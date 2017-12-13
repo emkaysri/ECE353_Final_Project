@@ -275,13 +275,11 @@ main(void)
 	// MAIN GAME LOGIC LOOP
 	// Program should never exit this loop, from starting screen to games
 	while(true) {
-	  wireless_test();
-
 		bool startScreen = true;
 		float theta = 3.1419/2;
 		update_global_event_data() ;
 		write_debug_data() ; 
-		
+		wireless_test();
 		draw() ; 
 	
 

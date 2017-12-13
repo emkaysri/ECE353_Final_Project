@@ -7,6 +7,8 @@
 
 #include "gpio_port.h"
 #include "spi.h"
+#include "interrupts.h"
+
 
 //*****************************************************************************
 // Fill out the #defines below to configure which pins are connected to

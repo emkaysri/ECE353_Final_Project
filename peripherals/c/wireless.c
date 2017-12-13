@@ -1,5 +1,7 @@
 #include "wireless.h"
 
+#define TX_MODE  false
+
 const char *wireless_error_messages[] = {"NRF24L01_TX_SUCCESS","NRF24L01_TX_FIFO_FULL","NRF24L01_TX_PCK_LOST", "NRF24L01_RX_SUCCESS", "NRF24L01_RX_FIFO_EMPTY", "NRF24L01_ERR"};
 
 extern void spiTx(uint32_t base, uint8_t *tx_data, int size, uint8_t *rx_data);
@@ -727,44 +729,39 @@ void wireless_test(void)
 	int j = 0;
 	uint32_t data;
 	
-	printf("=== Starting RF Test ===\n\r");
-	printf("\t Set the Demo to Rx mode\n\r");
-	
-	
-	while ( i < 20)
-	{
-		printf("Sending %i\n\r",i);
-		status = wireless_send_32(false, false, i);
-		i++;
-		
-		for(j = 0; j < 5000000; j++)
-		{
-			// just count
-		}
-	}
-	
-  printf("\t Set the Demo to Tx mode\n\r");
-	for(j = 0; j < 50000000; j++)
-	{
-		// just count
-	}
-	
-  i = 0;	
-	while ( i < 20)
-	{
-		status =  wireless_get_32(false, &data);
-		
-		if(status == NRF24L01_RX_SUCCESS)
-		{
-				printf("Received: %d\n\r", data);
-				i++;
-		}
-		for(j = 0; j < 5000000; j++)
-		{
-			// just count
-		}
-	}
-	
-	 printf("=== Ending RF Test ===\n\r");
-	
+	if(TX_MODE)
+  {
+    printf("Tx Mode\n\r");
+  }
+  else
+  {
+    printf("Rx Mode\n\r");
+  }
+
+  // Infinite Loop
+  while(1)
+  {
+
+      if(TX_MODE && AlertOneSec)
+      {
+          printf("Sending: %d\n\r",i);
+          status = wireless_send_32(false, false, i);
+          if(status != NRF24L01_TX_SUCCESS)
+          {
+            printf("Error Message: %s\n\r",wireless_error_messages[status]);
+          }
+          AlertOneSec = false;
+          i++;
+      }
+      else if (!TX_MODE)
+      {
+        status =  wireless_get_32(false, &data);
+        if(status == NRF24L01_RX_SUCCESS)
+        {
+            printf("Received: %d\n\r", data);
+        }
+        
+        AlertOneSec = false;
+      }
+    }
 }
