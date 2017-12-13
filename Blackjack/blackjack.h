@@ -44,6 +44,8 @@ typedef struct{
   int money;
   int bet;
   int *playerID;
+	bool split;
+	bool hit;
 } player;
 
 /*
@@ -146,13 +148,13 @@ void play_game(void);
 *******************************************************************************/
 int nextCard(void);
 int Bet(void);
-bool requestbet(struct player *p);
+bool requestbet();
 void play_game(void);
 void shuffle_cards(void);
 void swap(int *a, int *b);
 void sendbet(void);
 void endTurn(void);
-void DisplayWinorLoss(struct player *p, int winLoss);
-void playerturn(struct player *p);
-int score(int val, bool high);
+void DisplayWinorLoss(player * p, int winLoss);
+void playerturn();
+int score(int * val, int num, bool high);
 #endif

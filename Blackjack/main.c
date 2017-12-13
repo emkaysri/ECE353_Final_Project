@@ -335,7 +335,7 @@ main(void)
 				ALERT_1MS = false; 
 			}
 
-
+			reset_watchDog();
 	}
 
 }
