@@ -240,10 +240,19 @@ static void watchdogTimeInit() {
 		
 	watchDog->LOAD = 750000000;
 		
-	watchDog->CTL|=0x2;
+	//watchDog->CTL|=0x2;
 		
 	watchDog->CTL |= 0x1;
+	NVIC_EnableIRQ(WATCHDOG0_IRQn);
+	NVIC_SetPriority(WATCHDOG0_IRQn,0);
 }
+
+void reset_watchDog() {
+	WATCHDOG0_Type * watchDog = (WATCHDOG0_Type *) WATCHDOG0_BASE;
+	watchDog->LOAD = 750000000;
+}
+
+
 	
 //*****************************************************************************
 // initialize timers for blackjack game
@@ -264,7 +273,7 @@ bool timers_init(
 	TIMER0_Type *gp1_timer;
 	TIMER0_Type *gp5_timer;
 
-	//watchdogTimeInit();
+	watchdogTimeInit();
 
 	  // Verify the base address.
   if (!verify_base_addr(base1_address) || !verify_base_addr(base5_address))
@@ -339,17 +348,11 @@ void TIMER5A_Handler(void)
 	ADC0->PSSI |= ADC_PSSI_SS2;
   ALERT_1MS = true;
 	
-	TIMER5->ICR |= TIMER_ICR_TATOCINT;
+  	TIMER5->ICR |= TIMER_ICR_TATOCINT;
 }
 
-/*
-// Alerts every 1 second
+
 void WDT0_Handler(void)
 {
-	WATCHDOG_TESTING++;
-	
-	if (WATCHDOG_TESTING == 15) {
-		// Reset board ?
-		
-	}
-}*/
+	while(1);
+}

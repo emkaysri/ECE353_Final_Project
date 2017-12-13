@@ -52,6 +52,7 @@ bool timers_init(
   uint32_t  timer5A_priority
 );
 
+void reset_watchDog();
 
 
 //*****************************************************************************
