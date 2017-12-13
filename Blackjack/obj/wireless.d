@@ -12,3 +12,9 @@
 .\obj\wireless.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\stdbool.h
 .\obj\wireless.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\errno.h
 .\obj\wireless.o: ..\drivers\include\spi.h
+.\obj\wireless.o: ..\drivers\include\interrupts.h
+.\obj\wireless.o: C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123.h
+.\obj\wireless.o: ..\drivers\include\pc_buffer.h
+.\obj\wireless.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\stdlib.h
+.\obj\wireless.o: ..\drivers\include\uart.h
+.\obj\wireless.o: ..\peripherals\include\validate.h

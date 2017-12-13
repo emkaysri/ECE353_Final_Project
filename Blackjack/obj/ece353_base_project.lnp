@@ -8,6 +8,7 @@
 ".\obj\spi.o"
 ".\obj\timers.o"
 ".\obj\uart.o"
+".\obj\interrupts.o"
 ".\obj\io_expander.o"
 ".\obj\lcd.o"
 ".\obj\eeprom.o"

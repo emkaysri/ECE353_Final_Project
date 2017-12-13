@@ -440,6 +440,11 @@
               <FileType>1</FileType>
               <FilePath>..\drivers\c\uart.c</FilePath>
             </File>
+            <File>
+              <FileName>interrupts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ICE-20-SPI-Nordic\interrupts.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

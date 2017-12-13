@@ -50,21 +50,21 @@ graphics.h(47): warning:  #1295-D: Deprecated declaration draw - give arg types
   int draw(); 
 graphics.h(50): warning:  #1-D: last line of file ends without a newline
   #endif
-main.c(181): warning:  #177-D: variable "info"  was declared but never referenced
+main.c(177): warning:  #177-D: variable "info"  was declared but never referenced
   	char info[80];
-main.c(278): warning:  #177-D: variable "startScreen"  was declared but never referenced
+main.c(274): warning:  #177-D: variable "startScreen"  was declared but never referenced
   		bool startScreen = true;
-main.c(279): warning:  #177-D: variable "theta"  was declared but never referenced
+main.c(275): warning:  #177-D: variable "theta"  was declared but never referenced
   		float theta = 3.1419/2;
-main.c(232): warning:  #177-D: variable "info"  was declared but never referenced
+main.c(228): warning:  #177-D: variable "info"  was declared but never referenced
   	char info[80];
-main.c(233): warning:  #177-D: variable "x"  was declared but never referenced
+main.c(229): warning:  #177-D: variable "x"  was declared but never referenced
   	int x = 30 ; 
-main.c(234): warning:  #177-D: variable "i"  was declared but never referenced
+main.c(230): warning:  #177-D: variable "i"  was declared but never referenced
   	int i = SPADES ;
-main.c(235): warning:  #177-D: variable "t"  was declared but never referenced
+main.c(231): warning:  #177-D: variable "t"  was declared but never referenced
   	int t = 0 ;
-main.c(236): warning:  #177-D: variable "theta"  was declared but never referenced
+main.c(232): warning:  #177-D: variable "theta"  was declared but never referenced
   	float theta = 3.1419/2; 
 main.c: 13 warnings, 0 errors
 compiling adc.c...
@@ -79,6 +79,7 @@ compiling uart.c...
 ..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
          return 0;
 ..\drivers\c\uart.c: 1 warning, 0 errors
+compiling interrupts.c...
 compiling io_expander.c...
 ..\peripherals\c\io_expander.c(65): warning:  #550-D: variable "status"  was set but never used
     i2c_status_t status;
@@ -102,19 +103,22 @@ compiling serial_debug.c...
      PC_Buffer *tx_buffer;
 ..\peripherals\c\serial_debug.c: 2 warnings, 0 errors
 compiling spi_select.c...
-compiling wireless.c...
 compiling image_data.c...
+compiling wireless.c...
+..\peripherals\c\wireless.c(729): warning:  #177-D: variable "j"  was declared but never referenced
+  	int j = 0;
+..\peripherals\c\wireless.c: 1 warning, 0 errors
 compiling ws2812b_ice.c...
 ..\peripherals\c\ws2812b_ice.c(52): warning:  #1-D: last line of file ends without a newline
   };
 ..\peripherals\c\ws2812b_ice.c: 1 warning, 0 errors
+assembling startup_TM4C123.s...
 compiling event.c...
 event.c(1): warning:  #1-D: last line of file ends without a newline
   #include "event.h"
 event.h(66): warning:  #1-D: last line of file ends without a newline
   #endif
 event.c: 2 warnings, 0 errors
-assembling startup_TM4C123.s...
 compiling graphics.c...
 event.h(66): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -203,8 +207,8 @@ graphics.c(532): warning:  #940-D: missing return statement at end of non-void f
 graphics.c: 34 warnings, 0 errors
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=19984 RO-data=2280 RW-data=156 ZI-data=4148  
-".\obj\ece353_base_project.axf" - 0 Error(s), 62 Warning(s).
+Program Size: Code=19972 RO-data=2412 RW-data=176 ZI-data=4144  
+".\obj\ece353_base_project.axf" - 0 Error(s), 63 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -233,7 +237,7 @@ Package Vendor: Keil
       Source file:   Device\Source\system_TM4C123.c
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:18
+Build Time Elapsed:  00:00:12
 </pre>
 </body>
 </html>

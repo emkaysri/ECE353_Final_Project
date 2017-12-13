@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Dec 12 20:07:50 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Dec 12 20:36:41 2017
 <BR><P>
 <H3>Maximum Stack Usage =        368 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -19,7 +19,6 @@ Mutually Recursive functions
  <LI><a href="#[7]">SVC_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[7]">SVC_Handler</a><BR>
  <LI><a href="#[8]">DebugMon_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[8]">DebugMon_Handler</a><BR>
  <LI><a href="#[9]">PendSV_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[9]">PendSV_Handler</a><BR>
- <LI><a href="#[a]">SysTick_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[a]">SysTick_Handler</a><BR>
  <LI><a href="#[b]">GPIOA_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[b]">GPIOA_Handler</a><BR>
  <LI><a href="#[c]">GPIOB_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[c]">GPIOB_Handler</a><BR>
  <LI><a href="#[d]">GPIOC_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[d]">GPIOC_Handler</a><BR>
@@ -210,7 +209,7 @@ Function Pointers
  <LI><a href="#[42]">SSI3_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[7]">SVC_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[27]">SYSCTL_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
- <LI><a href="#[a]">SysTick_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
+ <LI><a href="#[a]">SysTick_Handler</a> from interrupts.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[78]">SystemInit</a> from system_tm4c123.o(.text) referenced from startup_tm4c123.o(.text)
  <LI><a href="#[1e]">TIMER0A_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[1f]">TIMER0B_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
@@ -250,7 +249,7 @@ Function Pointers
  <LI><a href="#[58]">WTIMER5A_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[59]">WTIMER5B_Handler</a> from startup_tm4c123.o(.text) referenced from startup_tm4c123.o(RESET)
  <LI><a href="#[79]">__main</a> from entry.o(.ARM.Collect$$$$00000000) referenced from startup_tm4c123.o(.text)
- <LI><a href="#[7a]">fputc</a> from serial_debug.o(.text) referenced from printf1.o(i.__0printf$1)
+ <LI><a href="#[7a]">fputc</a> from serial_debug.o(.text) referenced from printf3.o(i.__0printf$3)
  <LI><a href="#[77]">main</a> from main.o(.text) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
 <P>
@@ -712,6 +711,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_serial_debug
 </UL>
 
+<P><STRONG><a name="[a]"></a>SysTick_Handler</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, interrupts.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
+</UL>
 <P><STRONG><a name="[9b]"></a>io_expander_write_LEDs</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = io_expander_write_LEDs &rArr; io_expander_byte_write &rArr; io_expander_wait_for_write &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
@@ -985,7 +987,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fgetc
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> printf1.o(i.__0printf$1)
+<BR>[Address Reference Count : 1]<UL><LI> printf3.o(i.__0printf$3)
 </UL>
 <P><STRONG><a name="[df]"></a>fgetc</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, serial_debug.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
@@ -1043,16 +1045,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_test
 </UL>
 
-<P><STRONG><a name="[f1]"></a>wireless_get_32</STRONG> (Thumb, 130 bytes, Stack size 16 bytes, wireless.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = wireless_get_32 &rArr; wireless_rx_fifo_empty &rArr; wireless_reg_read &rArr; spiTx
-</UL>
-<BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_rx_fifo_empty
+<P><STRONG><a name="[f1]"></a>wireless_get_32</STRONG> (Thumb, 130 bytes, Stack size 16 bytes, wireless.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_rx_fifo_empty
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_get_status
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_rx_data_payload
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_reg_write
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spiVerifyBaseAddr
-</UL>
-<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_test
 </UL>
 
 <P><STRONG><a name="[8f]"></a>wireless_configure_device</STRONG> (Thumb, 202 bytes, Stack size 32 bytes, wireless.o(.text))
@@ -1085,11 +1083,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeBoard
 </UL>
 
-<P><STRONG><a name="[9f]"></a>wireless_test</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, wireless.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = wireless_test &rArr; wireless_send_32 &rArr; wireless_clear_max_rt &rArr; wireless_reg_write &rArr; spiTx
+<P><STRONG><a name="[9f]"></a>wireless_test</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, wireless.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = wireless_test &rArr; wireless_send_32 &rArr; wireless_clear_max_rt &rArr; wireless_reg_write &rArr; spiTx
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_get_32
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_send_32
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1357,13 +1354,6 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
-</UL>
-<P><STRONG><a name="[a]"></a>SysTick_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_tm4c123.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
-</UL>
-<BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
@@ -2284,13 +2274,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 </UL>
 
-<P><STRONG><a name="[11c]"></a>__0printf$1</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
+<P><STRONG><a name="[11c]"></a>__0printf$3</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[13b]"></a>__1printf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
+<P><STRONG><a name="[13b]"></a>__1printf$3</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3), UNUSED)
 
-<P><STRONG><a name="[99]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1))
+<P><STRONG><a name="[99]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_test
@@ -2598,10 +2588,8 @@ Local Symbols
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_configure_device
 </UL>
 
-<P><STRONG><a name="[e5]"></a>wireless_rx_data_payload</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, wireless.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = wireless_rx_data_payload &rArr; spiTx
-</UL>
-<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_CSN_high
+<P><STRONG><a name="[e5]"></a>wireless_rx_data_payload</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, wireless.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_CSN_high
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_CSN_low
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spiTx
 </UL>
@@ -2684,10 +2672,8 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_configure_device
 </UL>
 
-<P><STRONG><a name="[f2]"></a>wireless_rx_fifo_empty</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, wireless.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = wireless_rx_fifo_empty &rArr; wireless_reg_read &rArr; spiTx
-</UL>
-<BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_reg_read
+<P><STRONG><a name="[f2]"></a>wireless_rx_fifo_empty</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, wireless.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_reg_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wireless_get_32
 </UL>
@@ -2712,10 +2698,10 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
 </UL>
 
-<P><STRONG><a name="[11d]"></a>_printf_core</STRONG> (Thumb, 336 bytes, Stack size 88 bytes, printf1.o(i._printf_core), UNUSED)
+<P><STRONG><a name="[11d]"></a>_printf_core</STRONG> (Thumb, 436 bytes, Stack size 96 bytes, printf3.o(i._printf_core), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$1
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$3
 </UL>
 <P>
 <H3>
