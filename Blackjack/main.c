@@ -33,7 +33,7 @@ char group[] =     "Team Number: 36";
 // timer variables
 extern volatile bool ALERT_1MS;
 extern volatile bool ALERT_5000MS;
-extern volatile int up, down, left, right;
+ volatile int up, down, left, right;
 
 //*****************************************************************************
 // 
@@ -122,9 +122,9 @@ void wireless_connect(){
 
 
 //*****************************************************************************
-// Switch 2 Debounce 
+// Directional Debounce 
 //*****************************************************************************
-void button_debounce(void) 
+bool button_debounce(void) 
 {
 	uint8_t buttons;
 	buttons = io_expander_read_buttons();
@@ -132,9 +132,22 @@ void button_debounce(void)
 	down = (buttons & DIR_BTN_DOWN_PIN) == 0 ? ++down : 0;	
 	right = (buttons & DIR_BTN_RIGHT_PIN) == 0 ? ++right : 0;	
 	left = (buttons & DIR_BTN_LEFT_PIN) == 0 ? ++left : 0;
+	
+	return left == 8 || right == 8 || down == 8||up == 8;
 }
 
-
+//*****************************************************************************
+// Switch 2 Debounce 
+//*****************************************************************************
+bool sw2_debounce(void) 
+{
+	if (lp_io_read_pin(SW2_BIT)){
+	// button pressed
+	  return false;
+	}
+	// button not pressed
+	return true;
+}
 
 void update_global_event_data() {
 	uint8_t buttons;
@@ -244,7 +257,6 @@ void write_debug_data() {
 //	eeprom_bytes_write((uint8_t *) student_1, EEPROM_STUDENT1, 80);
 //	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
 //	printf("%s\n\r", info);
-<<<<<<< HEAD
 	
 	if (sw2_debounce()) 
 	{
@@ -256,9 +268,6 @@ void write_debug_data() {
 		wireless_get_32(false, &data);
 		printf("%d", data);	
 	}
-=======
-
->>>>>>> e8c55cfd8f5ce638d5cc32443ff7ac5255ee8379
 }
 
 
@@ -273,8 +282,9 @@ main(void)
 	int i = SPADES ;
 	int t = 0 ;
 	float theta = 3.1419/2; 
-	up = 0, down = 0, left = 0, right = 0;
 	SCREEN_STATE prev_state = START_SCREEN;
+	up = 0; down = 0; left = 0; right = 0;
+	
 
 	
 	initializeBoard() ;

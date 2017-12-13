@@ -48,5 +48,6 @@
 
 static EVENT_DATA global_event_data;
 static GAMESTATE_DATA global_game_state_data;
+volatile bool data_flag;
 
 #endif

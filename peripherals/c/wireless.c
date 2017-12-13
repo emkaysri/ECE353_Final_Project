@@ -740,14 +740,15 @@ void wireless_initialize(void)
 
 void GPIOC_Handler(void)
 {
-	
+	GPIOA_Type * gpio;
 	reset_watchDog();
 	
 	// indicate we have data present
-	data_flag = true; 
+	
 	
 	// need to clear interrupt still
-	GPIOA_Type * gpio;
+	
+	data_flag = true; 
 	gpio = (GPIOA_Type *)GPIOC_BASE;
 	gpio->ICR |= RF_IRQ_PIN;
 }
