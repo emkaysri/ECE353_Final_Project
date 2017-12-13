@@ -242,6 +242,7 @@ void write_debug_data() {
 	if (buttons & DIR_BTN_RIGHT_PIN) {
 		printf("RIGHT BUTTON PRESSED \n\r");
 	}
+
 	
 	// Test I2C LEDs
 	io_expander_write_LEDs(LEDs);
@@ -250,6 +251,7 @@ void write_debug_data() {
 //	eeprom_bytes_write((uint8_t *) student_1, EEPROM_STUDENT1, 80);
 //	eeprom_bytes_read((uint8_t *)info, EEPROM_STUDENT1, 80);
 //	printf("%s\n\r", info);
+<<<<<<< HEAD
 	
 	if (sw2_debounce()) 
 	{
@@ -261,6 +263,9 @@ void write_debug_data() {
 		wireless_get_32(false, &data);
 		printf("%d", data);	
 	}
+=======
+
+>>>>>>> e8c55cfd8f5ce638d5cc32443ff7ac5255ee8379
 }
 
 
