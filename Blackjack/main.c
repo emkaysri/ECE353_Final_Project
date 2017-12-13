@@ -117,8 +117,8 @@ void initializeBoard(void)
 void wireless_connect(){
 	
 	// Input correct IDs for boards
-	uint8_t myID[]  				= { 3,5,3,2,3};
-	uint8_t remoteID[]      = { 4,5,3,2,2};
+	uint8_t myID[]  				= { 3,5,3,9,1};
+	uint8_t remoteID[]      = { 3,5,3,9,2};
 	
 	wireless_configure_device(myID, remoteID); 
 }
@@ -264,8 +264,7 @@ main(void)
 	
 	
 	// connect to wireless network 
-	//wireless_connect();
-	 
+	wireless_connect();
 	
 	clear() ;
 	
@@ -276,6 +275,8 @@ main(void)
 	// MAIN GAME LOGIC LOOP
 	// Program should never exit this loop, from starting screen to games
 	while(true) {
+	  wireless_test();
+
 		bool startScreen = true;
 		float theta = 3.1419/2;
 		update_global_event_data() ;

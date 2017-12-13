@@ -722,8 +722,6 @@ void wireless_initialize(void)
 //*****************************************************************************
 void wireless_test(void)
 {
-	uint8_t myID[]      = { '3', '5', '3', '3', '3'};
-	uint8_t remoteID[]  = { '3', '5', '3', '4', '4'};
 	wireless_com_status_t status;
 	int i = 0;
 	int j = 0;
@@ -732,7 +730,6 @@ void wireless_test(void)
 	printf("=== Starting RF Test ===\n\r");
 	printf("\t Set the Demo to Rx mode\n\r");
 	
-	wireless_configure_device(myID, remoteID ) ;
 	
 	while ( i < 20)
 	{
