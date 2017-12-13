@@ -27,6 +27,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include "event.h"
 
 #define DEALER_CARD_WIDTH     XX
 #define DEALER_CARD_HEIGHT    XX
@@ -36,32 +37,35 @@ extern const uint8_t Bitmaps_X[];
 #define USER_CARD_HEIGHT    XX
 extern const uint8_t Bitmaps_X[];
 
-uint8_t masterID[];
+volatile int up, down, left, right;
+
 typedef struct{
   int hand[2][5];
   bool stand[2];
   int numCards[2];
   int money;
   int bet;
-  int *playerID;
-	bool split;
-	bool hit;
+  uint8_t *playerID;
 } player;
 
+player this_player;
 /*
 * cardnum % 13 = CARD_VALUE
 * cardnum / 13 = CARD_SUIT
 */
 int *dealerHand;
+int dealerNumCards;
 
 int currCard;
 int Deck[52];
+int dealerSum;
 
 
 enum BLACKJACK_GAME_OPTION {
 	HIT,
 	STAND,
-	SPLIT
+	SPLIT,
+	NOTVALID
 };
 
 
@@ -74,7 +78,6 @@ enum GAME_OPTIONS {
 	ONE_PLAYER,
 	TWO_PLAYER
 } ;
-
 
 
 typedef struct{
@@ -130,7 +133,7 @@ bool display_main_menu(void);
 * Summary: Creates game
 *
 *******************************************************************************/
-void master_game(uint8_t *player);
+void master_game(uint8_t* playerOneID, uint8_t* playerTwoID);
 
 /*******************************************************************************
 * Function Name: play_game
@@ -147,7 +150,7 @@ void play_game(void);
 *
 *******************************************************************************/
 int nextCard(void);
-int Bet(void);
+int Bet(player *p);
 bool requestbet();
 void play_game(void);
 void shuffle_cards(void);
@@ -155,6 +158,6 @@ void swap(int *a, int *b);
 void sendbet(void);
 void endTurn(void);
 void DisplayWinorLoss(player * p, int winLoss);
-void playerturn();
+bool playerturn();
 int score(int * val, int num, bool high);
 #endif
