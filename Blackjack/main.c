@@ -214,6 +214,7 @@ void write_debug_data() {
 	uint8_t buttons;
 	uint8_t LEDs = 0xF1;
 	char info[80];
+	uint32_t data; 
 	
 	printf("**************************************\n\r");
   printf("* BLACK JACK DEBUG DATA\n\r");
@@ -253,6 +254,12 @@ void write_debug_data() {
 	if (sw2_debounce()) 
 	{
 		printf("Switch 2 pressed");
+	}
+	
+	// test IrQ wireless
+	if(data_flag){
+		wireless_get_32(false, &data);
+		printf("%d", data);	
 	}
 }
 

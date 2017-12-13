@@ -37,8 +37,8 @@
 #define   RF_CE_PIN           PD6
 #define   RF_CE_PORT         	GPIOD
 
-#define   RF_IRQ_GPIO_BASE    GPIOD_BASE
-#define   RF_IRQ_PIN          PD3
+#define   RF_IRQ_GPIO_BASE    GPIOC_BASE
+#define   RF_IRQ_PIN          PC7
 
 #define   RF_PAYLOAD_SIZE     0x04
 #define   RF_CHANNEL          0x02

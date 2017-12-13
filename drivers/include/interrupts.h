@@ -11,6 +11,6 @@
 #include "validate.h"
 
 
-extern volatile bool AlertOneSec;
+extern volatile bool data_flag;
 
 #endif
