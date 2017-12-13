@@ -43,7 +43,7 @@
 #define   RF_PAYLOAD_SIZE     0x04
 #define   RF_CHANNEL          0x02
 
-
+extern volatile bool AlertOneSec;
 
 #define NRF24L01_CONFIG_R                     0x00
 #define NRF24L01_EN_AA_R                      0x01

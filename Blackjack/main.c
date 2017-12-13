@@ -117,7 +117,7 @@ void initializeBoard(void)
 void wireless_connect(){
 	
 	// Input correct IDs for boards
-	uint8_t myID[]  				= { 3,5,3,9,1};
+	uint8_t myID[]  				= { 3,5,3,9,1} ;
 	uint8_t remoteID[]      = { 3,5,3,9,2};
 	
 	wireless_configure_device(myID, remoteID); 
@@ -137,10 +137,15 @@ bool sw2_debounce(void)
 	return true;
 }
 
+
+
 void update_global_event_data() {
+	uint8_t buttons;
 	if (ft6x06_read_td_status()) {
 		
-		if (!global_event_data.capTouchEvent.valid) {
+		uint16_t xRead = ft6x06_read_x();
+		uint16_t yRead = ft6x06_read_y();
+		if (xRead < 400 && yRead<400) {
 			global_event_data.capTouchEvent.valid = true;
 			global_event_data.capTouchEvent.x = ft6x06_read_x();
 			global_event_data.capTouchEvent.y = ft6x06_read_y();
@@ -166,6 +171,25 @@ void update_global_event_data() {
 	} else if (global_event_data.joystickEvent.y < JOYSTICK_THRESH) {
 		global_event_data.joystickEvent.dir = DOWN_DIR ; 
 	}
+	
+	
+	 buttons = io_expander_read_buttons();
+	
+	global_event_data.LAST_PUSHBUTTON = -1;
+	if (buttons & DIR_BTN_UP_PIN) {
+		global_event_data.LAST_PUSHBUTTON = UP_DIR;
+	}
+	
+	if (buttons & DIR_BTN_DOWN_PIN) {
+		global_event_data.LAST_PUSHBUTTON = DOWN_DIR;
+	}
+	if (buttons & DIR_BTN_LEFT_PIN) {
+		global_event_data.LAST_PUSHBUTTON = LEFT_DIR;
+	}
+	if (buttons & DIR_BTN_RIGHT_PIN) {
+		global_event_data.LAST_PUSHBUTTON = RIGHT_DIR;
+	}
+	
 	
 }
 
@@ -193,7 +217,6 @@ void write_debug_data() {
 	
 	// Test I2C buttons
 	buttons = io_expander_read_buttons();
-	
 	if (buttons & DIR_BTN_UP_PIN) {
 		printf("UP BUTTON PRESSED \n\r");
 	}
@@ -234,7 +257,7 @@ main(void)
 	int i = SPADES ;
 	int t = 0 ;
 	float theta = 3.1419/2; 
-	
+	SCREEN_STATE prev_state = START_SCREEN;
 
 	
 	initializeBoard() ;
@@ -279,8 +302,12 @@ main(void)
 		float theta = 3.1419/2;
 		update_global_event_data() ;
 		write_debug_data() ; 
-		wireless_test();
-		draw() ; 
+		//wireless_test();
+		draw() ;
+		if (	global_game_state_data.currentScreenState != 	prev_state &&
+			global_game_state_data.currentScreenState != CONTROLS	) {
+				prev_state = global_game_state_data.currentScreenState;
+		}
 	
 
 	// If SW2 is pressed, write names and group number to EEPROM
@@ -291,6 +318,26 @@ main(void)
 		eeprom_bytes_write((uint8_t *) student_3, EEPROM_STUDENT3, 80);
 		eeprom_bytes_write((uint8_t *) group, EEPROM_GROUP, 80);
 	}
+	
+		if (global_event_data.LAST_PUSHBUTTON == RIGHT_DIR
+			&& global_game_state_data.currentScreenState == GAME_SCREEN) {
+			global_game_state_data.currentScreenState = CONTROLS ;  
+
+		} else if (global_event_data.LAST_PUSHBUTTON != RIGHT_DIR
+			&& global_game_state_data.currentScreenState == CONTROLS) { 
+			global_game_state_data.currentScreenState = GAME_SCREEN ; 
+		}
+	
+
+	
+	
+	for (i =0 ; i< 10; i++) {
+				while (!ALERT_1MS) {
+				
+				}
+			
+				ALERT_1MS = false; 
+			}
 
 
 	}

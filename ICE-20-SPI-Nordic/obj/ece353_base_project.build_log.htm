@@ -27,14 +27,14 @@ Project File Date:  12/12/2017
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'ICE-18-SPI-Nordic'
+compiling interrupts.c...
+compiling main.c...
 compiling gpio_port.c...
 ..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
          return 0;
 ..\drivers\c\gpio_port.c(453): warning:  #177-D: variable "gpioPort"  was declared but never referenced
     GPIOA_Type  *gpioPort;
 ..\drivers\c\gpio_port.c: 2 warnings, 0 errors
-compiling main.c...
-compiling interrupts.c...
 compiling pc_buffer.c...
 compiling spi.c...
 compiling uart.c...
@@ -47,13 +47,16 @@ compiling serial_debug.c...
 ..\peripherals\c\serial_debug.c(183): warning:  #177-D: variable "tx_buffer"  was declared but never referenced
      PC_Buffer *tx_buffer;
 ..\peripherals\c\serial_debug.c: 2 warnings, 0 errors
-assembling startup_TM4C123.s...
 compiling spi_select.c...
 compiling wireless.c...
+..\peripherals\c\wireless.c(729): warning:  #177-D: variable "j"  was declared but never referenced
+  	int j = 0;
+..\peripherals\c\wireless.c: 1 warning, 0 errors
+assembling startup_TM4C123.s...
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=17140 RO-data=744 RW-data=972 ZI-data=8220  
-".\obj\ece353_base_project.axf" - 0 Error(s), 5 Warning(s).
+Program Size: Code=16940 RO-data=872 RW-data=996 ZI-data=8220  
+".\obj\ece353_base_project.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -77,12 +80,12 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.1
-      Source file:   Device\Source\ARM\startup_TM4C123.s
       Include file:  Device\Include\TM4C123\TM4C123.h
+      Source file:   Device\Source\ARM\startup_TM4C123.s
       Source file:   Device\Source\system_TM4C123.c
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:07
+Build Time Elapsed:  00:00:09
 </pre>
 </body>
 </html>

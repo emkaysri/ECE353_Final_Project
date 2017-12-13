@@ -36,8 +36,7 @@ typedef struct  {
 typedef struct  {
 	LAST_CAP_TOUCH_EVENT capTouchEvent;
 	LAST_JOYSTICK_EVENT joystickEvent;
-	int LAST_PUSHBUTTON_X ;
-	int LAST_PUSHBUTTON_Y ;	
+	int LAST_PUSHBUTTON;	
 } EVENT_DATA;
 
 struct POINT {
@@ -53,12 +52,18 @@ enum PLAYER_SELECT {
 
 typedef enum  {
 	START_SCREEN,
-	GAME_SCREEN
+	GAME_SCREEN,
+	CONTROLS
 }SCREEN_STATE;
+
 
 typedef struct {
 	uint8_t numPlayer;
 	SCREEN_STATE currentScreenState;
+	uint16_t playerOneMoney;
+	uint16_t playerTwoMoney;
+	uint16_t playerOneBet;
+	uint16_t playerTwoBet;
 } GAMESTATE_DATA;
 
 

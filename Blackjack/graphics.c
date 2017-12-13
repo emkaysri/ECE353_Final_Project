@@ -1,5 +1,6 @@
 #include "graphics.h"
 #include "math.h"
+#include <stdlib.h>
 
 uint16_t defaultColor = LCD_COLOR_BLACK; 
 
@@ -303,34 +304,71 @@ void drawBlackjackControlOptions(int x, int y, int controlOptionsWidth, int cont
 	
 	int xPos = controlOptionsWidth/2-10;
 
-	drawRect(x + 5, x + controlOptionsWidth, y + 5, y + controlOptionsHieght, LCD_COLOR_BLACK);
+	//drawRect(x + 5, x + controlOptionsWidth, y + 5, y + controlOptionsHieght, LCD_COLOR_BLACK);
 	
-	drawRect(x + 10, x + controlOptionsWidth - 5, y + 10, y + controlOptionsHieght - 5, LCD_COLOR_WHITE);
+	//drawRect(x + 10, x + controlOptionsWidth - 5, y + 10, y + controlOptionsHieght - 5, LCD_COLOR_WHITE);
 	
 	//lcd_draw_rectangle_centered (x + xPos-5, 3, y + 14, 3, LCD_COLOR_WHITE);
 	
 	//controlOptionsHieght-=20;
 	
-	drawStringSelectedAndCentered("HIT", x + controlOptionsWidth/2, y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	x+=controlOptionsWidth/2;
+	y+=controlOptionsHieght/2;
 	
-	y+=controlOptionsHieght/3;
+	drawStringSelectedAndCentered("STAND", x , y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
-	drawStringCentered("STAND", x + controlOptionsWidth/2, y + 15, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	drawStringSelectedAndCentered("HIT", x - 20 , y , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
-	y+=controlOptionsHieght/3;
-	
-	drawStringCentered("SPLIT", x + controlOptionsWidth/2, y + 15, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	drawStringSelectedAndCentered("SPLIT", x , y - 20 , LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 }
+
+
+void reverse(char s[])
+ {
+     int i, j;
+     char c;
+
+     for (i = 0, j = strlen(s)-1; i<j; i++, j--) {
+         c = s[i];
+         s[i] = s[j];
+         s[j] = c;
+     }
+}  
+
+/* itoa:  convert n to characters in s */
+ void itoa(int n, char s[])
+ {
+     int i, sign;
+
+     if ((sign = n) < 0)  /* record sign */
+         n = -n;          /* make n positive */
+     i = 0;
+     do {       /* generate digits in reverse order */
+         s[i++] = n % 10 + '0';   /* get next digit */
+     } while ((n /= 10) > 0);     /* delete it */
+     if (sign < 0)
+         s[i++] = '-';
+     s[i] = '\0';
+     reverse(s);
+}  
 
 void drawBettingOptions(int x, int y, int width, int height) {
 	
-	drawString("TOTAL $1000", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	
+	char totalString[50] = "TOTAL$";
+	
+	char number[10];
+	itoa(global_game_state_data->playerOneMoney,number);
+	
+	strcat(totalString, number);
+	
+	drawString(totalString, x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
 	drawString("BET $500", x , y + 20, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
 	drawStringSelected("INCREASE BET", x , y + 40, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
-	drawString("DECREASE BET", x , y + 60, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	drawStringSelected("DECREASE BET", x , y + 60, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 	
 }
 
@@ -383,7 +421,10 @@ void drawPlayer(int x, int y, int width, int height) {
 }
 
 void drawGameState(int x, int y, int width, int height) {
-	drawString("WAIT FOR OTHER PLAYER TO PLAY", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	x+=width/2;
+	y+=height/2;
+	drawStringCentered("WAIT FOR OTHER PLAYER TO PLAY", x , y + 10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
+	drawStringCentered("PRESS RIGHT BUTTON FOR CONTROL", x , y, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ; 
 }
 
 
@@ -399,24 +440,24 @@ int drawGameScreenOutLineAndData() {
 	
 	// Player Area
 	drawPlayer(25, (uint16_t)(0.4*ROWS), COLS, (uint16_t)(0.6*ROWS)-50);
-	drawBlackjackControlOptions((uint16_t)(0.75*COLS)-15, (uint16_t)(0.4*ROWS),(uint16_t)(0.25*COLS),85 ) ; 
+	drawBlackjackControlOptions((uint16_t)(0.75*COLS)-15, (uint16_t)(0.6*ROWS),(uint16_t)(0.25*COLS),60 ) ; 
 	
 	
 	// Dealer Area
 	
 	drawDealer((uint16_t)(0.4*COLS)+10, 0, (uint16_t)(0.6*COLS)-10, (uint16_t)(0.4*ROWS));
 	// Controls Areas
-	drawRect(0, (uint16_t)(0.4*COLS), 0, (uint16_t)(0.3*ROWS), LCD_COLOR_BLACK);
-	drawRect(0, (uint16_t)(0.4*COLS)-4, 0, (uint16_t)(0.3*ROWS)-4, LCD_COLOR_WHITE);
+	//drawRect(0, (uint16_t)(0.4*COLS), 0, (uint16_t)(0.3*ROWS), LCD_COLOR_BLACK);
+	//drawRect(0, (uint16_t)(0.4*COLS)-4, 0, (uint16_t)(0.3*ROWS)-4, LCD_COLOR_WHITE);
 	
 	
-	drawRect(0,COLS, ROWS-50, ROWS-45, LCD_COLOR_BLACK);
+	//drawRect(0,COLS, ROWS-50, ROWS-45, LCD_COLOR_BLACK);
 	drawBettingOptions(10, 0, (uint16_t)(0.4*COLS), (uint16_t)(0.4*ROWS)); 
 	
 	
 	// Game state
 	
-	drawGameState(25, ROWS-50, COLS, 50);
+	drawGameState(0, ROWS-50, COLS, 50);
 	
 	
 
@@ -452,9 +493,9 @@ int drawHomeScreen(float theta) {
 	
 	// update state
 	
-	
 	cap_touch_event.x = eventData.x ;
 	cap_touch_event.y = eventData.y ;
+	
 	if ( distanceAbs(cap_touch_event , Player2Disp) < CAP_TOUCH_TOLERANCE_SQRD ) {
 		global_game_state_data->currentScreenState = GAME_SCREEN;
 		clear();
@@ -491,8 +532,6 @@ int drawHomeScreen(float theta) {
 
 	if (player_select_state==NONE) {
 		drawStringCentered("TOUCH TO SELECT", COLS/2 , ROWS-10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
-	} else {
-		drawStringCentered("TAP AGAIN TO CONFIRM", COLS/2 , ROWS-10, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
 	}
 	
 	return 0;
@@ -515,8 +554,31 @@ int drawWirelessSearchScreen(float theta) {
 		theta+=(3.1419*(2.0/4.0));
 }
 
+int drawControls() {
+	drawStringCentered("MOVE JOYSTICK UP AND DOWN", COLS/2 , 60, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawStringCentered("TO INCREASE AND DECREASE", COLS/2 , 70, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawStringCentered("BET AMOUNT", COLS/2 , 80, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	
+	
+	drawStringCentered("LEFT BUTTON IS HIT", COLS/2 , 100, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawStringCentered("UP IS SPLIT", COLS/2 , 110, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+	drawStringCentered("DOWN IS STAND", COLS/2 , 120, LCD_COLOR_BLACK,LCD_COLOR_WHITE) ;
+}
+
 static float theta = 3.1419/2;
+
+SCREEN_STATE prev_state;
+
 int draw() {
+	
+
+	if (prev_state!=global_game_state_data->currentScreenState) {
+		clear();
+		prev_state = global_game_state_data->currentScreenState; 
+	}
+	
+
+	
 	switch(global_game_state_data->currentScreenState) {
 		case START_SCREEN:
 			drawHomeScreen(theta);
@@ -524,6 +586,9 @@ int draw() {
 			break;
 		case GAME_SCREEN:
 			drawGameScreenOutLineAndData();
+			break;
+		case CONTROLS:
+			drawControls();
 			break;
 		default:
 			drawStringCentered("DRAW STATE ERROR", COLS/2 , ROWS/2, LCD_COLOR_RED,LCD_COLOR_WHITE) ;

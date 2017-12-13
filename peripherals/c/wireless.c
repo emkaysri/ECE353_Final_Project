@@ -1,6 +1,6 @@
 #include "wireless.h"
 
-#define TX_MODE  false
+#define TX_MODE  true
 
 const char *wireless_error_messages[] = {"NRF24L01_TX_SUCCESS","NRF24L01_TX_FIFO_FULL","NRF24L01_TX_PCK_LOST", "NRF24L01_RX_SUCCESS", "NRF24L01_RX_FIFO_EMPTY", "NRF24L01_ERR"};
 

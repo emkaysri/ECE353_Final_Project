@@ -15,10 +15,11 @@
 .\obj\main.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\stdbool.h
 .\obj\main.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\errno.h
 .\obj\main.o: ..\drivers\include\spi.h
-.\obj\main.o: interrupts.h
+.\obj\main.o: ..\drivers\include\interrupts.h
 .\obj\main.o: ..\drivers\include\pc_buffer.h
 .\obj\main.o: C:\ProgramData\App-V\DE50D8B9-402F-4CAC-9DEA-99ADC8882CA4\8A984B0A-A990-4F1D-B426-7065E242CA63\Root\ARM\ARMCC\bin\..\include\stdlib.h
 .\obj\main.o: ..\drivers\include\uart.h
 .\obj\main.o: ..\peripherals\include\validate.h
+.\obj\main.o: interrupts.h
 .\obj\main.o: ..\peripherals\include\spi_select.h
 .\obj\main.o: ..\peripherals\include\serial_debug.h
